@@ -9,8 +9,8 @@ public class FatalLevel implements Level {
 		return instance;
 	}
 	
-	public boolean isLowerThan(Level loggingLevel) {
-		return (LevelsRules.getInstance().lower(FatalLevel.class, this, loggingLevel) == this);
+	public boolean isLowerOrEqualsThan(Level loggingLevel) {
+		return (LevelsRules.getInstance().lowerOrEquals(FatalLevel.class, this, loggingLevel) == this);
 	}
 
 	public String getName() {

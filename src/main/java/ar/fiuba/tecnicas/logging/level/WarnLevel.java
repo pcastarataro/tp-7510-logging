@@ -9,8 +9,8 @@ public class WarnLevel implements Level {
 		return instance;
 	}
 	
-	public boolean isLowerThan(Level loggingLevel) {
-		return (LevelsRules.getInstance().lower(WarnLevel.class, this, loggingLevel) == this);
+	public boolean isLowerOrEqualsThan(Level loggingLevel) {
+		return (LevelsRules.getInstance().lowerOrEquals(WarnLevel.class, this, loggingLevel) == this);
 	}
 
 	public String getName() {

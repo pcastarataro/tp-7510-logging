@@ -9,8 +9,8 @@ public class InfoLevel implements Level {
 		return instance;
 	}
 		
-	public boolean isLowerThan(Level loggingLevel) {
-		return (LevelsRules.getInstance().lower(InfoLevel.class, this, loggingLevel) == this);
+	public boolean isLowerOrEqualsThan(Level loggingLevel) {
+		return (LevelsRules.getInstance().lowerOrEquals(InfoLevel.class, this, loggingLevel) == this);
 	}
 
 	public String getName() {

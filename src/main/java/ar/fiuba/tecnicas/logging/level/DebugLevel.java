@@ -9,8 +9,8 @@ public class DebugLevel implements Level {
 		return instance;
 	}
 	
-	public boolean isLowerThan(Level loggingLevel) {
-		return (LevelsRules.getInstance().lower(DebugLevel.class, this, loggingLevel) == this);
+	public boolean isLowerOrEqualsThan(Level loggingLevel) {
+		return (LevelsRules.getInstance().lowerOrEquals(DebugLevel.class, this, loggingLevel) == this);
 	}
 
 	public String getName() {

@@ -17,6 +17,13 @@ public interface Level {
 	 * @param loggingLevel
 	 * @return true if this is lower than loggingLevel.
 	 */
-	public boolean isLowerThan(Level loggingLevel);
+	//public boolean isLowerThan(Level loggingLevel);
+	
+	/**
+	 * This method compare 2 levels
+	 * @param loggingLevel
+	 * @return true if this is lower or equals than loggingLevel.
+	 */
+	public boolean isLowerOrEqualsThan(Level loggingLevel);
 	
 }

@@ -21,33 +21,28 @@ public class LevelsRules {
 	}
 
 	private void initializeRules() {
-		this.addLowerLevelsForLevelClass(this.getLowersLevelsForOffLevel(), OffLevel.class);
-		this.addLowerLevelsForLevelClass(this.getLowersLevelsForFatalLevel(), FatalLevel.class);
-		this.addLowerLevelsForLevelClass(this.getLowersLevelsForErrorLevel(), ErrorLevel.class);
-		this.addLowerLevelsForLevelClass(this.getLowersLevelsForWarnLevel(), WarnLevel.class);
-		this.addLowerLevelsForLevelClass(this.getLowersLevelsForInfoLevel(), InfoLevel.class);
-		this.addLowerLevelsForLevelClass(this.getLowersLevelsForDebugLevel(), DebugLevel.class);
+		this.addLowerOrEqualsLevelsForLevelClass(this.getLowersOrEqualsLevelsForOffLevel(), OffLevel.class);
+		this.addLowerOrEqualsLevelsForLevelClass(this.getLowersOrEqualsLevelsForFatalLevel(), FatalLevel.class);
+		this.addLowerOrEqualsLevelsForLevelClass(this.getLowersOrEqualsLevelsForErrorLevel(), ErrorLevel.class);
+		this.addLowerOrEqualsLevelsForLevelClass(this.getLowersOrEqualsLevelsForWarnLevel(), WarnLevel.class);
+		this.addLowerOrEqualsLevelsForLevelClass(this.getLowersOrEqualsLevelsForInfoLevel(), InfoLevel.class);
+		this.addLowerOrEqualsLevelsForLevelClass(this.getLowersOrEqualsLevelsForDebugLevel(), DebugLevel.class);
 	}
 	
-	private List<Level> getLowersLevelsForOffLevel() {
-		List<Level> rules = new ArrayList<Level>();
-		return rules;
-	}
-	
-	private List<Level> getLowersLevelsForFatalLevel() {
+	private List<Level> getLowersOrEqualsLevelsForOffLevel() {
 		List<Level> rules = new ArrayList<Level>();
 		rules.add(OffLevel.getInstance());
 		return rules;
 	}
 	
-	private List<Level> getLowersLevelsForErrorLevel() {
+	private List<Level> getLowersOrEqualsLevelsForFatalLevel() {
 		List<Level> rules = new ArrayList<Level>();
 		rules.add(OffLevel.getInstance());
 		rules.add(FatalLevel.getInstance());
 		return rules;
 	}
 	
-	private List<Level> getLowersLevelsForWarnLevel() {
+	private List<Level> getLowersOrEqualsLevelsForErrorLevel() {
 		List<Level> rules = new ArrayList<Level>();
 		rules.add(OffLevel.getInstance());
 		rules.add(FatalLevel.getInstance());
@@ -55,7 +50,7 @@ public class LevelsRules {
 		return rules;
 	}
 	
-	private List<Level> getLowersLevelsForInfoLevel() {
+	private List<Level> getLowersOrEqualsLevelsForWarnLevel() {
 		List<Level> rules = new ArrayList<Level>();
 		rules.add(OffLevel.getInstance());
 		rules.add(FatalLevel.getInstance());
@@ -64,7 +59,7 @@ public class LevelsRules {
 		return rules;
 	}
 	
-	private List<Level> getLowersLevelsForDebugLevel() {
+	private List<Level> getLowersOrEqualsLevelsForInfoLevel() {
 		List<Level> rules = new ArrayList<Level>();
 		rules.add(OffLevel.getInstance());
 		rules.add(FatalLevel.getInstance());
@@ -74,7 +69,18 @@ public class LevelsRules {
 		return rules;
 	}
 	
-	private void addLowerLevelsForLevelClass(List<Level> levels, Class<?> levelClass) {
+	private List<Level> getLowersOrEqualsLevelsForDebugLevel() {
+		List<Level> rules = new ArrayList<Level>();
+		rules.add(OffLevel.getInstance());
+		rules.add(FatalLevel.getInstance());
+		rules.add(ErrorLevel.getInstance());
+		rules.add(WarnLevel.getInstance());
+		rules.add(InfoLevel.getInstance());
+		rules.add(DebugLevel.getInstance());
+		return rules;
+	}
+	
+	private void addLowerOrEqualsLevelsForLevelClass(List<Level> levels, Class<?> levelClass) {
 		lowerLevelsByClass.put(levelClass, levels);
 	}
 	
@@ -93,7 +99,7 @@ public class LevelsRules {
 	 * @param secondLevel
 	 * @return Level. The level which wins between firstLevel and secondLevel.
 	 */
-	public Level lower(Class<?> levelClass, Level firstLevel, Level secondLevel) {
+	public Level lowerOrEquals(Class<?> levelClass, Level firstLevel, Level secondLevel) {
 		return lowerLevelsByClass.get(levelClass).contains(secondLevel)? secondLevel: firstLevel;
 	}
 

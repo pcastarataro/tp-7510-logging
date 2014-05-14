@@ -9,8 +9,8 @@ public class ErrorLevel implements Level {
 		return instance;
 	}
 	
-	public boolean isLowerThan(Level loggingLevel) {
-		return (LevelsRules.getInstance().lower(ErrorLevel.class, this, loggingLevel) == this);
+	public boolean isLowerOrEqualsThan(Level loggingLevel) {
+		return (LevelsRules.getInstance().lowerOrEquals(ErrorLevel.class, this, loggingLevel) == this);
 	}
 
 	public String getName() {

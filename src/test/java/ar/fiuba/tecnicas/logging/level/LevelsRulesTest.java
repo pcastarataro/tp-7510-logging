@@ -15,152 +15,152 @@ public class LevelsRulesTest {
 	
 	@Test
 	public void testOffLevelIsLowerThanFatalLevel() {
-		assertTrue(offLevel.isLowerThan(fatalLevel));
+		assertTrue(offLevel.isLowerOrEqualsThan(fatalLevel));
 	}
 	
 	@Test
 	public void testOffLevelIsLowerThanErrorLevel() {
-		assertTrue(offLevel.isLowerThan(errorLevel));
+		assertTrue(offLevel.isLowerOrEqualsThan(errorLevel));
 	}
 	
 	@Test
 	public void testOffLevelIsLowerThanWarnLevel() {
-		assertTrue(offLevel.isLowerThan(warnLevel));
+		assertTrue(offLevel.isLowerOrEqualsThan(warnLevel));
 	}
 	
 	@Test
 	public void testOffLevelIsLowerThanInfoLevel() {
-		assertTrue(offLevel.isLowerThan(infoLevel));
+		assertTrue(offLevel.isLowerOrEqualsThan(infoLevel));
 	}
 	
 	@Test
 	public void testOffLevelIsLowerThanDebugLevel() {
-		assertTrue(offLevel.isLowerThan(debugLevel));
+		assertTrue(offLevel.isLowerOrEqualsThan(debugLevel));
 	}
 	
 	@Test
 	public void testFatalLevelIsntLowerThanOffLevel() {
-		assertFalse(fatalLevel.isLowerThan(offLevel));
+		assertFalse(fatalLevel.isLowerOrEqualsThan(offLevel));
 	}
 	
 	@Test
 	public void testFatalLevelIsLowerThanErrorLevel() {
-		assertTrue(fatalLevel.isLowerThan(errorLevel));
+		assertTrue(fatalLevel.isLowerOrEqualsThan(errorLevel));
 	}
 	
 	@Test
 	public void testFatalLevelIsLowerThanWarnLevel() {
-		assertTrue(fatalLevel.isLowerThan(warnLevel));
+		assertTrue(fatalLevel.isLowerOrEqualsThan(warnLevel));
 	}
 	
 	@Test
 	public void testFatalLevelIsLowerThanInfoLevel() {
-		assertTrue(fatalLevel.isLowerThan(infoLevel));
+		assertTrue(fatalLevel.isLowerOrEqualsThan(infoLevel));
 	}
 	
 	@Test
 	public void testFatalLevelIsLowerThanDebugLevel() {
-		assertTrue(fatalLevel.isLowerThan(debugLevel));
+		assertTrue(fatalLevel.isLowerOrEqualsThan(debugLevel));
 	}
 	
 	@Test
 	public void testErrorLevelIsntLowerThanOffLevel() {
-		assertFalse(errorLevel.isLowerThan(offLevel));
+		assertFalse(errorLevel.isLowerOrEqualsThan(offLevel));
 	}
 	
 	@Test
 	public void testErrorLevelIsntLowerThanFatalLevel() {
-		assertFalse(errorLevel.isLowerThan(fatalLevel));
+		assertFalse(errorLevel.isLowerOrEqualsThan(fatalLevel));
 	}
 	
 	@Test
 	public void testErrorLevelIsLowerThanWarnLevel() {
-		assertTrue(errorLevel.isLowerThan(warnLevel));
+		assertTrue(errorLevel.isLowerOrEqualsThan(warnLevel));
 	}
 	
 	@Test
 	public void testErrorLevelIsLowerThanInfoLevel() {
-		assertTrue(errorLevel.isLowerThan(infoLevel));
+		assertTrue(errorLevel.isLowerOrEqualsThan(infoLevel));
 	}
 	
 	@Test
 	public void testErrorLevelIsLowerThanDebugLevel() {
-		assertTrue(errorLevel.isLowerThan(debugLevel));
+		assertTrue(errorLevel.isLowerOrEqualsThan(debugLevel));
 	}
 	
 	@Test
 	public void testWarnLevelIsntLowerThanOffLevel() {
-		assertFalse(warnLevel.isLowerThan(offLevel));
+		assertFalse(warnLevel.isLowerOrEqualsThan(offLevel));
 	}
 	
 	@Test
 	public void testWarnLevelIsntLowerThanFatalLevel() {
-		assertFalse(warnLevel.isLowerThan(fatalLevel));
+		assertFalse(warnLevel.isLowerOrEqualsThan(fatalLevel));
 	}
 	
 	@Test
 	public void testWarnLevelIsntLowerThanErrorLevel() {
-		assertFalse(warnLevel.isLowerThan(errorLevel));
+		assertFalse(warnLevel.isLowerOrEqualsThan(errorLevel));
 	}
 	
 	@Test
 	public void testWarnLevelIsLowerThanInfoLevel() {
-		assertTrue(warnLevel.isLowerThan(infoLevel));
+		assertTrue(warnLevel.isLowerOrEqualsThan(infoLevel));
 	}
 	
 	@Test
 	public void testWarnLevelIsLowerThanDebugLevel() {
-		assertTrue(warnLevel.isLowerThan(debugLevel));
+		assertTrue(warnLevel.isLowerOrEqualsThan(debugLevel));
 	}
 	
 	@Test
 	public void testInfoLevelIsntLowerThanOffLevel() {
-		assertFalse(infoLevel.isLowerThan(offLevel));
+		assertFalse(infoLevel.isLowerOrEqualsThan(offLevel));
 	}
 	
 	@Test
 	public void testInfoLevelIsntLowerThanFatalLevel() {
-		assertFalse(infoLevel.isLowerThan(fatalLevel));
+		assertFalse(infoLevel.isLowerOrEqualsThan(fatalLevel));
 	}
 	
 	@Test
 	public void testInfoLevelIsntLowerThanErrorLevel() {
-		assertFalse(infoLevel.isLowerThan(errorLevel));
+		assertFalse(infoLevel.isLowerOrEqualsThan(errorLevel));
 	}
 	
 	@Test
 	public void testInfoLevelIsntLowerThanWarnLevel() {
-		assertFalse(infoLevel.isLowerThan(warnLevel));
+		assertFalse(infoLevel.isLowerOrEqualsThan(warnLevel));
 	}
 	
 	@Test
 	public void testInfoLevelIsLowerThanDebugLevel() {
-		assertTrue(infoLevel.isLowerThan(debugLevel));
+		assertTrue(infoLevel.isLowerOrEqualsThan(debugLevel));
 	}
 	
 	@Test
 	public void testDebugLevelIsntLowerThanOffLevel() {
-		assertFalse(debugLevel.isLowerThan(offLevel));
+		assertFalse(debugLevel.isLowerOrEqualsThan(offLevel));
 	}
 	
 	@Test
 	public void testDebugLevelIsntLowerThanFatalLevel() {
-		assertFalse(debugLevel.isLowerThan(fatalLevel));
+		assertFalse(debugLevel.isLowerOrEqualsThan(fatalLevel));
 	}
 	
 	@Test
 	public void testDebugLevelIsntLowerThanErrorLevel() {
-		assertFalse(debugLevel.isLowerThan(errorLevel));
+		assertFalse(debugLevel.isLowerOrEqualsThan(errorLevel));
 	}
 	
 	@Test
 	public void testDebugLevelIsntLowerThanWarnLevel() {
-		assertFalse(debugLevel.isLowerThan(warnLevel));
+		assertFalse(debugLevel.isLowerOrEqualsThan(warnLevel));
 	}
 	
 	@Test
 	public void testDebugLevelIsntLowerThanInfoLevel() {
-		assertFalse(debugLevel.isLowerThan(infoLevel));
+		assertFalse(debugLevel.isLowerOrEqualsThan(infoLevel));
 	}
 
 }

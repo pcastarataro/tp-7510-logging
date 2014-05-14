@@ -9,8 +9,8 @@ public class OffLevel implements Level {
 		return instance;
 	}
 	
-	public boolean isLowerThan(Level loggingLevel) {
-		return (LevelsRules.getInstance().lower(OffLevel.class, this, loggingLevel) == this);
+	public boolean isLowerOrEqualsThan(Level loggingLevel) {
+		return (LevelsRules.getInstance().lowerOrEquals(OffLevel.class, this, loggingLevel) == this);
 	}
 
 	public String getName() {
