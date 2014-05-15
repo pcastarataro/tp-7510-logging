@@ -12,6 +12,10 @@ import ar.fiuba.tecnicas.logging.format.Formatter;
 import ar.fiuba.tecnicas.logging.format.LogParameter;
 import ar.fiuba.tecnicas.logging.level.Level;
 
+/**
+ * This is a base class for a Log Implementation. This class do all the process of Logging using an abstract output that each derived class must provide.
+ *
+ */
 public abstract class AbstractLog implements Log {
 	private LogConfiguration logConfiguration;
 	private ExecutionContext executionContext;

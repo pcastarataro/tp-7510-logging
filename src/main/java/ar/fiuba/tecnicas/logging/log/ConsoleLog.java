@@ -2,6 +2,11 @@ package ar.fiuba.tecnicas.logging.log;
 
 import ar.fiuba.tecnicas.logging.config.LogConfiguration;
 
+/**
+ * This class implements a Log that contains a ConsoleOutput.
+ * @author pcastarataro
+ *
+ */
 public class ConsoleLog extends AbstractLog {
 	
 	LogOutput logOutput;

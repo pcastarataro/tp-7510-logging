@@ -5,6 +5,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * This class implements the Output for print the messages in a file.
+ *
+ */
 public class FileLogOutput implements LogOutput {
 
 	String fileName;
