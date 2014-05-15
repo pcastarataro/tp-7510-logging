@@ -9,4 +9,5 @@ public interface LogConfiguration {
 	public Level getMinLoggingLevel();
 	public String getDelimiter();
 	public String fileOutput();
+	public String getAsXml();
 }

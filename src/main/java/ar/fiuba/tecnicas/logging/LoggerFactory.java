@@ -18,13 +18,9 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 public class LoggerFactory {
-	private static LoggerFactory factory=null;
+	private static LoggerFactory factory=new LoggerFactory();
 	private LoggerFactory(){};
 	public static LoggerFactory newInstance(){
-		if(LoggerFactory.factory!=null){
-			return LoggerFactory.factory;
-		}
-		LoggerFactory.factory=new LoggerFactory();
 		return LoggerFactory.factory;
 	}
 	public Logger createLogger(String path){
@@ -101,7 +97,6 @@ public class LoggerFactory {
 				AbstractLog log;
 				String consola="stdout";
 				if (filename.equals(consola)){
-					System.out.println("es consola " + filename);
 					log=new ConsoleLog(logConfig);
 				}else{
 					log=new FileLog(logConfig);

@@ -56,4 +56,14 @@ public class BasicLogConfiguration implements LogConfiguration {
 	public String fileOutput() {
 		return this.fileOutput;
 	}
+	
+	public String getAsXml(){
+		String xmlConfig="<log>";
+		xmlConfig+="<level>"+this.minLoggingLevel.getName().replace("Level", "")+"</level>";
+		xmlConfig+="<baseformat>" + this.baseFormat + "</baseformat>";
+		xmlConfig+="<filename>" + this.fileOutput + "</filename>";
+		xmlConfig+="<delimiter>" + this.DEFAULT_DELIMITER + "</delimiter>";
+		xmlConfig+="</log>";
+		return xmlConfig;
+	}
 }

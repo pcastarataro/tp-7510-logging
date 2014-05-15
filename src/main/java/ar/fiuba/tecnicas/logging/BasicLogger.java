@@ -41,4 +41,14 @@ public class BasicLogger implements Logger{
 					" - " + "Level: " + loggingLevel.getName() + " - " + message);
 		}
 	}
+	
+	public String getXmlConfig(){
+		String xmlConfig="<logger>";
+		int cantLogs=this.logs.size();
+		for(int i=0;i<cantLogs;i++){
+			xmlConfig+=this.logs.get(i).getLogConfiguration().getAsXml();
+		}
+		xmlConfig+="</logger>";
+		return xmlConfig;
+	}
 }

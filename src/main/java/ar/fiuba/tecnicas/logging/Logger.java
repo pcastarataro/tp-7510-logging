@@ -14,4 +14,6 @@ public interface Logger {
 	 */
 	public void log(Level loggingLevel, String message);
 	
+	public String getXmlConfig();
+	
 }
