@@ -39,7 +39,7 @@ public abstract class AbstractLog implements Log {
 	
 	private void testMinLevel(Level level) throws MinLevelIsLowerException{
 		Level minLevel = this.getLogConfiguration().getMinLoggingLevel(); 
-		if (minLevel.isLowerOrEqualsThan(level)) {
+		if (!level.isLowerOrEqualsThan(minLevel)) {
 			throw new MinLevelIsLowerException();
 		}
 	}
