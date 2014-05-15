@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<logger>
+	<log>
+		<level>Debug</level>
+		<baseformat>%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}</baseformat>
+		<filename>stdout</filename>
+		<delimiter>:</delimiter>
+	</log>
+	<log>
+		<level>Info</level>
+		<baseformat>%d{HH:mm:ss}-%p-%t-%m</baseformat>
+		<filename>log1.txt</filename>
+		<delimiter>-</delimiter>
+	</log>
+	<log>
+		<level>Warn</level>
+		<baseformat>%d{HH:mm:ss}-%F-%L-%m</baseformat>
+		<filename>log2.txt</filename>
+		<delimiter>;</delimiter>
+	</log>
+</logger>

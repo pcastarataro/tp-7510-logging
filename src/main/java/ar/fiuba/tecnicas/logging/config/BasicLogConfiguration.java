@@ -5,7 +5,7 @@ import ar.fiuba.tecnicas.logging.log.LogOutput;
 
 public class BasicLogConfiguration implements LogConfiguration {
 	
-	private final String DEFAULT_DELIMITER = "-";
+	private String DEFAULT_DELIMITER = "-";
 	
 	private String baseFormat;
 	private Level minLoggingLevel;
@@ -20,6 +20,13 @@ public class BasicLogConfiguration implements LogConfiguration {
 		this.setBaseFormat(baseFormat);
 		this.setMinLoggingLevel(minLoggingLevel);
 		this.setFileOutput(fileOutput);
+	};
+	
+	public BasicLogConfiguration(String baseFormat, Level minLoggingLevel, String fileOutput,String delimiter) {
+		this.setBaseFormat(baseFormat);
+		this.setMinLoggingLevel(minLoggingLevel);
+		this.setFileOutput(fileOutput);
+		DEFAULT_DELIMITER=delimiter;
 	};
 	
 	protected void setBaseFormat(String baseFormat) {

@@ -12,7 +12,7 @@ import ar.fiuba.tecnicas.logging.log.MinLevelIsLowerException;
  * @author pablo
  *
  */
-public class BasicLogger {
+public class BasicLogger implements Logger{
 	
 	private List<Log> logs;
 	
