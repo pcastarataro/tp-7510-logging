@@ -1,6 +1,7 @@
 package ar.fiuba.tecnicas.logging.config;
 
 import ar.fiuba.tecnicas.logging.level.Level;
+import ar.fiuba.tecnicas.logging.log.LogOutput;
 
 public class BasicLogConfiguration implements LogConfiguration {
 	
@@ -8,10 +9,17 @@ public class BasicLogConfiguration implements LogConfiguration {
 	
 	private String baseFormat;
 	private Level minLoggingLevel;
+	private String fileOutput;
 	
 	public BasicLogConfiguration(String baseFormat, Level minLoggingLevel) {
 		this.setBaseFormat(baseFormat);
 		this.setMinLoggingLevel(minLoggingLevel);
+	};
+	
+	public BasicLogConfiguration(String baseFormat, Level minLoggingLevel, String fileOutput) {
+		this.setBaseFormat(baseFormat);
+		this.setMinLoggingLevel(minLoggingLevel);
+		this.setFileOutput(fileOutput);
 	};
 	
 	protected void setBaseFormat(String baseFormat) {
@@ -20,6 +28,10 @@ public class BasicLogConfiguration implements LogConfiguration {
 	
 	protected void setMinLoggingLevel(Level minLoggingLevel) {
 		this.minLoggingLevel = minLoggingLevel;
+	}
+	
+	protected void setFileOutput(String fileOutput) {
+		this.fileOutput = fileOutput;
 	}
 	
 	public String getBaseFormat() {
@@ -32,5 +44,9 @@ public class BasicLogConfiguration implements LogConfiguration {
 
 	public String getDelimiter() {
 		return DEFAULT_DELIMITER;
+	}
+
+	public String fileOutput() {
+		return this.fileOutput;
 	}
 }
