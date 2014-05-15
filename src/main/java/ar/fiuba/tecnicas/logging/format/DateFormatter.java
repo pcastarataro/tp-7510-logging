@@ -6,6 +6,12 @@ import java.util.Date;
 
 import ar.fiuba.tecnicas.logging.format.IlegalDatePattern;
 
+/**
+ * This class is an implementation for Formatter that allows to make the format of all the dates with the patters
+ *  allowed by SimpleDateFormat.
+ * @author pcastarataro
+ *
+ */
 public class DateFormatter extends AbstractFormatter {
 
 	private int initialDatePosition;

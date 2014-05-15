@@ -1,6 +1,11 @@
 package ar.fiuba.tecnicas.logging.format;
 
-
+/**
+ *  This class is an implementation for Formatter that allows to make the format of all ocurrences of
+ *  escaped % caracters in one string.
+ * @author pcastarataro
+ *
+ */
 public class EscapeFormatter extends AbstractFormatter {
 
 	private String preProcessorEscape = "*_%_*";

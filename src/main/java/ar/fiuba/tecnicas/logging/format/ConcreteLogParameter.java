@@ -6,10 +6,23 @@ import java.util.HashMap;
 import ar.fiuba.tecnicas.logging.context.ExecutionContext;
 import ar.fiuba.tecnicas.logging.level.Level;
 
+/**
+ * This class is an implementation of the interface LogParameter. It allows to share parameters between any log and any format.
+ * @author pcastarataro
+ *
+ */
 public class ConcreteLogParameter implements LogParameter{
 	
 	private HashMap<String, Object> parameters;
 	
+	/**
+	 * Contructor: create an instance of ConcreteLogParameter thant allows to share level, message, executionContext, delimiter, date
+	 * @param level
+	 * @param message
+	 * @param executionContext
+	 * @param delimiter
+	 * @param date
+	 */
 	public ConcreteLogParameter(Level level, String message, 
 			ExecutionContext executionContext, 
 			String delimiter , Date date) {
