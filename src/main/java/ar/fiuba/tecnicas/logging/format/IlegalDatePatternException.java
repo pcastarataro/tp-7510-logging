@@ -5,7 +5,7 @@ package ar.fiuba.tecnicas.logging.format;
  * @author pcastarataro
  *
  */
-public class IlegalDatePattern extends RuntimeException {
+public class IlegalDatePatternException extends RuntimeException {
 
 	/**
 	 * 

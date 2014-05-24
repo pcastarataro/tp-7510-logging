@@ -44,7 +44,7 @@ public class DateFormatterTest extends TestCase {
 			baseFormat = dateFormatter.preProcessFormat(baseFormat, logParameters);
 			baseFormat = dateFormatter.postProcessFormat(baseFormat, logParameters);
 			assertEquals(baseFormat, "2000-03");
-		} catch (IlegalDatePattern e) {
+		} catch (IlegalDatePatternException e) {
 			assertFalse(true);
 		}
 	}
@@ -56,7 +56,7 @@ public class DateFormatterTest extends TestCase {
 			baseFormat = dateFormatter.preProcessFormat(baseFormat, logParameters);
 			baseFormat = dateFormatter.postProcessFormat(baseFormat, logParameters);
 			assertEquals(baseFormat, "2000-03 30 2000-03");
-		} catch (IlegalDatePattern e) {
+		} catch (IlegalDatePatternException e) {
 			assertFalse(true);
 		}
 	}
@@ -69,7 +69,7 @@ public class DateFormatterTest extends TestCase {
 			baseFormat = dateFormatter.postProcessFormat(baseFormat, logParameters);
 			assertFalse(true);
 		} 
-		catch (IlegalDatePattern iE) {
+		catch (IlegalDatePatternException iE) {
 			assertTrue(true);
 		}
 	}
@@ -83,7 +83,7 @@ public class DateFormatterTest extends TestCase {
 			baseFormat = dateFormatter.postProcessFormat(baseFormat, logParameters);
 			assertEquals(baseFormat, emptyString);
 		} 
-		catch (IlegalDatePattern iE) {
+		catch (IlegalDatePatternException iE) {
 			assertTrue(false);
 		}
 	}
