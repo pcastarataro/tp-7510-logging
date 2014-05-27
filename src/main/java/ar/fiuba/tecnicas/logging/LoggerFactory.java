@@ -24,56 +24,40 @@ public class LoggerFactory {
 	}
 	public Logger createLogger(String path){
 		BasicLogger logger=new BasicLogger();
-		
-		File fXmlFile = new File(path);
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = null;
-		try {
-			dBuilder = dbFactory.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			
-			e.printStackTrace();
-			return logger;
-		}
-		Document doc = null;
-		try {
-			doc = dBuilder.parse(fXmlFile);
-		} catch (SAXException e) {
-			
-			e.printStackTrace();
-			return logger;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return logger;
-		}
-	 
-		doc.getDocumentElement().normalize(); 
-		NodeList nList = doc.getElementsByTagName("log");	 
-		for (int temp = 0; temp < nList.getLength(); temp++) {
-			Node nNode = nList.item(temp);
-			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-	 
-				Element eElement = (Element) nNode;
-				String levelType=eElement.getElementsByTagName("level").item(0).getTextContent();
-				String baseFormat=eElement.getElementsByTagName("baseformat").item(0).getTextContent();
-				String filename=eElement.getElementsByTagName("filename").item(0).getTextContent();
-				String delimiter=eElement.getElementsByTagName("delimiter").item(0).getTextContent();
-
-				
-				Level level = getLevelFromName(levelType);				
-				BasicLogConfiguration logConfig=new BasicLogConfiguration(baseFormat,level,filename,delimiter);
-				AbstractLog log;
-				String consola="stdout";
-				if (filename.equals(consola)){
-					log=new ConsoleLog(logConfig);
-				}else{
-					log=new FileLog(logConfig);
+		Document configXml=this.getConfigXml(path);
+		if(configXml!=null){
+			NodeList nList = configXml.getElementsByTagName("log");	 
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+				Node logNode = nList.item(temp);
+				if (logNode.getNodeType() == Node.ELEMENT_NODE) {
+					Log log=this.createLog(logNode);
+					if(log==null){
+						continue;
+					}
+					logger.addLog(log);
 				}
-				logger.addLog(log);
 			}
 		}
-		
 		return logger;
+	}
+	
+	private Document getConfigXml(String path){
+		File fXmlFile = new File(path);
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder;
+		try {
+			dBuilder = dbFactory.newDocumentBuilder();
+			Document configXml=dBuilder.parse(fXmlFile);
+			configXml.getDocumentElement().normalize();
+			return configXml;
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	// In case of invalid name returns Lower priority level as default
@@ -87,4 +71,24 @@ public class LoggerFactory {
 		}
 		return new ConcreteLevel(priority);
 	}
+	
+	private Log createLog(Node logNode){
+		Element eElement = (Element) logNode;
+		String levelType=eElement.getElementsByTagName("level").item(0).getTextContent();
+		String baseFormat=eElement.getElementsByTagName("baseformat").item(0).getTextContent();
+		String filename=eElement.getElementsByTagName("filename").item(0).getTextContent();
+		String delimiter=eElement.getElementsByTagName("delimiter").item(0).getTextContent();
+
+		Level level=getLevelFromName(levelType);
+		BasicLogConfiguration logConfig=new BasicLogConfiguration(baseFormat,level,filename,delimiter);
+		AbstractLog log;
+		String consola="stdout";
+		if (filename.equals(consola)){
+			log=new ConsoleLog(logConfig);
+		}else{
+			log=new FileLog(logConfig);
+		}
+		return log;
+	}
+	
 }
