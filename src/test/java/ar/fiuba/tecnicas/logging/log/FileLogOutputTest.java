@@ -21,7 +21,7 @@ public class FileLogOutputTest extends TestCase{
 			file = new File(path);
 			file.delete();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			seCreoArchivo=false;
 		}
@@ -44,7 +44,7 @@ public class FileLogOutputTest extends TestCase{
 			file = new File(path);
 			file.delete();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		assertEquals(leido,mensaje);

@@ -10,9 +10,9 @@ public class Main {
 		// TODO Auto-generated method stub
 		LoggerFactory factory=LoggerFactory.newInstance();
 		Logger logger=factory.createLogger("config.txt"); 
-		logger.log(OffLevel.getInstance(), "probando mostrar mensaje");
-		logger.log(FatalLevel.getInstance(), "probando otro mensaje");
-		logger.log(ErrorLevel.getInstance(), "probando ultimo mensaje");
+		logger.log(new ConcreteLevel(LevelPriority.OFF), "probando mostrar mensaje");
+		logger.log(new ConcreteLevel(LevelPriority.DEBUG), "probando otro mensaje");
+		logger.log(new ConcreteLevel(LevelPriority.ERROR), "probando ultimo mensaje");
 	}
 
 }

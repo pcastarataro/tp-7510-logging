@@ -1,7 +1,6 @@
 package ar.fiuba.tecnicas.logging.config;
 
 import ar.fiuba.tecnicas.logging.level.Level;
-import ar.fiuba.tecnicas.logging.log.LogOutput;
 
 public class BasicLogConfiguration implements LogConfiguration {
 	

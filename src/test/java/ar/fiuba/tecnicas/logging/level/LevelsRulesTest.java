@@ -6,12 +6,12 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 public class LevelsRulesTest {
-	private Level offLevel = OffLevel.getInstance();
-	private Level fatalLevel = FatalLevel.getInstance();
-	private Level errorLevel = ErrorLevel.getInstance();
-	private Level warnLevel = WarnLevel.getInstance();
-	private Level infoLevel = InfoLevel.getInstance();
-	private Level debugLevel = DebugLevel.getInstance();
+	private Level offLevel = new ConcreteLevel(LevelPriority.OFF);
+	private Level fatalLevel = new ConcreteLevel(LevelPriority.FATAL);
+	private Level errorLevel = new ConcreteLevel(LevelPriority.ERROR);
+	private Level warnLevel = new ConcreteLevel(LevelPriority.WARN);
+	private Level infoLevel = new ConcreteLevel(LevelPriority.INFO);
+	private Level debugLevel = new ConcreteLevel(LevelPriority.DEBUG);
 	
 	@Test
 	public void testOffLevelIsLowerThanFatalLevel() {
@@ -31,6 +31,11 @@ public class LevelsRulesTest {
 	@Test
 	public void testOffLevelIsLowerThanInfoLevel() {
 		assertTrue(offLevel.isLowerOrEqualsThan(infoLevel));
+	}
+	
+	@Test
+	public void testOffLevelIsLowerThanOffLevel() {
+		assertTrue(offLevel.isLowerOrEqualsThan(offLevel));
 	}
 	
 	@Test

@@ -15,7 +15,6 @@ import org.xml.sax.SAXException;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 
 public class LoggerFactory {
 	private static LoggerFactory factory=new LoggerFactory();
@@ -32,7 +31,7 @@ public class LoggerFactory {
 		try {
 			dBuilder = dbFactory.newDocumentBuilder();
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			return logger;
 		}
@@ -40,11 +39,10 @@ public class LoggerFactory {
 		try {
 			doc = dBuilder.parse(fXmlFile);
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			return logger;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return logger;
 		}
@@ -61,38 +59,8 @@ public class LoggerFactory {
 				String filename=eElement.getElementsByTagName("filename").item(0).getTextContent();
 				String delimiter=eElement.getElementsByTagName("delimiter").item(0).getTextContent();
 
-				Class classLevel;
-				try {
-					classLevel = Class.forName("ar.fiuba.tecnicas.logging.level."+levelType+"Level");
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					continue;
-				}
-				Level level;
-				try {
-					level = (Level) classLevel.getMethod("getInstance").invoke(null,null);
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					continue;
-				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					continue;
-				} catch (InvocationTargetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					continue;
-				} catch (NoSuchMethodException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					continue;
-				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					continue;
-				}
+				
+				Level level = getLevelFromName(levelType);				
 				BasicLogConfiguration logConfig=new BasicLogConfiguration(baseFormat,level,filename,delimiter);
 				AbstractLog log;
 				String consola="stdout";
@@ -108,4 +76,15 @@ public class LoggerFactory {
 		return logger;
 	}
 	
+	// In case of invalid name returns Lower priority level as default
+	private Level getLevelFromName(String name) {
+		LevelPriority priority;
+		try {
+			priority = LevelPriority.valueOf(name.toUpperCase());
+		}
+		catch(RuntimeException e){
+			priority = LevelPriority.values()[0];
+		}
+		return new ConcreteLevel(priority);
+	}
 }

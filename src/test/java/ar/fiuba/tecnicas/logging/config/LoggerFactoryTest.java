@@ -8,11 +8,10 @@ import java.io.IOException;
 import ar.fiuba.tecnicas.logging.BasicLogger;
 import ar.fiuba.tecnicas.logging.Logger;
 import ar.fiuba.tecnicas.logging.LoggerFactory;
-import ar.fiuba.tecnicas.logging.level.DebugLevel;
-import ar.fiuba.tecnicas.logging.level.InfoLevel;
+import ar.fiuba.tecnicas.logging.level.ConcreteLevel;
+import ar.fiuba.tecnicas.logging.level.LevelPriority;
 import ar.fiuba.tecnicas.logging.log.ConsoleLog;
 import ar.fiuba.tecnicas.logging.log.Log;
-
 import junit.framework.TestCase;
 
 public class LoggerFactoryTest extends TestCase{
@@ -40,10 +39,10 @@ public class LoggerFactoryTest extends TestCase{
 			out.write("</logger>");out.newLine();
 			out.close();
 			Logger loggerWanted=new BasicLogger();
-			LogConfiguration logConfig=new BasicLogConfiguration("%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}",DebugLevel.getInstance(),"stdout",":");
+			LogConfiguration logConfig=new BasicLogConfiguration("%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}", new ConcreteLevel(LevelPriority.DEBUG),"stdout",":");
 			Log log=new ConsoleLog(logConfig);
 			loggerWanted.addLog(log);
-			logConfig=new BasicLogConfiguration("%d{HH:mm:ss}-%p-%t-%m",InfoLevel.getInstance(),"log1.txt","-");
+			logConfig=new BasicLogConfiguration("%d{HH:mm:ss}-%p-%t-%m", new ConcreteLevel(LevelPriority.INFO),"log1.txt","-");
 			log=new ConsoleLog(logConfig);
 			loggerWanted.addLog(log);
 			xmlWanted=loggerWanted.getXmlConfig();
@@ -52,7 +51,7 @@ public class LoggerFactoryTest extends TestCase{
 			File file=new File(path);
 			file.delete();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
         assertEquals(xmlCreatedLogger,xmlWanted);
