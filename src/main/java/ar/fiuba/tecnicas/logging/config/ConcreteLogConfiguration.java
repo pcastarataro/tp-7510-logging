@@ -15,7 +15,7 @@ public class ConcreteLogConfiguration implements LogConfiguration {
 	
 	/**
 	 * @param baseFormat string pattern to log
-	 * @param minLoggingLevel minimun Level to log
+	 * @param minLoggingLevel minimum Level to log
 	 */
 	public ConcreteLogConfiguration(String baseFormat, Level minLoggingLevel) {
 		this.setBaseFormat(baseFormat);
@@ -24,7 +24,7 @@ public class ConcreteLogConfiguration implements LogConfiguration {
 	
 	/**
 	 * @param baseFormat string pattern to log
-	 * @param minLoggingLevel minimun Level to log
+	 * @param minLoggingLevel minimum Level to log
 	 * @param outputString log output
 	 */
 	public ConcreteLogConfiguration(String baseFormat, Level minLoggingLevel, String outputString) {
@@ -35,7 +35,7 @@ public class ConcreteLogConfiguration implements LogConfiguration {
 	
 	/**
 	 * @param baseFormat string pattern to log
-	 * @param minLoggingLevel minimun Level to log
+	 * @param minLoggingLevel minimum Level to log
 	 * @param outputString log output
 	 * @param delimiter delimiter to be used to log. If not defined default "-"
 	 */
