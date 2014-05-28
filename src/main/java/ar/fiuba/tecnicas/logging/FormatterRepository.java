@@ -14,6 +14,9 @@ import ar.fiuba.tecnicas.logging.format.MessageFormatter;
 import ar.fiuba.tecnicas.logging.format.MethodNameFormatter;
 import ar.fiuba.tecnicas.logging.format.ThreadNameFormatter;
 
+/**
+ * Repository of all kind of implemented formatters to be used to log
+ */
 public class FormatterRepository {
 
 	private List<Formatter> formattersList;
@@ -47,10 +50,16 @@ public class FormatterRepository {
 		formattersList.add(dateFormatter);
 	}
 	
+	/**
+	 * @return unique instance of FormatterRepository
+	 */
 	public static FormatterRepository getInstance() {
 		return instance;
 	}
 	
+	/**
+	 * @return List with all the existing implemented formatters
+	 */
 	public List<Formatter> getFormatters() {
 		return formattersList;
 	}

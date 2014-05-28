@@ -16,6 +16,10 @@ import org.xml.sax.SAXException;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * This class create the logger from the configuration log file with all the logs specified.
+ *
+ */
 public class LoggerFactory {
 	private static LoggerFactory factory = new LoggerFactory();
 	
@@ -25,6 +29,11 @@ public class LoggerFactory {
 		return LoggerFactory.factory;
 	}
 	
+	/**
+	 * This method create a logger from the configuration log file
+	 * @param path config file route
+	 * @return Logger with its log created ready to log
+	 */
 	public Logger createLogger(String path) {
 		BasicLogger logger = new BasicLogger();
 		try {

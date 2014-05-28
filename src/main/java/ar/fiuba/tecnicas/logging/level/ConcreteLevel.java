@@ -1,5 +1,8 @@
 package ar.fiuba.tecnicas.logging.level;
 
+/**
+ * Implementation of a specific Level Class
+ */
 public class ConcreteLevel implements Level {
 
 	private LevelPriority levelPriority;
@@ -19,5 +22,4 @@ public class ConcreteLevel implements Level {
 	public LevelPriority getLevelPriority() {
 		return this.levelPriority;
 	}
-
 }
