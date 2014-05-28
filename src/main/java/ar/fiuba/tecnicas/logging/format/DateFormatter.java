@@ -4,7 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import ar.fiuba.tecnicas.logging.format.IlegalDatePatternException;
+import ar.fiuba.tecnicas.logging.format.IllegalDatePatternException;
 
 /**
  * This class is an implementation for Formatter that allows to make the format of all the dates with the patters
@@ -39,7 +39,7 @@ public class DateFormatter extends AbstractFormatter {
 				System.err.println("Date patter '" + datePattern + "' is not valid");
 				baseFormat = replacePatternsOcurrencesWithFormattedString(
 						baseFormat, datePattern, "");
-				throw new IlegalDatePatternException();
+				throw new IllegalDatePatternException();
 			}
 			findNextPatternPositions(baseFormat);
 		}
