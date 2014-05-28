@@ -10,4 +10,10 @@ public class ConsoleOutput implements Output {
 		System.out.println(message);
 	}
 
+	public void setOutputString(String outputString)
+			throws IllegalOutputPatternException {
+		String fileOutputPattern = "console:";
+		OutputProtocolValidator.validate(fileOutputPattern, outputString);
+	}
+
 }

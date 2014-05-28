@@ -28,22 +28,23 @@ public class LoggerFactoryTest extends TestCase{
 			out.write("<log>");out.newLine();
 			out.write("<level>Debug</level>");out.newLine();
 			out.write("<baseformat>%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}</baseformat>");out.newLine();
-			out.write("<filename>stdout</filename>");out.newLine();
+			out.write("<filename>console:</filename>");out.newLine();
 			out.write("<delimiter>:</delimiter>");out.newLine();
 			out.write("</log>");out.newLine();
 			out.write("<log>");out.newLine();
 			out.write("<level>Info</level>");out.newLine();
 			out.write("<baseformat>%d{HH:mm:ss}-%p-%t-%m</baseformat>");out.newLine();
-			out.write("<filename>log1.txt</filename>");out.newLine();
+			out.write("<filename>file:log1.txt</filename>");out.newLine();
 			out.write("<delimiter>-</delimiter>");out.newLine();
 			out.write("</log>");out.newLine();
 			out.write("</logger>");out.newLine();
 			out.close();
 			Logger loggerWanted=new BasicLogger();
-			LogConfiguration logConfig=new BasicLogConfiguration("%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}", new ConcreteLevel(LevelPriority.DEBUG),"stdout",":");
+			LogConfiguration logConfig=new BasicLogConfiguration("%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}",
+					new ConcreteLevel(LevelPriority.DEBUG),"console:",":");
 			Log log=new ConcreteLog(logConfig, new ConsoleOutput());
 			loggerWanted.addLog(log);
-			logConfig=new BasicLogConfiguration("%d{HH:mm:ss}-%p-%t-%m", new ConcreteLevel(LevelPriority.INFO),"log1.txt","-");
+			logConfig=new BasicLogConfiguration("%d{HH:mm:ss}-%p-%t-%m", new ConcreteLevel(LevelPriority.INFO),"file:log1.txt","-");
 			log=new ConcreteLog(logConfig, new ConsoleOutput());
 			loggerWanted.addLog(log);
 			xmlWanted=loggerWanted.getXmlConfig();

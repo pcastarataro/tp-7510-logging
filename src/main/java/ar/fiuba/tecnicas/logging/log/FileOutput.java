@@ -13,11 +13,7 @@ public class FileOutput implements Output {
 
 	String fileName;
 	
-	public FileOutput(String fileName){
-		this.fileName = fileName;
-	}
-	
-	public void doPrint(String message){
+	public void doPrint(String message) {
 		
 		try {
 			FileWriter fileWriter = new FileWriter(fileName, true);
@@ -28,5 +24,21 @@ public class FileOutput implements Output {
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		}
+	}
+	
+
+	public void setOutputString(String outputString)
+			throws IllegalOutputPatternException {
+		
+		String fileOutputPattern = "file:";
+		OutputProtocolValidator.validate(fileOutputPattern, outputString);
+		
+		int fileInitialPosition = fileOutputPattern.length();
+		int fileFinalPosition = outputString.length();
+	
+		String fileName = outputString.substring(fileInitialPosition, 
+				fileFinalPosition);
+		this.fileName = fileName;
+
 	}
 }

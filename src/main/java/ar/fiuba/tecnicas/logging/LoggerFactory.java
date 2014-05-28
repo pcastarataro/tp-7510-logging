@@ -18,6 +18,7 @@ import java.io.IOException;
 
 public class LoggerFactory {
 	private static LoggerFactory factory = new LoggerFactory();
+	private static OutputFactory outputFactory = new ConcreteOutputFactory();
 	
 	private LoggerFactory() {};
 	
@@ -68,33 +69,30 @@ public class LoggerFactory {
 		return new ConcreteLevel(priority);
 	}
 	
-	private Log createLog(Node logNode){
+	private Log createLog(Node logNode) {
 		Element eElement = (Element) logNode;
-		String levelType=eElement.getElementsByTagName("level").item(0).getTextContent();
-		String baseFormat=eElement.getElementsByTagName("baseformat").item(0).getTextContent();
-		String filename=eElement.getElementsByTagName("filename").item(0).getTextContent();
-		String delimiter=eElement.getElementsByTagName("delimiter").item(0).getTextContent();
+		String levelType = eElement.getElementsByTagName("level").item(0).getTextContent();
+		String baseFormat = eElement.getElementsByTagName("baseformat").item(0).getTextContent();
+		String filename = eElement.getElementsByTagName("filename").item(0).getTextContent();
+		String delimiter = eElement.getElementsByTagName("delimiter").item(0).getTextContent();
 
-		Level level=getLevelFromName(levelType);
-		LogConfiguration logConfig=new BasicLogConfiguration(baseFormat,level,filename,delimiter);
-		ConcreteLog log = getLogForFileName(filename, logConfig);
+		Level level = getLevelFromName(levelType);
+		
+		LogConfiguration logConfig = new BasicLogConfiguration(baseFormat, level, 
+				filename, delimiter);
+		
+		Log log = getLogForOutputString(filename, logConfig);
 		return log;
 	}
 	
-	private ConcreteLog getLogForFileName(String fileName, LogConfiguration config) {
-		Output output = getLogOutputForFileName(fileName);
+	private ConcreteLog getLogForOutputString(String outputString, LogConfiguration config) {
+		Output output = getLogOutputForOutputString(outputString);
 		ConcreteLog log = new ConcreteLog(config, output);
 		return log;
 	}
 	
-	private Output getLogOutputForFileName(String fileName) {
-		Output output;
-		String consola="stdout";
-		if (fileName.equals(consola)){
-			output = new ConsoleOutput();
-		}else{
-			output = new FileOutput(fileName);
-		}
+	private Output getLogOutputForOutputString(String outputString) {
+		Output output = outputFactory.makeOutputForOutputString(outputString);
 		return output;
 	}
 	
