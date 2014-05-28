@@ -22,6 +22,10 @@ public class ConcreteLog implements Log {
 	private ExecutionContext executionContext;
 	private List<Formatter> formattersList;
 	
+	/**
+	 * @param logConfiguration configuration asociated to the log
+	 * @param logOutput output defined to log
+	 */
 	public ConcreteLog(LogConfiguration logConfiguration, Output logOutput) {
 		this.setLogConfiguration(logConfiguration);
 		this.setLogOutput(logOutput);

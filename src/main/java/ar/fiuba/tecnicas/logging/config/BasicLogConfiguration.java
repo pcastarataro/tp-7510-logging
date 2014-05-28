@@ -2,29 +2,47 @@ package ar.fiuba.tecnicas.logging.config;
 
 import ar.fiuba.tecnicas.logging.level.Level;
 
+/**
+ * Implements a specific LogConfiguration Class
+ */
 public class BasicLogConfiguration implements LogConfiguration {
 	
 	private String DEFAULT_DELIMITER = "-";
 	
 	private String baseFormat;
 	private Level minLoggingLevel;
-	private String fileOutput;
+	private String outputString;
 	
+	/**
+	 * @param baseFormat string pattern to log
+	 * @param minLoggingLevel minimun Level to log
+	 */
 	public BasicLogConfiguration(String baseFormat, Level minLoggingLevel) {
 		this.setBaseFormat(baseFormat);
 		this.setMinLoggingLevel(minLoggingLevel);
 	};
 	
-	public BasicLogConfiguration(String baseFormat, Level minLoggingLevel, String fileOutput) {
+	/**
+	 * @param baseFormat string pattern to log
+	 * @param minLoggingLevel minimun Level to log
+	 * @param outputString log output
+	 */
+	public BasicLogConfiguration(String baseFormat, Level minLoggingLevel, String outputString) {
 		this.setBaseFormat(baseFormat);
 		this.setMinLoggingLevel(minLoggingLevel);
-		this.setFileOutput(fileOutput);
+		this.setOutputString(outputString);
 	};
 	
-	public BasicLogConfiguration(String baseFormat, Level minLoggingLevel, String fileOutput,String delimiter) {
+	/**
+	 * @param baseFormat string pattern to log
+	 * @param minLoggingLevel minimun Level to log
+	 * @param outputString log output
+	 * @param delimiter delimiter to be used to log. If not defined default "-"
+	 */
+	public BasicLogConfiguration(String baseFormat, Level minLoggingLevel, String outputString,String delimiter) {
 		this.setBaseFormat(baseFormat);
 		this.setMinLoggingLevel(minLoggingLevel);
-		this.setFileOutput(fileOutput);
+		this.setOutputString(outputString);
 		DEFAULT_DELIMITER=delimiter;
 	};
 	
@@ -36,8 +54,8 @@ public class BasicLogConfiguration implements LogConfiguration {
 		this.minLoggingLevel = minLoggingLevel;
 	}
 	
-	protected void setFileOutput(String fileOutput) {
-		this.fileOutput = fileOutput;
+	protected void setOutputString(String outputString) {
+		this.outputString = outputString;
 	}
 	
 	public String getBaseFormat() {
@@ -52,15 +70,15 @@ public class BasicLogConfiguration implements LogConfiguration {
 		return DEFAULT_DELIMITER;
 	}
 
-	public String fileOutput() {
-		return this.fileOutput;
+	public String outputString() {
+		return this.outputString;
 	}
 	
 	public String getAsXml(){
 		String xmlConfig="<log>";
 		xmlConfig+="<level>"+this.minLoggingLevel.getName().replace("Level", "")+"</level>";
 		xmlConfig+="<baseformat>" + this.baseFormat + "</baseformat>";
-		xmlConfig+="<filename>" + this.fileOutput + "</filename>";
+		xmlConfig+="<outputstring>" + this.outputString + "</outputstring>";
 		xmlConfig+="<delimiter>" + this.DEFAULT_DELIMITER + "</delimiter>";
 		xmlConfig+="</log>";
 		return xmlConfig;

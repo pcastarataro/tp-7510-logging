@@ -16,7 +16,7 @@ public class ConcreteLogParameter implements LogParameter{
 	private HashMap<String, Object> parameters;
 	
 	/**
-	 * Contructor: create an instance of ConcreteLogParameter thant allows to share level, message, executionContext, delimiter, date
+	 * Contructor: create an instance of ConcreteLogParameter that allows to share level, message, executionContext, delimiter, date
 	 * @param level
 	 * @param message
 	 * @param executionContext
