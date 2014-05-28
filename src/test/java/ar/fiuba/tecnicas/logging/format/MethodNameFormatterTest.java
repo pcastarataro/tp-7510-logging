@@ -3,7 +3,6 @@ package ar.fiuba.tecnicas.logging.format;
 import static org.mockito.Mockito.when;
 import junit.framework.TestCase;
 
-import org.junit.Test;
 import org.mockito.Mockito;
 
 import ar.fiuba.tecnicas.logging.context.ExecutionContext;
@@ -37,7 +36,7 @@ public class MethodNameFormatterTest extends TestCase {
 		logParameters = null;
 	}
 	
-	@Test
+	
 	public void testThreadNameFormatterWithOneValidPattern() {
 		String baseFormat = "%M";
 		baseFormat = formatter.preProcessFormat(baseFormat, logParameters);
@@ -45,7 +44,7 @@ public class MethodNameFormatterTest extends TestCase {
 		assertEquals(baseFormat, methodName);
 	}
 	
-	@Test
+	
 	public void testThreadNameFormatterWithMultipleValidPattern() {
 		String baseFormat = "%M - %M";
 		baseFormat = formatter.preProcessFormat(baseFormat, logParameters);
@@ -53,7 +52,7 @@ public class MethodNameFormatterTest extends TestCase {
 		assertEquals(baseFormat, methodName + " - " + methodName);
 	}
 	
-	@Test
+	
 	public void testThreadNameFormatterWithNoValidPattern() {
 		String baseFormat = "Hello World";
 		baseFormat = formatter.preProcessFormat(baseFormat, logParameters);

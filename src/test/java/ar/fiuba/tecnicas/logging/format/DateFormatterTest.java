@@ -8,7 +8,6 @@ import java.util.Date;
 
 import junit.framework.TestCase;
 
-import org.junit.Test;
 import org.mockito.Mockito;
 
 import ar.fiuba.tecnicas.logging.format.DateFormatter;
@@ -37,7 +36,7 @@ public class DateFormatterTest extends TestCase {
 		dateFormatter = null;
 	}
 		
-	@Test
+	
 	public void testFormatDateWithValidFormat() {
 		try {
 			String baseFormat = "%d{yyyy-MM}";
@@ -49,7 +48,7 @@ public class DateFormatterTest extends TestCase {
 		}
 	}
 	
-	@Test
+	
 	public void testFormatMultiplesDatesWithValidFormats() {
 		try {
 			String baseFormat = "%d{yyyy-MM} %d{dd} %d{yyyy-MM}";
@@ -61,7 +60,7 @@ public class DateFormatterTest extends TestCase {
 		}
 	}
 	
-	@Test
+	
 	public void testFormatDateWithInvalidFormat() {
 		try {
 			String baseFormat = "%d{HelloWorld!}";
@@ -74,7 +73,7 @@ public class DateFormatterTest extends TestCase {
 		}
 	}
 	
-	@Test
+	
 	public void testFormatDateWithNoFormat() {
 		try {
 			String emptyString = "";

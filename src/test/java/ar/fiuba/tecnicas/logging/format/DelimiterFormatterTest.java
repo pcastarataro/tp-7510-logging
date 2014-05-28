@@ -2,7 +2,6 @@ package ar.fiuba.tecnicas.logging.format;
 
 import junit.framework.TestCase;
 
-import org.junit.Test;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 
@@ -32,19 +31,19 @@ public class DelimiterFormatterTest extends TestCase {
 
 	}
 	
-	@Test
+	
 	public void testSimpleDelimiterFormat() {
 		String delimiter = "-";
 		testSimpleDelimiterFormatterWithDelimiter(delimiter);
 	}
 	
-	@Test
+	
 	public void testSimpleDelimiterFormatDiferentToDefault() {
 		String delimiter = "$";
 		testSimpleDelimiterFormatterWithDelimiter(delimiter);
 	}
 	
-	@Test
+	
 	public void testMultipleDelimiterFormat() {
 		String delimiter = "-";
 		
@@ -58,7 +57,7 @@ public class DelimiterFormatterTest extends TestCase {
 		assertEquals(baseFormat, delimiter + delimiter);
 	}
 	
-	@Test
+	
 	public void testNoChangeWhenNoFormat() {
 		String delimiter = "-";
 		

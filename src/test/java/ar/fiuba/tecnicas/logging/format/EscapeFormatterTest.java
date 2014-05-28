@@ -1,6 +1,5 @@
 package ar.fiuba.tecnicas.logging.format;
 
-import org.junit.Test;
 import org.mockito.Mockito;
 
 import junit.framework.TestCase;
@@ -21,7 +20,7 @@ public class EscapeFormatterTest extends TestCase {
 		escapeFormatter = null;
 	}
 	
-	@Test
+	
 	public void testSimpleDelimiterFormat() {
 		String baseFormat = "%%";
 		baseFormat = escapeFormatter.preProcessFormat(baseFormat, logParameters);
@@ -29,7 +28,7 @@ public class EscapeFormatterTest extends TestCase {
 		assertEquals(baseFormat, "%");
 	}
 	
-	@Test
+	
 	public void testMultipleEscaped() {
 		String expectedResult = "%%";
 		
@@ -40,7 +39,7 @@ public class EscapeFormatterTest extends TestCase {
 
 	}
 	
-	@Test
+	
 	public void testNoChangeWhenNoFormat() {
 		LogParameter logParameters = Mockito.mock(LogParameter.class);
 

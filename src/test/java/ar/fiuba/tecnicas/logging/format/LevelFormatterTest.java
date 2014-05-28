@@ -2,7 +2,6 @@ package ar.fiuba.tecnicas.logging.format;
 
 import static org.mockito.Mockito.when;
 
-import org.junit.Test;
 import org.mockito.Mockito;
 
 import ar.fiuba.tecnicas.logging.level.Level;
@@ -36,7 +35,7 @@ public class LevelFormatterTest extends TestCase {
 		logParameters = null;
 	}
 	
-	@Test
+	
 	public void testMessageFormatterWithOneValidPattern() {
 		String baseFormat = "%p";
 		baseFormat = formatter.preProcessFormat(baseFormat, logParameters);
@@ -44,7 +43,7 @@ public class LevelFormatterTest extends TestCase {
 		assertEquals(baseFormat, levelName);
 	}
 	
-	@Test
+	
 	public void testMessageFormatterWithMultipleValidPattern() {
 		String baseFormat = "%p - %p";
 		baseFormat = formatter.preProcessFormat(baseFormat, logParameters);
@@ -52,7 +51,7 @@ public class LevelFormatterTest extends TestCase {
 		assertEquals(baseFormat, levelName + " - " + levelName);
 	}
 	
-	@Test
+	
 	public void testMessageFormatterWithNoValidPattern() {
 		String baseFormat = "Hello World";
 		baseFormat = formatter.preProcessFormat(baseFormat, logParameters);

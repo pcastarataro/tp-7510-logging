@@ -2,7 +2,6 @@ package ar.fiuba.tecnicas.logging.format;
 
 import static org.mockito.Mockito.when;
 
-import org.junit.Test;
 import org.mockito.Mockito;
 
 import ar.fiuba.tecnicas.logging.context.ExecutionContext;
@@ -36,7 +35,7 @@ public class FileNameFormatterTest extends TestCase {
 		logParameters = null;
 	}
 	
-	@Test
+	
 	public void testThreadNameFormatterWithOneValidPattern() {
 		String baseFormat = "%F";
 		baseFormat = formatter.preProcessFormat(baseFormat, logParameters);
@@ -44,7 +43,7 @@ public class FileNameFormatterTest extends TestCase {
 		assertEquals(baseFormat, fileName);
 	}
 	
-	@Test
+	
 	public void testThreadNameFormatterWithMultipleValidPattern() {
 		String baseFormat = "%F - %F";
 		baseFormat = formatter.preProcessFormat(baseFormat, logParameters);
@@ -52,7 +51,7 @@ public class FileNameFormatterTest extends TestCase {
 		assertEquals(baseFormat, fileName + " - " + fileName);
 	}
 	
-	@Test
+	
 	public void testThreadNameFormatterWithNoValidPattern() {
 		String baseFormat = "Hello World";
 		baseFormat = formatter.preProcessFormat(baseFormat, logParameters);

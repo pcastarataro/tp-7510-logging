@@ -3,7 +3,6 @@ package ar.fiuba.tecnicas.logging.format;
 import static org.mockito.Mockito.when;
 import junit.framework.TestCase;
 
-import org.junit.Test;
 import org.mockito.Mockito;
 
 import ar.fiuba.tecnicas.logging.context.ExecutionContext;
@@ -36,21 +35,21 @@ public class LineNumberFormatterTest extends TestCase {
 		logParameters = null;
 	}
 	
-	@Test
+	
 	public void testLineNumberFormatterWithOneValidPattern() {
 		String baseFormat = "%L";
 		baseFormat = applyFormat(baseFormat);
 		assertEquals(baseFormat, String.valueOf(lineNumber));
 	}
 	
-	@Test
+	
 	public void testLineNumberFormatterWithMultipleValidPattern() {
 		String baseFormat = "%L - %L";
 		baseFormat = applyFormat(baseFormat);
 		assertEquals(baseFormat, String.valueOf(lineNumber) + " - " + String.valueOf(lineNumber));
 	}
 	
-	@Test
+	
 	public void testLineNumberFormatterWithNoValidPattern() {
 		String baseFormat = "Hello World";
 		baseFormat = applyFormat(baseFormat);

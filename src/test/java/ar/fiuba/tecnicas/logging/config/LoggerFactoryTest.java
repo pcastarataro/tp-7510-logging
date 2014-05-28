@@ -15,7 +15,8 @@ import ar.fiuba.tecnicas.logging.log.ConsoleOutput;
 import ar.fiuba.tecnicas.logging.log.Log;
 import junit.framework.TestCase;
 
-public class LoggerFactoryTest extends TestCase{
+public class LoggerFactoryTest extends TestCase {
+	
 	public void testCreateLoggerFromXml(){
 		BufferedWriter out;
 		String xmlCreatedLogger="";
