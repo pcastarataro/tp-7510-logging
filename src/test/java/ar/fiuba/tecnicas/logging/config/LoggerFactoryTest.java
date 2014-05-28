@@ -28,13 +28,13 @@ public class LoggerFactoryTest extends TestCase{
 			out.write("<log>");out.newLine();
 			out.write("<level>Debug</level>");out.newLine();
 			out.write("<baseformat>%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}</baseformat>");out.newLine();
-			out.write("<filename>console:</filename>");out.newLine();
+			out.write("<outputstring>console:</outputstring>");out.newLine();
 			out.write("<delimiter>:</delimiter>");out.newLine();
 			out.write("</log>");out.newLine();
 			out.write("<log>");out.newLine();
 			out.write("<level>Info</level>");out.newLine();
 			out.write("<baseformat>%d{HH:mm:ss}-%p-%t-%m</baseformat>");out.newLine();
-			out.write("<filename>file:log1.txt</filename>");out.newLine();
+			out.write("<outputstring>file:log1.txt</outputstring>");out.newLine();
 			out.write("<delimiter>-</delimiter>");out.newLine();
 			out.write("</log>");out.newLine();
 			out.write("</logger>");out.newLine();
