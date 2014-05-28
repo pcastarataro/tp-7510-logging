@@ -17,47 +17,43 @@ import java.io.File;
 import java.io.IOException;
 
 public class LoggerFactory {
-	private static LoggerFactory factory=new LoggerFactory();
-	private LoggerFactory(){};
-	public static LoggerFactory newInstance(){
+	private static LoggerFactory factory = new LoggerFactory();
+	
+	private LoggerFactory() {};
+	
+	public static LoggerFactory getInstance() {
 		return LoggerFactory.factory;
 	}
-	public Logger createLogger(String path){
-		BasicLogger logger=new BasicLogger();
-		Document configXml=this.getConfigXml(path);
-		if(configXml!=null){
+	
+	public Logger createLogger(String path) {
+		BasicLogger logger = new BasicLogger();
+		try {
+			Document configXml;
+			configXml = this.getConfigXml(path);
 			NodeList nList = configXml.getElementsByTagName("log");	 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 				Node logNode = nList.item(temp);
 				if (logNode.getNodeType() == Node.ELEMENT_NODE) {
 					Log log=this.createLog(logNode);
-					if(log==null){
-						continue;
-					}
 					logger.addLog(log);
 				}
 			}
-		}
+		} 
+		catch (ParserConfigurationException e) {} 
+		catch (SAXException e) {} 
+		catch (IOException e) {}
 		return logger;
 	}
 	
-	private Document getConfigXml(String path){
+	private Document getConfigXml(String path) throws ParserConfigurationException, 
+										SAXException, IOException { 
 		File fXmlFile = new File(path);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;
-		try {
-			dBuilder = dbFactory.newDocumentBuilder();
-			Document configXml=dBuilder.parse(fXmlFile);
-			configXml.getDocumentElement().normalize();
-			return configXml;
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
+		dBuilder = dbFactory.newDocumentBuilder();
+		Document configXml=dBuilder.parse(fXmlFile);
+		configXml.getDocumentElement().normalize();
+		return configXml;
 	}
 	
 	// In case of invalid name returns Lower priority level as default
@@ -80,15 +76,26 @@ public class LoggerFactory {
 		String delimiter=eElement.getElementsByTagName("delimiter").item(0).getTextContent();
 
 		Level level=getLevelFromName(levelType);
-		BasicLogConfiguration logConfig=new BasicLogConfiguration(baseFormat,level,filename,delimiter);
-		AbstractLog log;
-		String consola="stdout";
-		if (filename.equals(consola)){
-			log=new ConsoleLog(logConfig);
-		}else{
-			log=new FileLog(logConfig);
-		}
+		LogConfiguration logConfig=new BasicLogConfiguration(baseFormat,level,filename,delimiter);
+		ConcreteLog log = getLogForFileName(filename, logConfig);
 		return log;
+	}
+	
+	private ConcreteLog getLogForFileName(String fileName, LogConfiguration config) {
+		Output output = getLogOutputForFileName(fileName);
+		ConcreteLog log = new ConcreteLog(config, output);
+		return log;
+	}
+	
+	private Output getLogOutputForFileName(String fileName) {
+		Output output;
+		String consola="stdout";
+		if (fileName.equals(consola)){
+			output = new ConsoleOutput();
+		}else{
+			output = new FileOutput(fileName);
+		}
+		return output;
 	}
 	
 }

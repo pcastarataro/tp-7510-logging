@@ -10,7 +10,8 @@ import ar.fiuba.tecnicas.logging.Logger;
 import ar.fiuba.tecnicas.logging.LoggerFactory;
 import ar.fiuba.tecnicas.logging.level.ConcreteLevel;
 import ar.fiuba.tecnicas.logging.level.LevelPriority;
-import ar.fiuba.tecnicas.logging.log.ConsoleLog;
+import ar.fiuba.tecnicas.logging.log.ConcreteLog;
+import ar.fiuba.tecnicas.logging.log.ConsoleOutput;
 import ar.fiuba.tecnicas.logging.log.Log;
 import junit.framework.TestCase;
 
@@ -40,13 +41,13 @@ public class LoggerFactoryTest extends TestCase{
 			out.close();
 			Logger loggerWanted=new BasicLogger();
 			LogConfiguration logConfig=new BasicLogConfiguration("%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}", new ConcreteLevel(LevelPriority.DEBUG),"stdout",":");
-			Log log=new ConsoleLog(logConfig);
+			Log log=new ConcreteLog(logConfig, new ConsoleOutput());
 			loggerWanted.addLog(log);
 			logConfig=new BasicLogConfiguration("%d{HH:mm:ss}-%p-%t-%m", new ConcreteLevel(LevelPriority.INFO),"log1.txt","-");
-			log=new ConsoleLog(logConfig);
+			log=new ConcreteLog(logConfig, new ConsoleOutput());
 			loggerWanted.addLog(log);
 			xmlWanted=loggerWanted.getXmlConfig();
-			Logger loggerGenerated=LoggerFactory.newInstance().createLogger(path);
+			Logger loggerGenerated=LoggerFactory.getInstance().createLogger(path);
 			xmlCreatedLogger=loggerGenerated.getXmlConfig();
 			File file=new File(path);
 			file.delete();

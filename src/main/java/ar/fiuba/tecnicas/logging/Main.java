@@ -8,7 +8,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		LoggerFactory factory=LoggerFactory.newInstance();
+		LoggerFactory factory=LoggerFactory.getInstance();
 		Logger logger=factory.createLogger("config.txt"); 
 		logger.log(new ConcreteLevel(LevelPriority.OFF), "probando mostrar mensaje");
 		logger.log(new ConcreteLevel(LevelPriority.DEBUG), "probando otro mensaje");

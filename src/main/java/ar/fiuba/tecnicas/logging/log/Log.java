@@ -28,6 +28,6 @@ public interface Log {
 	 * 
 	 * @return
 	 */
-	public LogOutput getLogOutput();
+	public Output getLogOutput();
 	
 }

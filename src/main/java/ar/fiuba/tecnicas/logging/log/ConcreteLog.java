@@ -16,17 +16,15 @@ import ar.fiuba.tecnicas.logging.level.Level;
  * This is a base class for a Log Implementation. This class do all the process of Logging using an abstract output that each derived class must provide.
  *
  */
-public abstract class AbstractLog implements Log {
+public class ConcreteLog implements Log {
 	private LogConfiguration logConfiguration;
+	private Output logOutput;
 	private ExecutionContext executionContext;
 	private List<Formatter> formattersList;
 	
-	private void setLogConfiguration(LogConfiguration logConfiguration) {
-		this.logConfiguration = logConfiguration;
-	}
-	
-	protected AbstractLog(LogConfiguration logConfiguration) {
+	public ConcreteLog(LogConfiguration logConfiguration, Output logOutput) {
 		this.setLogConfiguration(logConfiguration);
+		this.setLogOutput(logOutput);
 		
 		FormatterRepository.getInstance().getFormatters();
 		formattersList = FormatterRepository.getInstance().getFormatters();
@@ -39,6 +37,10 @@ public abstract class AbstractLog implements Log {
 	public void log(Level level, String message) {	
 		testMinLevel(level);
 		doLog(level, message);
+	}
+	
+	public Output getLogOutput() {
+		return logOutput;
 	}
 	
 	private void testMinLevel(Level level) throws MinLevelIsLowerException{
@@ -65,7 +67,6 @@ public abstract class AbstractLog implements Log {
 		
 	}
 
-
 	private String preProcessFormats(LogParameter logParameters,
 			String formattedMessage) {
 		for (Formatter formatter : formattersList) {
@@ -80,6 +81,14 @@ public abstract class AbstractLog implements Log {
 			formattedMessage = formatter.postProcessFormat(formattedMessage, logParameters);
 		}
 		return formattedMessage;
+	}
+	
+	private void setLogConfiguration(LogConfiguration logConfiguration) {
+		this.logConfiguration = logConfiguration;
+	}
+	
+	private void setLogOutput(Output logOutput) {
+		this.logOutput = logOutput;
 	}
 	
 }

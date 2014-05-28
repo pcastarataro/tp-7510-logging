@@ -9,11 +9,11 @@ import java.io.PrintWriter;
  * This class implements the Output for print the messages in a file.
  *
  */
-public class FileLogOutput implements LogOutput {
+public class FileOutput implements Output {
 
 	String fileName;
 	
-	public FileLogOutput(String fileName){
+	public FileOutput(String fileName){
 		this.fileName = fileName;
 	}
 	
