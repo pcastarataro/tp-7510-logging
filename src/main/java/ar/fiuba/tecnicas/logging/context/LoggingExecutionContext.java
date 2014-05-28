@@ -56,26 +56,44 @@ public class LoggingExecutionContext implements ExecutionContext {
 		setThreadName(thread.getName());
 	}
 	
+	/**
+	 * Return the filename
+	 */
 	public String getFileName() {
 		return fileName;
 	}
 
+	/**
+	 * Returns method name
+	 */
 	public String getMethodName() {
 		return methodName;
 	}
 
+	/**
+	 * Returns Class name
+	 */
 	public String getClassName() {
 		return className;
 	}
 
+	/**
+	 * Returns the line number
+	 */
 	public int getLineNumber() {
 		return lineNumber;
 	}
 
+	/**
+	 * Returns the thread ID
+	 */
 	public long getThreadID() {
 		return threadID;
 	}
 
+	/**
+	 * Returns the thread Name
+	 */
 	public String getThreadName() {
 		return threadName;
 	}

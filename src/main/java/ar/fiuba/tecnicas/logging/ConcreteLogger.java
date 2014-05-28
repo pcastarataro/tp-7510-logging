@@ -14,19 +14,29 @@ import ar.fiuba.tecnicas.logging.log.MinLevelIsLowerException;
  * Implementation of a specific main logger class of the logging system. 
  *
  */
-public class ConcreteLogger implements Logger{
+public class ConcreteLogger implements Logger {
 	
 	private List<Log> logs;
 	
+	/**
+	 * Constructor of an concrete implementation of Logger
+	 */
 	public ConcreteLogger() {
 		logs = new ArrayList<Log>();
 	}
 	
+	/**
+	 * This method implements the addition of a new Log to the list of available logs.
+	 */
 	public void addLog(Log log) {
 		logs.add(log);
 	}
 	
 
+	/**
+	 * This method implements the interface log method that allow to log a new message
+	 * in all the Logs configured in the current Logger.
+	 */
 	public void log(LevelPriority loggingLevel, String message) {
 		Level level = new ConcreteLevel(loggingLevel);
 		for (Log log : logs) {
@@ -44,6 +54,9 @@ public class ConcreteLogger implements Logger{
 		}
 	}
 	
+	/**
+	 * Returns the configuration as XML
+	 */
 	public String getXmlConfig(){
 		String xmlConfig="<logger>";
 		int cantLogs=this.logs.size();

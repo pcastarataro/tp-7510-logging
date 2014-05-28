@@ -35,6 +35,10 @@ public class ConcreteLogParameter implements LogParameter{
 		
 	}
 	
+	/**
+	 * Return the value of the parameter named 'parameterName'. In case of invalid name
+	 * throws ParameterNotFoundException.
+	 */
 	public Object getParameterNamed(String parameterName) throws ParameterNotFoundException {
 			Object parameter = parameters.get(parameterName);
 			if(parameter == null)

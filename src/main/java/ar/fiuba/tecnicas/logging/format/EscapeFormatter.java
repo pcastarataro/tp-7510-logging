@@ -10,10 +10,16 @@ public class EscapeFormatter extends AbstractFormatter {
 
 	private String preProcessorEscape = "*_%_*";
 	
+	/**
+	 * Replace all the occurrences of %% with an preProccesed % string.
+	 */
 	public String preProcessFormat(String baseFormat, LogParameter parameters) {
 		return baseFormat.replace("%%", preProcessorEscape);
 	}
 	
+	/**
+	 * Replace all the preProccesed % strings with %
+	 */
 	@Override
 	public String postProcessFormat(String baseFormat, LogParameter parameters) {
 		return baseFormat.replace(preProcessorEscape, "%");

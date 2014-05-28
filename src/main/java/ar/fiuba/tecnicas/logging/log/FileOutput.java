@@ -13,6 +13,10 @@ public class FileOutput implements Output {
 
 	String fileName;
 	
+	/*
+	 * (non-Javadoc)
+	 * @see ar.fiuba.tecnicas.logging.log.Output#doPrint(java.lang.String)
+	 */
 	public void doPrint(String message) {
 		
 		try {
@@ -26,7 +30,10 @@ public class FileOutput implements Output {
 		}
 	}
 	
-
+	/*
+	 * (non-Javadoc)
+	 * @see ar.fiuba.tecnicas.logging.log.Output#setOutputString(java.lang.String)
+	 */
 	public void setOutputString(String outputString)
 			throws IllegalOutputPatternException {
 		

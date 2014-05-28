@@ -9,6 +9,9 @@ import ar.fiuba.tecnicas.logging.context.ExecutionContext;
  */
 public class MethodNameFormatter extends AbstractFormatter {
 
+	/**
+	 * Replace all the occurrences of Method Name pattern with the real name of the method.
+	 */
 	public String preProcessFormat(String baseFormat, LogParameter parameters) {
 		ExecutionContext executionContext = (ExecutionContext)parameters.getParameterNamed("executionContext");
 		return baseFormat.replace("%M", executionContext.getMethodName());

@@ -9,6 +9,9 @@ import ar.fiuba.tecnicas.logging.context.ExecutionContext;
  */
 public class LineNumberFormatter extends AbstractFormatter {
 
+	/**
+	 * Replace all the occurrences of Line number pattern with the current Line.
+	 */
 	public String preProcessFormat(String baseFormat, LogParameter parameters) {
 		ExecutionContext executionContext = (ExecutionContext)parameters.getParameterNamed("executionContext");
 		return baseFormat.replace("%L", String.valueOf(executionContext.getLineNumber()));
