@@ -3,7 +3,7 @@ package ar.fiuba.tecnicas.logging.config;
 import ar.fiuba.tecnicas.logging.level.Level;
 
 /**
- * Implements a specific LogConfiguration
+ * Implements a specific LogConfiguration Class
  */
 public class BasicLogConfiguration implements LogConfiguration {
 	

@@ -8,7 +8,7 @@ import ar.fiuba.tecnicas.logging.log.MinLevelIsLowerException;
 
 
 /**
- * Implementation of a main logger class of the logging system. 
+ * Implementation of a specific main logger class of the logging system. 
  *
  */
 public class BasicLogger implements Logger{

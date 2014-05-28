@@ -25,6 +25,9 @@ public class LoggerFactory {
 	
 	private LoggerFactory() {};
 	
+	/**
+	 * @return Unique intance of Logger factory
+	 */
 	public static LoggerFactory getInstance() {
 		return LoggerFactory.factory;
 	}

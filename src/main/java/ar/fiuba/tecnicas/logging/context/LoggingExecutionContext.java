@@ -42,6 +42,9 @@ public class LoggingExecutionContext implements ExecutionContext {
 		this.threadName = threadName;
 	}
 	
+	/**
+	 * New Context instance with all the information about the context execution 
+	 */
 	public LoggingExecutionContext() {
 		Thread thread = Thread.currentThread();
 		StackTraceElement stackTraceElement = thread.getStackTrace()[levelsUp];
