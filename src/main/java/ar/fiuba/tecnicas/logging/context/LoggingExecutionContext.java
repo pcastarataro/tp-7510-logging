@@ -16,7 +16,7 @@ public class LoggingExecutionContext implements ExecutionContext {
 	private long threadID;
 	private String threadName;
 	
-	private static final int levelsUp = 6;
+	private static final int levelsUp = 3;
 	
 	protected void setFileName(String fileName) {
 		this.fileName = fileName;

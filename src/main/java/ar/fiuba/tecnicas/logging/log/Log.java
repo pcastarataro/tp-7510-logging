@@ -1,6 +1,7 @@
 package ar.fiuba.tecnicas.logging.log;
 
 import ar.fiuba.tecnicas.logging.config.LogConfiguration;
+import ar.fiuba.tecnicas.logging.context.ExecutionContext;
 import ar.fiuba.tecnicas.logging.level.Level;
 
 /**
@@ -22,7 +23,7 @@ public interface Log {
 	 * @param msg
 	 * @throws MinLevelIsLowerException
 	 */
-	public void log(Level level, String msg) throws MinLevelIsLowerException;
+	public void log(Level level, String msg, ExecutionContext executionContext) throws MinLevelIsLowerException;
 	
 	/**
 	 * 

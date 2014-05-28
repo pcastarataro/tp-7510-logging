@@ -3,6 +3,8 @@ package ar.fiuba.tecnicas.logging;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.fiuba.tecnicas.logging.context.ExecutionContext;
+import ar.fiuba.tecnicas.logging.context.LoggingExecutionContext;
 import ar.fiuba.tecnicas.logging.level.ConcreteLevel;
 import ar.fiuba.tecnicas.logging.level.Level;
 import ar.fiuba.tecnicas.logging.level.LevelPriority;
@@ -15,7 +17,6 @@ import ar.fiuba.tecnicas.logging.log.MinLevelIsLowerException;
  *
  */
 public class ConcreteLogger implements Logger{
-	
 	private List<Log> logs;
 	
 	public ConcreteLogger() {
@@ -28,15 +29,16 @@ public class ConcreteLogger implements Logger{
 	
 
 	public void log(LevelPriority loggingLevel, String message) {
+		ExecutionContext executionContext =new LoggingExecutionContext();
 		Level level = new ConcreteLevel(loggingLevel);
 		for (Log log : logs) {
-			doLog(log, level, message);
+			doLog(log, level, message, executionContext);
 		}
 	}
 	
-	private void doLog(Log log, Level loggingLevel, String message) {
+	private void doLog(Log log, Level loggingLevel, String message, ExecutionContext executionContext) {
 		try {
-			log.log(loggingLevel, message);	
+			log.log(loggingLevel, message, executionContext);	
 		}
 		catch(MinLevelIsLowerException ex) {
 			System.err.println("Min Level: " + log.getLogConfiguration().getMinLoggingLevel().getName() +

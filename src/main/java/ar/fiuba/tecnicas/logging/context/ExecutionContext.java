@@ -6,7 +6,7 @@ package ar.fiuba.tecnicas.logging.context;
  *
  */
 public interface ExecutionContext {
-	
+
 	/**
 	 * 
 	 * @return the file name

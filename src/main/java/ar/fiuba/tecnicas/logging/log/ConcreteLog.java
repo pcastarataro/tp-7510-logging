@@ -19,7 +19,6 @@ import ar.fiuba.tecnicas.logging.level.Level;
 public class ConcreteLog implements Log {
 	private LogConfiguration logConfiguration;
 	private Output logOutput;
-	private ExecutionContext executionContext;
 	private List<Formatter> formattersList;
 	
 	/**
@@ -38,9 +37,9 @@ public class ConcreteLog implements Log {
 		return logConfiguration;
 	}
 
-	public void log(Level level, String message) {	
+	public void log(Level level, String message, ExecutionContext executionContext) {	
 		testMinLevel(level);
-		doLog(level, message);
+		doLog(level, message, executionContext);
 	}
 	
 	public Output getLogOutput() {
@@ -54,9 +53,8 @@ public class ConcreteLog implements Log {
 		}
 	}
 	
-	private void doLog(Level level, String message) {
-		executionContext = new LoggingExecutionContext();
-		
+	private void doLog(Level level, String message, ExecutionContext executionContext) {
+	
 		Date date = new Date();
 		
 		LogParameter logParameters = new ConcreteLogParameter(level, message, 
