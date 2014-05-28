@@ -3,19 +3,19 @@
 	<log>
 		<level>Debug</level>
 		<baseformat>%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}</baseformat>
-		<filename>stdout</filename>
+		<outputstring>console:</outputstring>
 		<delimiter>:</delimiter>
 	</log>
 	<log>
 		<level>Info</level>
 		<baseformat>%d{HH:mm:ss}-%p-%t-%m</baseformat>
-		<filename>log1.txt</filename>
+		<outputstring>file:log1.txt</outputstring>
 		<delimiter>-</delimiter>
 	</log>
 	<log>
 		<level>Warn</level>
 		<baseformat>%d{HH:mm:ss}-%F-%L-%m</baseformat>
-		<filename>log2.txt</filename>
+		<outputstring>file:log2.txt</outputstring>
 		<delimiter>;</delimiter>
 	</log>
 </logger>

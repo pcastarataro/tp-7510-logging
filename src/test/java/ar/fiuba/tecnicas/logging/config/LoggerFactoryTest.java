@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import ar.fiuba.tecnicas.logging.BasicLogger;
+import ar.fiuba.tecnicas.logging.ConcreteLogger;
 import ar.fiuba.tecnicas.logging.Logger;
 import ar.fiuba.tecnicas.logging.LoggerFactory;
 import ar.fiuba.tecnicas.logging.level.ConcreteLevel;
@@ -39,12 +39,12 @@ public class LoggerFactoryTest extends TestCase{
 			out.write("</log>");out.newLine();
 			out.write("</logger>");out.newLine();
 			out.close();
-			Logger loggerWanted=new BasicLogger();
-			LogConfiguration logConfig=new BasicLogConfiguration("%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}",
+			Logger loggerWanted=new ConcreteLogger();
+			LogConfiguration logConfig=new ConcreteLogConfiguration("%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}",
 					new ConcreteLevel(LevelPriority.DEBUG),"console:",":");
 			Log log=new ConcreteLog(logConfig, new ConsoleOutput());
 			loggerWanted.addLog(log);
-			logConfig=new BasicLogConfiguration("%d{HH:mm:ss}-%p-%t-%m", new ConcreteLevel(LevelPriority.INFO),"file:log1.txt","-");
+			logConfig=new ConcreteLogConfiguration("%d{HH:mm:ss}-%p-%t-%m", new ConcreteLevel(LevelPriority.INFO),"file:log1.txt","-");
 			log=new ConcreteLog(logConfig, new ConsoleOutput());
 			loggerWanted.addLog(log);
 			xmlWanted=loggerWanted.getXmlConfig();

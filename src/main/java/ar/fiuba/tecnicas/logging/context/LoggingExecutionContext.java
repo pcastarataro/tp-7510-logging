@@ -43,7 +43,7 @@ public class LoggingExecutionContext implements ExecutionContext {
 	}
 	
 	/**
-	 * New Context instance with all the information about the context execution 
+	 * New LoggingExecutionContext instance with all the information about the context execution 
 	 */
 	public LoggingExecutionContext() {
 		Thread thread = Thread.currentThread();

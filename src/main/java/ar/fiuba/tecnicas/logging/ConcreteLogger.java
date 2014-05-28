@@ -11,11 +11,11 @@ import ar.fiuba.tecnicas.logging.log.MinLevelIsLowerException;
  * Implementation of a specific main logger class of the logging system. 
  *
  */
-public class BasicLogger implements Logger{
+public class ConcreteLogger implements Logger{
 	
 	private List<Log> logs;
 	
-	public BasicLogger() {
+	public ConcreteLogger() {
 		logs = new ArrayList<Log>();
 	}
 	

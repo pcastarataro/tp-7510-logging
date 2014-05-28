@@ -5,7 +5,7 @@ import ar.fiuba.tecnicas.logging.level.Level;
 /**
  * Implements a specific LogConfiguration Class
  */
-public class BasicLogConfiguration implements LogConfiguration {
+public class ConcreteLogConfiguration implements LogConfiguration {
 	
 	private String DEFAULT_DELIMITER = "-";
 	
@@ -17,7 +17,7 @@ public class BasicLogConfiguration implements LogConfiguration {
 	 * @param baseFormat string pattern to log
 	 * @param minLoggingLevel minimun Level to log
 	 */
-	public BasicLogConfiguration(String baseFormat, Level minLoggingLevel) {
+	public ConcreteLogConfiguration(String baseFormat, Level minLoggingLevel) {
 		this.setBaseFormat(baseFormat);
 		this.setMinLoggingLevel(minLoggingLevel);
 	};
@@ -27,7 +27,7 @@ public class BasicLogConfiguration implements LogConfiguration {
 	 * @param minLoggingLevel minimun Level to log
 	 * @param outputString log output
 	 */
-	public BasicLogConfiguration(String baseFormat, Level minLoggingLevel, String outputString) {
+	public ConcreteLogConfiguration(String baseFormat, Level minLoggingLevel, String outputString) {
 		this.setBaseFormat(baseFormat);
 		this.setMinLoggingLevel(minLoggingLevel);
 		this.setOutputString(outputString);
@@ -39,7 +39,7 @@ public class BasicLogConfiguration implements LogConfiguration {
 	 * @param outputString log output
 	 * @param delimiter delimiter to be used to log. If not defined default "-"
 	 */
-	public BasicLogConfiguration(String baseFormat, Level minLoggingLevel, String outputString,String delimiter) {
+	public ConcreteLogConfiguration(String baseFormat, Level minLoggingLevel, String outputString,String delimiter) {
 		this.setBaseFormat(baseFormat);
 		this.setMinLoggingLevel(minLoggingLevel);
 		this.setOutputString(outputString);

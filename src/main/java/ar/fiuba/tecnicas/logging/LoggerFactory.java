@@ -39,7 +39,7 @@ public class LoggerFactory {
 	 * @return Logger with its log created ready to log
 	 */
 	public Logger createLogger(String path) {
-		BasicLogger logger = new BasicLogger();
+		ConcreteLogger logger = new ConcreteLogger();
 		try {
 			Document configXml;
 			configXml = this.getConfigXml(path);
@@ -85,12 +85,12 @@ public class LoggerFactory {
 		Element eElement = (Element) logNode;
 		String levelType = eElement.getElementsByTagName("level").item(0).getTextContent();
 		String baseFormat = eElement.getElementsByTagName("baseformat").item(0).getTextContent();
-		String filename = eElement.getElementsByTagName("filename").item(0).getTextContent();
+		String filename = eElement.getElementsByTagName("outputstring").item(0).getTextContent();
 		String delimiter = eElement.getElementsByTagName("delimiter").item(0).getTextContent();
 
 		Level level = getLevelFromName(levelType);
 		
-		LogConfiguration logConfig = new BasicLogConfiguration(baseFormat, level, 
+		LogConfiguration logConfig = new ConcreteLogConfiguration(baseFormat, level, 
 				filename, delimiter);
 		
 		Log log = getLogForOutputString(filename, logConfig);

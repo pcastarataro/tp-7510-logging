@@ -26,7 +26,7 @@ public interface Log {
 	
 	/**
 	 * 
-	 * @return
+	 * @return output defined to log
 	 */
 	public Output getLogOutput();
 	
