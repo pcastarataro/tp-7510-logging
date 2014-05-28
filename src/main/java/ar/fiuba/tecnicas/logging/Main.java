@@ -7,12 +7,11 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		LoggerFactory factory=LoggerFactory.getInstance();
 		Logger logger=factory.createLogger("config.txt"); 
-		logger.log(new ConcreteLevel(LevelPriority.OFF), "probando mostrar mensaje");
-		logger.log(new ConcreteLevel(LevelPriority.DEBUG), "probando otro mensaje");
-		logger.log(new ConcreteLevel(LevelPriority.ERROR), "probando ultimo mensaje");
+		logger.log(LevelPriority.OFF, "probando mostrar mensaje");
+		logger.log(LevelPriority.DEBUG, "probando otro mensaje");
+		logger.log(LevelPriority.ERROR, "probando ultimo mensaje");
 	}
 
 }

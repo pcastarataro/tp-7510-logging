@@ -1,6 +1,6 @@
 package ar.fiuba.tecnicas.logging;
 
-import ar.fiuba.tecnicas.logging.level.Level;
+import ar.fiuba.tecnicas.logging.level.LevelPriority;
 import ar.fiuba.tecnicas.logging.log.Log;
 
 /**
@@ -19,7 +19,7 @@ public interface Logger {
 	 * @param loggingLevel
 	 * @param message
 	 */
-	public void log(Level loggingLevel, String message);
+	public void log(LevelPriority loggingLevel, String message);
 	
 	/**
 	 * This method is used to obtain the structure of the xml file configuration associated to the logger
