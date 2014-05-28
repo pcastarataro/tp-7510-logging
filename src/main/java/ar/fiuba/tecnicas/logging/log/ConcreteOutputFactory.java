@@ -14,10 +14,16 @@ public class ConcreteOutputFactory implements OutputFactory {
 
 	private List<String> outputsClassNames;
 	
+	/**
+	 * Create a new OutputFactory.
+	 */
 	public ConcreteOutputFactory() {
 		loadOutputClass();
 	}
 	
+	/**
+	 * Make a new Output depending on the output string
+	 */
 	public Output makeOutputForOutputString(String outputString) 
 			throws IllegalOutputPatternException {
 		

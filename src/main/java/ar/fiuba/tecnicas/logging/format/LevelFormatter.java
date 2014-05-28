@@ -9,6 +9,9 @@ import ar.fiuba.tecnicas.logging.level.Level;
  */
 public class LevelFormatter extends AbstractFormatter {
 
+	/**
+	 * Replace all the occurrences of Level pattern with the Logging level
+	 */
 	public String preProcessFormat(String baseFormat, LogParameter parameters) {
 		Level level = (Level)parameters.getParameterNamed("level");
 		return baseFormat.replace("%p", level.getName());

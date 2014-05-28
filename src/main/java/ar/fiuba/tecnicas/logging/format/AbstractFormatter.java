@@ -7,6 +7,9 @@ package ar.fiuba.tecnicas.logging.format;
  */
 public abstract class AbstractFormatter implements Formatter {
 	
+	/**
+	 * Implements the default behavior of post formating a message.
+	 */
 	public String postProcessFormat(String baseFormat, LogParameter parameters) {
 		return baseFormat;
 	}

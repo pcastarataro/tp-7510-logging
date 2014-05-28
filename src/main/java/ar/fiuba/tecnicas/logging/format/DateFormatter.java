@@ -20,6 +20,9 @@ public class DateFormatter extends AbstractFormatter {
 	private final String initialDatePattern = "%d{";
 	private final String finalDatePattern = "}";
 	
+	/**
+	 * Replace all the occurrences of date pattern with the current date.
+	 */
 	public String preProcessFormat(String baseFormat, LogParameter parameters) {
 		Date date = (Date)parameters.getParameterNamed("date");
 		

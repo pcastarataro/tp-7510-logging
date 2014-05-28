@@ -7,6 +7,9 @@ package ar.fiuba.tecnicas.logging.format;
  */
 public class MessageFormatter extends AbstractFormatter {
 
+	/**
+	 * Replace all the occurrences of the Message with the real message.
+	 */
 	public String preProcessFormat(String baseFormat, LogParameter parameters) {
 		String message = (String)parameters.getParameterNamed("message");
 		return baseFormat.replace("%m", message);

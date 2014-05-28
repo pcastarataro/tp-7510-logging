@@ -58,22 +58,37 @@ public class ConcreteLogConfiguration implements LogConfiguration {
 		this.outputString = outputString;
 	}
 	
+	/**
+	 * Retuns the base format
+	 */
 	public String getBaseFormat() {
 		return this.baseFormat;
 	}
 	
+	/**
+	 * Retuns the min logging level
+	 */
 	public Level getMinLoggingLevel() {
 		return this.minLoggingLevel;
 	}
 
+	/**
+	 * Returns the delimiter string
+	 */
 	public String getDelimiter() {
 		return DEFAULT_DELIMITER;
 	}
 
+	/**
+	 * Returns the output string
+	 */
 	public String outputString() {
 		return this.outputString;
 	}
 	
+	/**
+	 * Return the log as XML
+	 */
 	public String getAsXml(){
 		String xmlConfig="<log>";
 		xmlConfig+="<level>"+this.minLoggingLevel.getName().replace("Level", "")+"</level>";

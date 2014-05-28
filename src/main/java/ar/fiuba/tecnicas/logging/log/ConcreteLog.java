@@ -33,15 +33,25 @@ public class ConcreteLog implements Log {
 		formattersList = FormatterRepository.getInstance().getFormatters();
 	}
 
+	/**
+	 * Returns the configuration
+	 */
 	public LogConfiguration getLogConfiguration() {
 		return logConfiguration;
 	}
 
+
+	/**
+	 * Resolve the logging in the current log
+	 */
 	public void log(Level level, String message, ExecutionContext executionContext) {	
 		testMinLevel(level);
 		doLog(level, message, executionContext);
 	}
 	
+	/**
+	 * Returns the Output associated to the Log
+	 */
 	public Output getLogOutput() {
 		return logOutput;
 	}
