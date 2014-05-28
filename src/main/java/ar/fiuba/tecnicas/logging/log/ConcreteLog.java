@@ -6,7 +6,6 @@ import java.util.List;
 import ar.fiuba.tecnicas.logging.FormatterRepository;
 import ar.fiuba.tecnicas.logging.config.LogConfiguration;
 import ar.fiuba.tecnicas.logging.context.ExecutionContext;
-import ar.fiuba.tecnicas.logging.context.LoggingExecutionContext;
 import ar.fiuba.tecnicas.logging.format.ConcreteLogParameter;
 import ar.fiuba.tecnicas.logging.format.Formatter;
 import ar.fiuba.tecnicas.logging.format.LogParameter;
