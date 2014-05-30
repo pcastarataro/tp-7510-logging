@@ -9,6 +9,7 @@ public class LevelsRulesTest extends TestCase {
 	private Level warnLevel = new ConcreteLevel(LevelPriority.WARN);
 	private Level infoLevel = new ConcreteLevel(LevelPriority.INFO);
 	private Level debugLevel = new ConcreteLevel(LevelPriority.DEBUG);
+	private Level traceLevel = new ConcreteLevel(LevelPriority.TRACE);
 	
 	
 	public void testOffLevelIsLowerThanFatalLevel() {
@@ -163,6 +164,34 @@ public class LevelsRulesTest extends TestCase {
 	
 	public void testDebugLevelIsntLowerThanInfoLevel() {
 		assertFalse(debugLevel.isLowerOrEqualsThan(infoLevel));
+	}
+	
+	public void testTraceLevelIsntLowerThanInfoLevel() {
+		assertFalse(traceLevel.isLowerOrEqualsThan(infoLevel));
+	}
+		
+	public void testTraceLevelIsntLowerThanWarnLevel() {
+		assertFalse(traceLevel.isLowerOrEqualsThan(warnLevel));
+	}
+	
+	public void testTraceLevelIsntLowerThanErrorLevel() {
+		assertFalse(traceLevel.isLowerOrEqualsThan(errorLevel));
+	}
+	
+	public void testTraceLevelIsntLowerThanFatalLevel() {
+		assertFalse(traceLevel.isLowerOrEqualsThan(fatalLevel));
+	}
+	
+	public void testTraceLevelIsntLowerThanOffLevel() {
+		assertFalse(traceLevel.isLowerOrEqualsThan(offLevel));
+	}
+	
+	public void testTraceLevelIsntLowerThanDebugLevel() {
+		assertFalse(traceLevel.isLowerOrEqualsThan(debugLevel));
+	}
+	
+	public void testTraceLevelIsntLowerThanTraceLevel() {
+		assertTrue(traceLevel.isLowerOrEqualsThan(traceLevel));
 	}
 
 }

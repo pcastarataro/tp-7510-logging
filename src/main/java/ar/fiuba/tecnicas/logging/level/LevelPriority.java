@@ -7,6 +7,7 @@ package ar.fiuba.tecnicas.logging.level;
  *
  */
 public enum LevelPriority {
+	TRACE,
 	DEBUG,
 	INFO,
 	WARN,
