@@ -25,13 +25,14 @@ public class ConcreteLogParameter implements LogParameter{
 	 */
 	public ConcreteLogParameter(Level level, String message, 
 			ExecutionContext executionContext, 
-			String delimiter , Date date) {
+			String delimiter , Date date, String loggerName) {
 		parameters = new HashMap<String, Object>();
 		parameters.put("level", level);
 		parameters.put("message", message);
 		parameters.put("executionContext", executionContext);
 		parameters.put("delimiter", delimiter);
 		parameters.put("date", date);
+		parameters.put("loggerName", loggerName);
 		
 	}
 	

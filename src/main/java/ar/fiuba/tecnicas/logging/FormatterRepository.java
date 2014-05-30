@@ -10,6 +10,7 @@ import ar.fiuba.tecnicas.logging.format.FileNameFormatter;
 import ar.fiuba.tecnicas.logging.format.Formatter;
 import ar.fiuba.tecnicas.logging.format.LevelFormatter;
 import ar.fiuba.tecnicas.logging.format.LineNumberFormatter;
+import ar.fiuba.tecnicas.logging.format.LoggerNameFormatter;
 import ar.fiuba.tecnicas.logging.format.MessageFormatter;
 import ar.fiuba.tecnicas.logging.format.MethodNameFormatter;
 import ar.fiuba.tecnicas.logging.format.ThreadNameFormatter;
@@ -38,6 +39,7 @@ public class FormatterRepository {
 		Formatter messageNameFormatter = new MessageFormatter();
 		Formatter levelFormatter = new LevelFormatter();
 		Formatter dateFormatter = new DateFormatter();
+		Formatter loggerNameFormatter= new LoggerNameFormatter();
 		
 		formattersList.add(escapeFormatter);
 		formattersList.add(threadNameFormatter);
@@ -48,6 +50,7 @@ public class FormatterRepository {
 		formattersList.add(messageNameFormatter);
 		formattersList.add(levelFormatter);
 		formattersList.add(dateFormatter);
+		formattersList.add(loggerNameFormatter);
 	}
 	
 	/**
@@ -63,5 +66,4 @@ public class FormatterRepository {
 	public List<Formatter> getFormatters() {
 		return formattersList;
 	}
-	
 }
