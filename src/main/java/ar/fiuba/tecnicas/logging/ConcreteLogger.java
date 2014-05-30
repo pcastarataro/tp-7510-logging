@@ -1,5 +1,7 @@
 package ar.fiuba.tecnicas.logging;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,11 +21,13 @@ import ar.fiuba.tecnicas.logging.log.MinLevelIsLowerException;
 public class ConcreteLogger implements Logger {
 	
 	private List<Log> logs;
+	private String name;
 	
 	/**
 	 * Constructor of an concrete implementation of Logger
 	 */
-	public ConcreteLogger() {
+	public ConcreteLogger(String name) {
+		this.name = name;
 		logs = new ArrayList<Log>();
 	}
 	
@@ -49,7 +53,7 @@ public class ConcreteLogger implements Logger {
 	
 	private void doLog(Log log, Level loggingLevel, String message, ExecutionContext executionContext) {
 		try {
-			log.log(loggingLevel, message, executionContext);	
+			log.log(loggingLevel, message, executionContext, this.getName());	
 		}
 		catch(MinLevelIsLowerException ex) {
 			System.err.println("Min Level: " + log.getLogConfiguration().getMinLoggingLevel().getName() +
@@ -68,5 +72,25 @@ public class ConcreteLogger implements Logger {
 		}
 		xmlConfig+="</logger>";
 		return xmlConfig;
+	}
+
+	/**
+	 * This method implements the interface log method that allow to log a message and exception trace
+	 * in all the Logs configured in the current Logger.
+	 */
+	public void log(LevelPriority loggingLevel, String message, Exception exception) {
+		
+		StringWriter stackTrace = new StringWriter();
+		exception.printStackTrace(new PrintWriter(stackTrace));
+		
+		this.log(loggingLevel, message + " // " +  stackTrace.toString());
+	}
+
+	/**
+	 * This method return the logger name
+	 * @return logger name
+	 */
+	public String getName() {
+		return this.name;
 	}
 }

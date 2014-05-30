@@ -43,9 +43,9 @@ public class ConcreteLog implements Log {
 	/**
 	 * Resolve the logging in the current log
 	 */
-	public void log(Level level, String message, ExecutionContext executionContext) {	
+	public void log(Level level, String message, ExecutionContext executionContext, String loggerName) {	
 		testMinLevel(level);
-		doLog(level, message, executionContext);
+		doLog(level, message, executionContext, loggerName);
 	}
 	
 	/**
@@ -62,12 +62,12 @@ public class ConcreteLog implements Log {
 		}
 	}
 	
-	private void doLog(Level level, String message, ExecutionContext executionContext) {
+	private void doLog(Level level, String message, ExecutionContext executionContext, String loggerName) {
 	
 		Date date = new Date();
 		
 		LogParameter logParameters = new ConcreteLogParameter(level, message, 
-				executionContext, getLogConfiguration().getDelimiter() , date);
+				executionContext, getLogConfiguration().getDelimiter() , date, loggerName);
 		
 		String formattedMessage = this.getLogConfiguration().getBaseFormat();
 		

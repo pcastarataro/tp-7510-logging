@@ -22,9 +22,24 @@ public interface Logger {
 	public void log(LevelPriority loggingLevel, String message);
 	
 	/**
+	 * This method is used to log one message + exception trace in all the Logs configured on the logger
+	 * @param loggingLevel
+	 * @param message
+	 * @param exception
+	 */
+	public void log(LevelPriority loggingLevel, String message, Exception exception);
+	
+	/**
 	 * This method is used to obtain the structure of the xml file configuration associated to the logger
 	 * @return xml log configuration
 	 */
 	public String getXmlConfig();
+	
+	
+	/**
+	 * This method return the logger name
+	 * @return logger name
+	 */
+	public String getName();
 	
 }

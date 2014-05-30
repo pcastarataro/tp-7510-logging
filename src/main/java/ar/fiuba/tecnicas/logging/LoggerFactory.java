@@ -39,7 +39,8 @@ public class LoggerFactory {
 	 * @return Logger with its log created ready to log
 	 */
 	public Logger createLogger(String path) {
-		ConcreteLogger logger = new ConcreteLogger();
+		//TODO: temporalmante el nombre del logger es el path
+		ConcreteLogger logger = new ConcreteLogger(path);
 		try {
 			Document configXml;
 			configXml = this.getConfigXml(path);

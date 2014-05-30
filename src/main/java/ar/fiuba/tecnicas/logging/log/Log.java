@@ -23,7 +23,7 @@ public interface Log {
 	 * @param msg
 	 * @throws MinLevelIsLowerException
 	 */
-	public void log(Level level, String msg, ExecutionContext executionContext) throws MinLevelIsLowerException;
+	public void log(Level level, String msg, ExecutionContext executionContext, String loggerName) throws MinLevelIsLowerException;
 	
 	/**
 	 * 
