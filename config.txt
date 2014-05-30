@@ -3,19 +3,25 @@
 	<log>
 		<level>Debug</level>
 		<baseformat>%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}</baseformat>
-		<outputstring>console:</outputstring>
+		<outputstring>ar.fiuba.tecnicas.logging.log.ConsoleOutput:</outputstring>
 		<delimiter>:</delimiter>
 	</log>
 	<log>
 		<level>Info</level>
 		<baseformat>%d{HH:mm:ss}-%p-%t-%m</baseformat>
-		<outputstring>file:log1.txt</outputstring>
+		<outputstring>ar.fiuba.tecnicas.logging.log.FileOutput:log1.txt</outputstring>
 		<delimiter>-</delimiter>
 	</log>
 	<log>
 		<level>Warn</level>
 		<baseformat>%d{HH:mm:ss}-%F-%L-%m</baseformat>
-		<outputstring>file:log2.txt</outputstring>
+		<outputstring>ar.fiuba.tecnicas.logging.log.FileOutput:log2.txt</outputstring>
+		<filters>
+			<filterpattern>regEx</filterpattern>
+			<customFilter class="">
+				<param>....</param>
+			</customFilter>
+		</filters>
 		<delimiter>;</delimiter>
 	</log>
 </logger>

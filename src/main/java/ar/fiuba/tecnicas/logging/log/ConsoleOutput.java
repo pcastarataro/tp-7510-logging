@@ -20,7 +20,7 @@ public class ConsoleOutput implements Output {
 	 */
 	public void setOutputString(String outputString)
 			throws IllegalOutputPatternException {
-		String fileOutputPattern = "console:";
+		String fileOutputPattern = ConsoleOutput.class.getName();
 		OutputProtocolValidator.validate(fileOutputPattern, outputString);
 	}
 

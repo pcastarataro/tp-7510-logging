@@ -37,7 +37,7 @@ public class FileOutput implements Output {
 	public void setOutputString(String outputString)
 			throws IllegalOutputPatternException {
 		
-		String fileOutputPattern = "file:";
+		String fileOutputPattern = FileOutput.class.getName();
 		OutputProtocolValidator.validate(fileOutputPattern, outputString);
 		
 		int fileInitialPosition = fileOutputPattern.length();

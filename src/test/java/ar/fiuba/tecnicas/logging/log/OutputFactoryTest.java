@@ -7,7 +7,7 @@ public class OutputFactoryTest extends TestCase {
 	OutputFactory factory = new ConcreteOutputFactory();
 	
 	public void testFactoryFileOutputOk(){
-		String filePattern = "file:Hola.txt";
+		String filePattern = FileOutput.class.getName() + ":Hola.txt";
 		Output output = factory.makeOutputForOutputString(filePattern);
 		
 		assertEquals(output.getClass().getName(), FileOutput.class.getName());
@@ -25,7 +25,7 @@ public class OutputFactoryTest extends TestCase {
 	}
 	
 	public void testFactoryConsoleOutputOk(){
-		String consolePattern = "console:";
+		String consolePattern = ConsoleOutput.class.getName();
 		Output output = factory.makeOutputForOutputString(consolePattern);
 		
 		assertEquals(output.getClass().getName(), ConsoleOutput.class.getName());

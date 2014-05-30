@@ -45,7 +45,7 @@ public class ConcreteOutputFactory implements OutputFactory {
 
 	private void loadOutputClass() {
 		outputsClassNames = new ArrayList<String>();
-		outputsClassNames.add("ar.fiuba.tecnicas.logging.log.ConsoleOutput");
-		outputsClassNames.add("ar.fiuba.tecnicas.logging.log.FileOutput");
+		outputsClassNames.add(ConsoleOutput.class.getName());
+		outputsClassNames.add(FileOutput.class.getName());
 	}
 }
