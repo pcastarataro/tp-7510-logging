@@ -11,7 +11,7 @@ import java.util.List;
  *
  */
 public class ConcreteOutputFactory implements OutputFactory {
-
+	private static ConcreteOutputFactory factory=new ConcreteOutputFactory();
 	private List<String> outputsClassNames;
 	
 	/**
@@ -19,6 +19,10 @@ public class ConcreteOutputFactory implements OutputFactory {
 	 */
 	public ConcreteOutputFactory() {
 		loadOutputClass();
+	}
+	
+	public static ConcreteOutputFactory getInstance(){
+		return ConcreteOutputFactory.factory;
 	}
 	
 	/**

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<logger name="logger1">
+	<log>
+		<level>Debug</level>
+		<baseformat>%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}</baseformat>
+		<outputstring>ar.fiuba.tecnicas.logging.log.ConsoleOutput:</outputstring>
+		<delimiter>:</delimiter>
+	</log>
+	<log>
+		<level>Info</level>
+		<baseformat>%d{HH:mm:ss}-%p-%t-%m</baseformat>
+		<outputstring>ar.fiuba.tecnicas.logging.log.FileOutput:log1.txt</outputstring>
+		<delimiter>-</delimiter>
+	</log>
+	<log>
+		<level>Warn</level>
+		<baseformat>%d{HH:mm:ss}-%F-%L-%m</baseformat>
+		<outputstring>ar.fiuba.tecnicas.logging.log.FileOutput:log2.txt</outputstring>
+		<filters>
+			<filterpattern>regEx</filterpattern>
+			<customFilter class="">
+				<param>....</param>
+			</customFilter>
+		</filters>
+		<delimiter>;</delimiter>
+	</log>
+</logger>

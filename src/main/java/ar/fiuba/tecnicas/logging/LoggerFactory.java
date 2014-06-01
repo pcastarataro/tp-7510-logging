@@ -38,75 +38,8 @@ public class LoggerFactory {
 	 * @param path config file route
 	 * @return Logger with its log created ready to log
 	 */
-	public Logger createLogger(String path) {
-		//TODO: temporalmante el nombre del logger es el path
-		ConcreteLogger logger = new ConcreteLogger(path);
-		try {
-			Document configXml;
-			configXml = this.getConfigXml(path);
-			NodeList nList = configXml.getElementsByTagName("log");	 
-			for (int temp = 0; temp < nList.getLength(); temp++) {
-				Node logNode = nList.item(temp);
-				if (logNode.getNodeType() == Node.ELEMENT_NODE) {
-					Log log=this.createLog(logNode);
-					logger.addLog(log);
-				}
-			}
-		} 
-		catch (ParserConfigurationException e) {} 
-		catch (SAXException e) {} 
-		catch (IOException e) {}
-		return logger;
-	}
-	
-	private Document getConfigXml(String path) throws ParserConfigurationException, 
-										SAXException, IOException { 
-		File fXmlFile = new File(path);
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder;
-		dBuilder = dbFactory.newDocumentBuilder();
-		Document configXml=dBuilder.parse(fXmlFile);
-		configXml.getDocumentElement().normalize();
-		return configXml;
-	}
-	
-	// In case of invalid name returns Lower priority level as default
-	private Level getLevelFromName(String name) {
-		LevelPriority priority;
-		try {
-			priority = LevelPriority.valueOf(name.toUpperCase());
-		}
-		catch(RuntimeException e){
-			priority = LevelPriority.values()[0];
-		}
-		return new ConcreteLevel(priority);
-	}
-	
-	private Log createLog(Node logNode) {
-		Element eElement = (Element) logNode;
-		String levelType = eElement.getElementsByTagName("level").item(0).getTextContent();
-		String baseFormat = eElement.getElementsByTagName("baseformat").item(0).getTextContent();
-		String filename = eElement.getElementsByTagName("outputstring").item(0).getTextContent();
-		String delimiter = eElement.getElementsByTagName("delimiter").item(0).getTextContent();
-
-		Level level = getLevelFromName(levelType);
-		
-		LogConfiguration logConfig = new ConcreteLogConfiguration(baseFormat, level, 
-				filename, delimiter);
-		
-		Log log = getLogForOutputString(filename, logConfig);
-		return log;
-	}
-	
-	private ConcreteLog getLogForOutputString(String outputString, LogConfiguration config) {
-		Output output = getLogOutputForOutputString(outputString);
-		ConcreteLog log = new ConcreteLog(config, output);
-		return log;
-	}
-	
-	private Output getLogOutputForOutputString(String outputString) {
-		Output output = outputFactory.makeOutputForOutputString(outputString);
-		return output;
+	public Logger createLogger(String loggerName) {
+		return LoggerFactoryFromPropertie.getInstance().createLogger(loggerName);
 	}
 	
 }

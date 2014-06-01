@@ -8,7 +8,12 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		LoggerFactory factory=LoggerFactory.getInstance();
-		Logger logger=factory.createLogger("config.txt"); 
+		//xml
+		//Logger logger=factory.createLogger("logger1"); 
+		//propertie
+		Logger logger=factory.createLogger("logger2"); 
+		//default
+		//Logger logger=factory.createLogger("logger4"); 
 		logger.log(LevelPriority.OFF, "probando mostrar mensaje");
 		logger.log(LevelPriority.DEBUG, "probando otro mensaje");
 		logger.log(LevelPriority.ERROR, "probando ultimo mensaje");
