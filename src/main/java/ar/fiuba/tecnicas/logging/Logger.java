@@ -1,5 +1,6 @@
 package ar.fiuba.tecnicas.logging;
 
+import ar.fiuba.tecnicas.logging.level.Level;
 import ar.fiuba.tecnicas.logging.level.LevelPriority;
 import ar.fiuba.tecnicas.logging.log.Log;
 
@@ -41,5 +42,9 @@ public interface Logger {
 	 * @return logger name
 	 */
 	public String getName();
+	
+	public Level getMinLoggingLevel();
+
+	public void setMinLoggingLevel(Level level);
 	
 }

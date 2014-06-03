@@ -44,7 +44,6 @@ public class ConcreteLog implements Log {
 	 * Resolve the logging in the current log
 	 */
 	public void log(Level level, String message, ExecutionContext executionContext, String loggerName) {	
-		testMinLevel(level);
 		doLog(level, message, executionContext, loggerName);
 	}
 	
@@ -53,13 +52,6 @@ public class ConcreteLog implements Log {
 	 */
 	public Output getLogOutput() {
 		return logOutput;
-	}
-	
-	private void testMinLevel(Level level) throws MinLevelIsLowerException{
-		Level minLevel = this.getLogConfiguration().getMinLoggingLevel(); 
-		if (!level.isLowerOrEqualsThan(minLevel)) {
-			throw new MinLevelIsLowerException();
-		}
 	}
 	
 	private void doLog(Level level, String message, ExecutionContext executionContext, String loggerName) {

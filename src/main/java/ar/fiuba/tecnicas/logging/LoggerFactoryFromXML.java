@@ -82,6 +82,13 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 	private Logger createLoggerFromXML(String loggerName){
 		ConcreteLogger logger = new ConcreteLogger(loggerName);
 		Node loggerNode=this.getLogger(loggerName);
+		
+		NamedNodeMap attrs=loggerNode.getAttributes();
+		
+		String level=attrs.getNamedItem("level").getTextContent();
+		
+		logger.setMinLoggingLevel(getLevelFromName(level));
+		
 		NodeList nList = loggerNode.getChildNodes();	 
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node logNode = nList.item(temp);
@@ -126,15 +133,11 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 	
 	private Log createLog(Node logNode) {
 		Element eElement = (Element) logNode;
-		String levelType = eElement.getElementsByTagName("level").item(0).getTextContent();
 		String baseFormat = eElement.getElementsByTagName("baseformat").item(0).getTextContent();
 		String filename = eElement.getElementsByTagName("outputstring").item(0).getTextContent();
 		String delimiter = eElement.getElementsByTagName("delimiter").item(0).getTextContent();
-
-		Level level = getLevelFromName(levelType);
 		
-		LogConfiguration logConfig = new ConcreteLogConfiguration(baseFormat, level, 
-				filename, delimiter);
+		LogConfiguration logConfig = new ConcreteLogConfiguration(baseFormat, filename, delimiter);
 		Output output=ConcreteOutputFactory.getInstance().makeOutputForOutputString(filename);
 		Log log = new ConcreteLog(logConfig,output);
 		return log;

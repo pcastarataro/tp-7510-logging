@@ -26,9 +26,10 @@ public class LoggerFactoryDefault implements LoggerFactoryHandler{
 	public Logger createLogger(String loggerName){
 		this.setNext(null);
 		ConcreteLogger logger = new ConcreteLogger(loggerName);
-
+		
 		Level level = new ConcreteLevel(LevelPriority.values()[0]);
-		LogConfiguration logConfig = new ConcreteLogConfiguration("%d{HH:mm:ss}-%p-%t-%m", level, 
+		logger.setMinLoggingLevel(level);
+		LogConfiguration logConfig = new ConcreteLogConfiguration("%d{HH:mm:ss}-%p-%t-%m", 
 				"ar.fiuba.tecnicas.logging.log.ConsoleOutput:", ";");
 		Output output=ConcreteOutputFactory.getInstance().makeOutputForOutputString("ar.fiuba.tecnicas.logging.log.ConsoleOutput:");
 		Log log = new ConcreteLog(logConfig, output);

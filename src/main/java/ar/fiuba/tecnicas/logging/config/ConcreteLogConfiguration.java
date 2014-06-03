@@ -10,16 +10,14 @@ public class ConcreteLogConfiguration implements LogConfiguration {
 	private String DEFAULT_DELIMITER = "-";
 	
 	private String baseFormat;
-	private Level minLoggingLevel;
 	private String outputString;
 	
 	/**
 	 * @param baseFormat string pattern to log
 	 * @param minLoggingLevel minimum Level to log
 	 */
-	public ConcreteLogConfiguration(String baseFormat, Level minLoggingLevel) {
+	public ConcreteLogConfiguration(String baseFormat) {
 		this.setBaseFormat(baseFormat);
-		this.setMinLoggingLevel(minLoggingLevel);
 	};
 	
 	/**
@@ -27,9 +25,8 @@ public class ConcreteLogConfiguration implements LogConfiguration {
 	 * @param minLoggingLevel minimum Level to log
 	 * @param outputString log output
 	 */
-	public ConcreteLogConfiguration(String baseFormat, Level minLoggingLevel, String outputString) {
+	public ConcreteLogConfiguration(String baseFormat, String outputString) {
 		this.setBaseFormat(baseFormat);
-		this.setMinLoggingLevel(minLoggingLevel);
 		this.setOutputString(outputString);
 	};
 	
@@ -39,20 +36,16 @@ public class ConcreteLogConfiguration implements LogConfiguration {
 	 * @param outputString log output
 	 * @param delimiter delimiter to be used to log. If not defined default "-"
 	 */
-	public ConcreteLogConfiguration(String baseFormat, Level minLoggingLevel, String outputString,String delimiter) {
+	public ConcreteLogConfiguration(String baseFormat, String outputString,String delimiter) {
 		this.setBaseFormat(baseFormat);
-		this.setMinLoggingLevel(minLoggingLevel);
 		this.setOutputString(outputString);
-		DEFAULT_DELIMITER=delimiter;
+		this.DEFAULT_DELIMITER=delimiter;
 	};
 	
 	protected void setBaseFormat(String baseFormat) {
 		this.baseFormat = baseFormat;
 	}
 	
-	protected void setMinLoggingLevel(Level minLoggingLevel) {
-		this.minLoggingLevel = minLoggingLevel;
-	}
 	
 	protected void setOutputString(String outputString) {
 		this.outputString = outputString;
@@ -63,13 +56,6 @@ public class ConcreteLogConfiguration implements LogConfiguration {
 	 */
 	public String getBaseFormat() {
 		return this.baseFormat;
-	}
-	
-	/**
-	 * Retuns the min logging level
-	 */
-	public Level getMinLoggingLevel() {
-		return this.minLoggingLevel;
 	}
 
 	/**
@@ -91,7 +77,6 @@ public class ConcreteLogConfiguration implements LogConfiguration {
 	 */
 	public String getAsXml(){
 		String xmlConfig="<log>";
-		xmlConfig+="<level>"+this.minLoggingLevel.getName().replace("Level", "")+"</level>";
 		xmlConfig+="<baseformat>" + this.baseFormat + "</baseformat>";
 		xmlConfig+="<outputstring>" + this.outputString + "</outputstring>";
 		xmlConfig+="<delimiter>" + this.DEFAULT_DELIMITER + "</delimiter>";

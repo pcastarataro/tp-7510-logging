@@ -76,13 +76,10 @@ public class LoggerFactoryFromPropertie implements LoggerFactoryHandler{
 	}
 	
 	private Log createLog(String loggerName,String logName){
-		String levelType = this.configProperties.getProperty(loggerName+"."+logName+".level");
 		String baseFormat = this.configProperties.getProperty(loggerName+"."+logName+".baseformat");
 		String filename = this.configProperties.getProperty(loggerName+"."+logName+".outputstring");
 		String delimiter = this.configProperties.getProperty(loggerName+"."+logName+".delimiter");
-		Level level = getLevelFromName(levelType);
-		LogConfiguration logConfig = new ConcreteLogConfiguration(baseFormat, level, 
-				filename, delimiter);
+		LogConfiguration logConfig = new ConcreteLogConfiguration(baseFormat, filename, delimiter);
 		Output output=ConcreteOutputFactory.getInstance().makeOutputForOutputString(filename);
 		Log log = new ConcreteLog(logConfig,output);
 		return log;	
@@ -90,6 +87,8 @@ public class LoggerFactoryFromPropertie implements LoggerFactoryHandler{
 	
 	private Logger createLoggerFromPropertie(String loggerName){
 		ConcreteLogger logger = new ConcreteLogger(loggerName);
+		String loggerLevel=this.configProperties.getProperty(loggerName+".level");
+		logger.setMinLoggingLevel(getLevelFromName(loggerLevel));
 		String logs=this.configProperties.getProperty(loggerName+".logs");
 		String[] logsNames=logs.replaceAll(" ", "").split(",");
 		for(int i=0;i<logsNames.length;i++){
