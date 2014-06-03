@@ -62,9 +62,17 @@ public interface Logger {
 	 * @return logger name
 	 */
 	public String getName();
-	
+
+	/**
+	 * Returns the min Level associated to the Logger.
+	 * @return
+	 */
 	public Level getMinLoggingLevel();
 
+	/**
+	 * This method sets the minimum logging level for the Logger. 
+	 * @param level
+	 */
 	public void setMinLoggingLevel(Level level);
 	
 }

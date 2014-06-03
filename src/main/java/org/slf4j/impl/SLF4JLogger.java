@@ -2,27 +2,29 @@ package org.slf4j.impl;
 
 import org.slf4j.helpers.MarkerIgnoringBase;
 
+import ar.fiuba.tecnicas.logging.Logger;
 import ar.fiuba.tecnicas.logging.context.ExecutionContext;
 import ar.fiuba.tecnicas.logging.context.LoggingExecutionContext;
+import ar.fiuba.tecnicas.logging.level.ConcreteLevel;
 import ar.fiuba.tecnicas.logging.level.LevelPriority;
 
 /**
  * This class is an adapter for slf4j framework.
  *
  */
-public class TPLogger extends MarkerIgnoringBase {
+public class SLF4JLogger extends MarkerIgnoringBase {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private ar.fiuba.tecnicas.logging.Logger logger;
+	private Logger logger;
 	
 	/**
 	 * Constructor from ar.fiuba.tecnicas.logging.Logger
 	 * @param logger
 	 */
-	public TPLogger(ar.fiuba.tecnicas.logging.Logger logger) {
+	public SLF4JLogger(Logger logger) {
 		this.logger = logger;
 	}
 
@@ -313,8 +315,7 @@ public class TPLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public boolean isDebugEnabled() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.logger.getMinLoggingLevel().isLowerOrEqualsThan(new ConcreteLevel(LevelPriority.DEBUG));
 	}
 
 	/*
@@ -323,8 +324,7 @@ public class TPLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public boolean isErrorEnabled() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.logger.getMinLoggingLevel().isLowerOrEqualsThan(new ConcreteLevel(LevelPriority.ERROR));
 	}
 
 	/*
@@ -333,8 +333,7 @@ public class TPLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public boolean isInfoEnabled() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.logger.getMinLoggingLevel().isLowerOrEqualsThan(new ConcreteLevel(LevelPriority.INFO));
 	}
 
 
@@ -344,8 +343,7 @@ public class TPLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public boolean isTraceEnabled() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.logger.getMinLoggingLevel().isLowerOrEqualsThan(new ConcreteLevel(LevelPriority.TRACE));
 	}
 
 	/*
@@ -354,8 +352,7 @@ public class TPLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public boolean isWarnEnabled() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.logger.getMinLoggingLevel().isLowerOrEqualsThan(new ConcreteLevel(LevelPriority.WARN));
 	}
 	
 	// TODO Manejo de error por cantidad de parametros incorrectos?

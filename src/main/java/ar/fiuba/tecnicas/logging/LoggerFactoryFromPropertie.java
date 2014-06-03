@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import org.w3c.dom.Element;
 
 import ar.fiuba.tecnicas.logging.config.ConcreteLogConfiguration;
 import ar.fiuba.tecnicas.logging.config.LogConfiguration;

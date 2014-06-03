@@ -9,17 +9,17 @@ import ar.fiuba.tecnicas.logging.LoggerFactory;
  * This class abstract the creation of Logs.
  *
  */
-public class TPLoggerFactory implements ILoggerFactory {
+public class SLF4JLoggerFactory implements ILoggerFactory {
 
 	private LoggerFactory loggerFactory;
-	private TPLogger logger;
+	private SLF4JLogger logger;
 	
 	/**
 	 * Constructor. Creates an instance of LoggerFactory.
 	 */
-	public TPLoggerFactory() {
+	public SLF4JLoggerFactory() {
 		this.loggerFactory = LoggerFactory.getInstance();
-		this.logger = new TPLogger(loggerFactory.createLogger("config.txt"));
+		this.logger = new SLF4JLogger(loggerFactory.createLogger("config.txt"));
 	}
 	
 	/*

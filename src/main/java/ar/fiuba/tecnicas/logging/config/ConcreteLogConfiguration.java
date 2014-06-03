@@ -1,6 +1,5 @@
 package ar.fiuba.tecnicas.logging.config;
 
-import ar.fiuba.tecnicas.logging.level.Level;
 
 /**
  * Implements a specific LogConfiguration Class

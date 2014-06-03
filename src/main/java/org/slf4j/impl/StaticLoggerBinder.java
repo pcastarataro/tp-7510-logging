@@ -13,7 +13,7 @@ public class StaticLoggerBinder implements LoggerFactoryBinder {
 	private final ILoggerFactory factory;
 	
 	private StaticLoggerBinder() {
-		factory = new TPLoggerFactory();
+		factory = new SLF4JLoggerFactory();
 	}
 	
 	/**
@@ -44,7 +44,7 @@ public class StaticLoggerBinder implements LoggerFactoryBinder {
 	 */
 	@Override
 	public String getLoggerFactoryClassStr() {
-		return TPLoggerFactory.class.getName();
+		return SLF4JLoggerFactory.class.getName();
 	}
 
 }
