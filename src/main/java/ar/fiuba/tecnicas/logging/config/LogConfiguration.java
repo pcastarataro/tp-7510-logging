@@ -12,11 +12,6 @@ public interface LogConfiguration {
 	 * @return log pattern defined in configuration file
 	 */
 	public String getBaseFormat();
-		
-	/**
-	 * @return minimum Level to log defined in configuration file
-	 */
-	public Level getMinLoggingLevel();
 	
 	
 	/**

@@ -42,11 +42,11 @@ public class LoggerFactoryTest extends TestCase {
 			out.write("</logger>");out.newLine();
 			out.close();
 			Logger loggerWanted=new ConcreteLogger("TestLogger");
-			LogConfiguration logConfig=new ConcreteLogConfiguration("%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}",
-					new ConcreteLevel(LevelPriority.DEBUG),ConsoleOutput.class.getName() + ":",":");
+			loggerWanted.setMinLoggingLevel(new ConcreteLevel(LevelPriority.DEBUG));
+			LogConfiguration logConfig=new ConcreteLogConfiguration("%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}",ConsoleOutput.class.getName() + ":",":");
 			Log log=new ConcreteLog(logConfig, new ConsoleOutput());
 			loggerWanted.addLog(log);
-			logConfig=new ConcreteLogConfiguration("%d{HH:mm:ss}-%p-%t-%m", new ConcreteLevel(LevelPriority.INFO), FileOutput.class.getName() + ":log1.txt","-");
+			logConfig=new ConcreteLogConfiguration("%d{HH:mm:ss}-%p-%t-%m", FileOutput.class.getName() + ":log1.txt","-");
 			log=new ConcreteLog(logConfig, new ConsoleOutput());
 			loggerWanted.addLog(log);
 			xmlWanted=loggerWanted.getXmlConfig();

@@ -22,7 +22,7 @@ public class ConcreteLogger implements Logger {
 	
 	private List<Log> logs;
 	private String name;
-	
+	private Level minLoggingLevel;
 	/**
 	 * Constructor of an concrete implementation of Logger
 	 */
@@ -55,19 +55,19 @@ public class ConcreteLogger implements Logger {
 	public void log(LevelPriority loggingLevel, String message, 
 			ExecutionContext executionContext) {
 		Level level = new ConcreteLevel(loggingLevel);
-		for (Log log : logs) {
-			doLog(log, level, message, executionContext);
-		}
+		try {
+			testMinLevel(level);
+			for (Log log : logs) {
+				doLog(log, level, message, executionContext);
+			}
+		}catch(MinLevelIsLowerException ex) {
+			System.err.println("Min Level: " + this.getMinLoggingLevel().getName() +
+					" - " + "Level: " + level.getName() + " - " + message);
+		}	
 	}
 	
 	private void doLog(Log log, Level loggingLevel, String message, ExecutionContext executionContext) {
-		try {
-			log.log(loggingLevel, message, executionContext, this.getName());	
-		}
-		catch(MinLevelIsLowerException ex) {
-			System.err.println("Min Level: " + log.getLogConfiguration().getMinLoggingLevel().getName() +
-					" - " + "Level: " + loggingLevel.getName() + " - " + message);
-		}
+		log.log(loggingLevel, message, executionContext, this.getName());	
 	}
 	
 	/**
@@ -112,4 +112,20 @@ public class ConcreteLogger implements Logger {
 	public String getName() {
 		return this.name;
 	}
+	
+	public void setMinLoggingLevel(Level level){
+		this.minLoggingLevel=level;
+	}
+	
+	public Level getMinLoggingLevel(){
+		return this.minLoggingLevel;
+	}
+	
+	private void testMinLevel(Level level) throws MinLevelIsLowerException{
+		Level minLevel = this.getMinLoggingLevel(); 
+		if (!level.isLowerOrEqualsThan(minLevel)) {
+			throw new MinLevelIsLowerException();
+		}
+	}
+	
 }
