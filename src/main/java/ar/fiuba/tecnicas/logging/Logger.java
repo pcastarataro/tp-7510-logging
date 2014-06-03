@@ -1,10 +1,11 @@
 package ar.fiuba.tecnicas.logging;
 
+import ar.fiuba.tecnicas.logging.context.ExecutionContext;
 import ar.fiuba.tecnicas.logging.level.LevelPriority;
 import ar.fiuba.tecnicas.logging.log.Log;
 
 /**
- *	Interface that define logger behaviour
+ *	Interface that define logger behavior
  */
 public interface Logger {
 
@@ -22,12 +23,31 @@ public interface Logger {
 	public void log(LevelPriority loggingLevel, String message);
 	
 	/**
+	 * This method is used to log one message in all the Logs configured on the logger.
+	 * It uses the execution context to obtain the file, line, etc.
+	 * @param loggingLevel
+	 * @param message
+	 * @param executionContext
+	 */
+	public void log(LevelPriority loggingLevel, String message, ExecutionContext executionContext);
+	
+	/**
 	 * This method is used to log one message + exception trace in all the Logs configured on the logger
 	 * @param loggingLevel
 	 * @param message
 	 * @param exception
 	 */
-	public void log(LevelPriority loggingLevel, String message, Exception exception);
+	public void log(LevelPriority loggingLevel, String message, Throwable exception);
+	
+	/**
+	 * This method is used to log one message + exception trace in all the Logs configured on the logger
+	 * @param loggingLevel
+	 * @param message
+	 * @param exception
+	 * @param executionContext
+	 */
+	public void log(LevelPriority loggingLevel, String message, 
+			Throwable exception, ExecutionContext executionContext);
 	
 	/**
 	 * This method is used to obtain the structure of the xml file configuration associated to the logger
