@@ -12,7 +12,7 @@ public class FileLogOutputTest extends TestCase{
 		File file = new File(path);
 		file.delete();
 		FileOutput fileLogOutput=new FileOutput();
-		fileLogOutput.setOutputString(FileOutput.class.getName() + path);
+		fileLogOutput.setOutputString(FileOutput.class.getName() + ":" + path);
 		String mensaje="%%Main.java main : 14 : main HOLAAA Main.java : probando otro mensaje : %  FATAL 2014 5 2014-05";
 		fileLogOutput.doPrint(mensaje);
 		boolean seCreoArchivo=true;
@@ -34,7 +34,7 @@ public class FileLogOutputTest extends TestCase{
 		File file = new File(path);
 		file.delete();
 		FileOutput fileLogOutput=new FileOutput();
-		fileLogOutput.setOutputString(FileOutput.class.getName() + path);
+		fileLogOutput.setOutputString(FileOutput.class.getName() + ":" +path);
 		String mensaje="%%Main.java main : 14 : main HOLAAA Main.java : probando otro mensaje : %  FATAL 2014 5 2014-05";
 		fileLogOutput.doPrint(mensaje);
 		String leido="";

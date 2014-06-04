@@ -12,14 +12,12 @@ import ar.fiuba.tecnicas.logging.LoggerFactory;
 public class SLF4JLoggerFactory implements ILoggerFactory {
 
 	private LoggerFactory loggerFactory;
-	private SLF4JLogger logger;
 	
 	/**
 	 * Constructor. Creates an instance of LoggerFactory.
 	 */
 	public SLF4JLoggerFactory() {
 		this.loggerFactory = LoggerFactory.getInstance();
-		this.logger = new SLF4JLogger(loggerFactory.createLogger("config.txt"));
 	}
 	
 	/*
@@ -28,7 +26,7 @@ public class SLF4JLoggerFactory implements ILoggerFactory {
 	 */
 	@Override
 	public Logger getLogger(String name) {
-		return logger;
+		return new SLF4JLogger(loggerFactory.createLogger(name));
 	}
 
 }

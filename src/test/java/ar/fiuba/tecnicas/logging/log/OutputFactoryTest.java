@@ -25,7 +25,7 @@ public class OutputFactoryTest extends TestCase {
 	}
 	
 	public void testFactoryConsoleOutputOk(){
-		String consolePattern = ConsoleOutput.class.getName();
+		String consolePattern = ConsoleOutput.class.getName() + ":";
 		Output output = factory.makeOutputForOutputString(consolePattern);
 		
 		assertEquals(output.getClass().getName(), ConsoleOutput.class.getName());
