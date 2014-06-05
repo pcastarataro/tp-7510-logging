@@ -22,7 +22,7 @@ public interface Log {
 	 * @param level
 	 * @param msg
 	 */
-	public void log(Level level, String msg, ExecutionContext executionContext, String loggerName);
+	public void log(Level level, String msg, Throwable exception, ExecutionContext executionContext, String loggerName);
 	
 	/**
 	 * 

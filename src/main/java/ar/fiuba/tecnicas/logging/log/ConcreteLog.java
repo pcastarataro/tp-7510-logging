@@ -1,5 +1,7 @@
 package ar.fiuba.tecnicas.logging.log;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -52,8 +54,8 @@ public class ConcreteLog implements Log {
 	/**
 	 * Resolve the logging in the current log
 	 */
-	public void log(Level level, String message, ExecutionContext executionContext, String loggerName) {	
-		doLog(level, message, executionContext, loggerName);
+	public void log(Level level, String message, Throwable exception, ExecutionContext executionContext, String loggerName) {	
+		doLog(level, message, exception, executionContext, loggerName);
 	}
 
 	/**
@@ -63,7 +65,7 @@ public class ConcreteLog implements Log {
 		return logOutput;
 	}
 
-	private void doLog(Level level, String message, ExecutionContext executionContext, String loggerName) {
+	private void doLog(Level level, String message, Throwable exception, ExecutionContext executionContext, String loggerName) {
 		try {
 			Date date = new Date();
 
@@ -76,6 +78,11 @@ public class ConcreteLog implements Log {
 			String formattedMessage = this.getLogConfiguration().getBaseFormat();
 			formattedMessage = preProcessFormats(logParameters, formattedMessage);
 			formattedMessage = postProcessFormats(logParameters, formattedMessage);
+			
+			if (exception != null){
+				String stackTraceException = stackTraceExceptionMessage(exception);
+				formattedMessage += " // " + stackTraceException;
+			}
 
 			getLogOutput().doPrint(formattedMessage);
 		}
@@ -117,6 +124,14 @@ public class ConcreteLog implements Log {
 
 	private void setLogOutput(Output logOutput) {
 		this.logOutput = logOutput;
+	}
+	
+	private String stackTraceExceptionMessage(Throwable exception)
+	{
+		StringWriter stackTrace = new StringWriter();
+		exception.printStackTrace(new PrintWriter(stackTrace));
+		
+		return stackTrace.toString();
 	}
 
 }

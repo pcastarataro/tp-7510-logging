@@ -1,7 +1,5 @@
 package ar.fiuba.tecnicas.logging;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,20 +43,38 @@ public class ConcreteLogger implements Logger {
 	 */
 	public void log(LevelPriority loggingLevel, String message) {
 		ExecutionContext executionContext =new LoggingExecutionContext();
-		log(loggingLevel, message, executionContext);
+		log(loggingLevel, message, null, executionContext);
 	}
-
+	
 	/**
 	 * This method implements the interface log method that allow to log a new message
 	 * in all the Logs configured in the current Logger.
 	 */
-	public void log(LevelPriority loggingLevel, String message, 
+	public void log(LevelPriority loggingLevel, String message, ExecutionContext executionContext) {
+		log(loggingLevel, message, null, executionContext);
+	}
+	
+	/**
+	 * This method implements the interface log method that allow to log a message and exception trace
+	 * in all the Logs configured in the current Logger.
+	 */
+	public void log(LevelPriority loggingLevel, String message, Throwable exception) {
+		ExecutionContext executionContext = new LoggingExecutionContext();
+		log(loggingLevel, message, exception, executionContext);
+	}
+
+	/**
+	 * This method implements the interface log method that allow to log a new message + exception trace
+	 * in all the Logs configured in the current Logger.
+	 */
+	public void log(LevelPriority loggingLevel, String message, Throwable exception,
 			ExecutionContext executionContext) {
 		Level level = new ConcreteLevel(loggingLevel);
 		try {
 			testMinLevel(level);
+			
 			for (Log log : logs) {
-				doLog(log, level, message, executionContext);
+				doLog(log, level, message, exception, executionContext);
 			}
 		}catch(MinLevelIsLowerException ex) {
 			System.err.println("Min Level: " + this.getMinLoggingLevel().getName() +
@@ -66,8 +82,8 @@ public class ConcreteLogger implements Logger {
 		}	
 	}
 	
-	private void doLog(Log log, Level loggingLevel, String message, ExecutionContext executionContext) {
-		log.log(loggingLevel, message, executionContext, this.getName());	
+	private void doLog(Log log, Level loggingLevel, String message, Throwable exception, ExecutionContext executionContext) {
+		log.log(loggingLevel, message, exception, executionContext, this.getName());	
 	}
 	
 	/**
@@ -83,28 +99,6 @@ public class ConcreteLogger implements Logger {
 		return xmlConfig;
 	}
 
-	/**
-	 * This method implements the interface log method that allow to log a message and exception trace
-	 * in all the Logs configured in the current Logger.
-	 */
-	public void log(LevelPriority loggingLevel, String message, Throwable exception) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
-		log(loggingLevel, message, exception, executionContext);
-	}
-
-	/**
-	 * This method implements the interface log method that allow to log a message and exception trace
-	 * in all the Logs configured in the current Logger.
-	 */
-	public void log(LevelPriority loggingLevel, String message, 
-			Throwable exception, ExecutionContext executionContext) {
-		
-		StringWriter stackTrace = new StringWriter();
-		exception.printStackTrace(new PrintWriter(stackTrace));
-		
-		this.log(loggingLevel, message + " // " +  stackTrace.toString(),executionContext);
-	}
-	
 	/**
 	 * This method return the logger name
 	 * @return logger name
@@ -127,5 +121,4 @@ public class ConcreteLogger implements Logger {
 			throw new MinLevelIsLowerException();
 		}
 	}
-	
 }

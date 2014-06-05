@@ -13,6 +13,8 @@ public class Main {
 	    logger.debug("probando otro mensaje");
 	    logger.error("probando ultimo mensaje");
 	    Main.logSomething("aaa");
+	    
+	    logger.debug("con exception ", new Exception());
 	   
 	    logger.error("{}-{}","Hola","Mundo");
 	    logger.error("{}-{}","Hola");
