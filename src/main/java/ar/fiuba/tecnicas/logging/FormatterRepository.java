@@ -14,6 +14,7 @@ import ar.fiuba.tecnicas.logging.format.LoggerNameFormatter;
 import ar.fiuba.tecnicas.logging.format.MessageFormatter;
 import ar.fiuba.tecnicas.logging.format.MethodNameFormatter;
 import ar.fiuba.tecnicas.logging.format.ThreadNameFormatter;
+import ar.fiuba.tecnicas.logging.format.JsonFormatter;
 
 /**
  * Repository of all kind of implemented formatters to be used to log
@@ -40,6 +41,7 @@ public class FormatterRepository {
 		Formatter levelFormatter = new LevelFormatter();
 		Formatter dateFormatter = new DateFormatter();
 		Formatter loggerNameFormatter= new LoggerNameFormatter();
+		Formatter jsonFormatter= new JsonFormatter();
 		
 		formattersList.add(escapeFormatter);
 		formattersList.add(threadNameFormatter);
@@ -51,6 +53,7 @@ public class FormatterRepository {
 		formattersList.add(levelFormatter);
 		formattersList.add(dateFormatter);
 		formattersList.add(loggerNameFormatter);
+		formattersList.add(jsonFormatter);
 	}
 	
 	/**
