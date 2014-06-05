@@ -133,5 +133,11 @@ public class ConcreteLog implements Log {
 		
 		return stackTrace.toString();
 	}
-
+	public void addFilter(Filter newFilter){
+		this.filtersList.add(newFilter);
+	}
+	
+	public void setRegexpPattern(String newRegex){
+		this.regexPattern=newRegex;
+	}
 }

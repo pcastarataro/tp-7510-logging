@@ -8,6 +8,7 @@ import java.util.Properties;
 
 import ar.fiuba.tecnicas.logging.config.ConcreteLogConfiguration;
 import ar.fiuba.tecnicas.logging.config.LogConfiguration;
+import ar.fiuba.tecnicas.logging.filter.Filter;
 import ar.fiuba.tecnicas.logging.level.ConcreteLevel;
 import ar.fiuba.tecnicas.logging.level.Level;
 import ar.fiuba.tecnicas.logging.level.LevelPriority;
@@ -74,13 +75,45 @@ public class LoggerFactoryFromPropertie implements LoggerFactoryHandler{
 		return new ConcreteLevel(priority);
 	}
 	
-	private Log createLog(String loggerName,String logName){
-		String baseFormat = this.configProperties.getProperty(loggerName+"."+logName+".baseformat");
-		String filename = this.configProperties.getProperty(loggerName+"."+logName+".outputstring");
-		String delimiter = this.configProperties.getProperty(loggerName+"."+logName+".delimiter");
+	private Filter createFilter(String filterFullName){
+		String filterClassName= this.configProperties.getProperty(filterFullName+".class");
+		Filter filter;
+		try {
+			filter=(Filter)Class.forName(filterClassName).getConstructor().newInstance();
+			String filterConf= this.configProperties.getProperty(filterFullName+".conf");
+			filter.setConfigurationString(filterConf);
+		} catch (Exception ex) {
+	    	return null;
+	    }
+		return null;
+	}
+	
+	private void loadFilters(Log log,String logNameFull){
+		String filters=this.configProperties.getProperty(logNameFull+".filters");
+		if(filters!=null){
+			String[] filtersName=filters.replaceAll(" ", "").split(",");
+			for(int i=0;i<filtersName.length;i++){
+				String regex=this.configProperties.getProperty(logNameFull+"."+filtersName[i]+".regex");
+				if(regex!=null){
+					log.setRegexpPattern(regex);
+					continue;
+				}
+				Filter filter=this.createFilter(logNameFull+"."+filtersName[i]);
+				if(filter!=null){
+					log.addFilter(filter);
+				}
+			}
+		}
+	}
+	
+	private Log createLog(String logNameFull){
+		String baseFormat = this.configProperties.getProperty(logNameFull+".baseformat");
+		String filename = this.configProperties.getProperty(logNameFull+".outputstring");
+		String delimiter = this.configProperties.getProperty(logNameFull+".delimiter");
 		LogConfiguration logConfig = new ConcreteLogConfiguration(baseFormat, filename, delimiter);
 		Output output=ConcreteOutputFactory.getInstance().makeOutputForOutputString(filename);
 		Log log = new ConcreteLog(logConfig,output);
+		loadFilters(log,logNameFull);
 		return log;	
 	}
 	
@@ -91,7 +124,7 @@ public class LoggerFactoryFromPropertie implements LoggerFactoryHandler{
 		String logs=this.configProperties.getProperty(loggerName+".logs");
 		String[] logsNames=logs.replaceAll(" ", "").split(",");
 		for(int i=0;i<logsNames.length;i++){
-			Log log=this.createLog(loggerName,logsNames[i]);
+			Log log=this.createLog(loggerName+"."+logsNames[i]);
 			logger.addLog(log);
 		}
 		return logger;

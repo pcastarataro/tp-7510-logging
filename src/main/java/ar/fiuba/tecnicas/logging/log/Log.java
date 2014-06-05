@@ -2,6 +2,7 @@ package ar.fiuba.tecnicas.logging.log;
 
 import ar.fiuba.tecnicas.logging.config.LogConfiguration;
 import ar.fiuba.tecnicas.logging.context.ExecutionContext;
+import ar.fiuba.tecnicas.logging.filter.Filter;
 import ar.fiuba.tecnicas.logging.level.Level;
 
 /**
@@ -30,4 +31,7 @@ public interface Log {
 	 */
 	public Output getLogOutput();
 	
+	public void addFilter(Filter newFilter);
+	
+	public void setRegexpPattern(String newRegex);
 }

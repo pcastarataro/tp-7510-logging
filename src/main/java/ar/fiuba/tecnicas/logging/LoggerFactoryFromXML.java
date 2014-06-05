@@ -16,6 +16,7 @@ import org.xml.sax.SAXException;
 
 import ar.fiuba.tecnicas.logging.config.ConcreteLogConfiguration;
 import ar.fiuba.tecnicas.logging.config.LogConfiguration;
+import ar.fiuba.tecnicas.logging.filter.Filter;
 import ar.fiuba.tecnicas.logging.level.ConcreteLevel;
 import ar.fiuba.tecnicas.logging.level.Level;
 import ar.fiuba.tecnicas.logging.level.LevelPriority;
@@ -88,11 +89,12 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 		String level=attrs.getNamedItem("level").getTextContent();
 		
 		logger.setMinLoggingLevel(getLevelFromName(level));
-		
-		NodeList nList = loggerNode.getChildNodes();	 
+		Element loggerElement=(Element) loggerNode;
+		NodeList nList = loggerElement.getElementsByTagName("log");	 
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node logNode = nList.item(temp);
 			if (logNode.getNodeType() == Node.ELEMENT_NODE) {
+				//System.out.println("crea log");
 				Log log=this.createLog(logNode);
 				logger.addLog(log);
 			}
@@ -105,6 +107,7 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 		if (!this.loggerExist(loggerName)){
 			return this.next.createLogger(loggerName);
 		}
+		//System.out.println("crear logger");
 		return this.createLoggerFromXML(loggerName);
 	}
 	
@@ -131,6 +134,39 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 		return new ConcreteLevel(priority);
 	}
 	
+	private Filter createFilter(Node filterNode){
+		NamedNodeMap attrs=filterNode.getAttributes();
+		String filterClassName=attrs.getNamedItem("class").getTextContent();
+		Filter filter;
+		try {
+			filter=(Filter)Class.forName(filterClassName).getConstructor().newInstance();
+			filter.setConfigurationString(filterNode.getTextContent());
+		} catch (Exception ex) {
+	    	return null;
+	    }
+		return null;
+	}
+	
+	private void loadFilters(Log log,Node filtersNode){
+		NodeList filtros=filtersNode.getChildNodes();
+		for(int i=0;i<filtros.getLength();i++){
+			Node filterNode=filtros.item(i);
+			if (filterNode.getNodeType() == Node.ELEMENT_NODE) {
+				//System.out.println(filterNode.getNodeName());
+				if(filterNode.getNodeName().equals("filterpattern")){
+					log.setRegexpPattern(filterNode.getTextContent());
+					continue;
+				}
+				//System.out.println("no filter pattern");
+				Filter filter=createFilter(filterNode);
+				if(filter!=null){
+					System.out.println("encuentra clase");
+					log.addFilter(filter);
+				}
+			}
+		}
+	}
+	
 	private Log createLog(Node logNode) {
 		Element eElement = (Element) logNode;
 		String baseFormat = eElement.getElementsByTagName("baseformat").item(0).getTextContent();
@@ -140,6 +176,12 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 		LogConfiguration logConfig = new ConcreteLogConfiguration(baseFormat, filename, delimiter);
 		Output output=ConcreteOutputFactory.getInstance().makeOutputForOutputString(filename);
 		Log log = new ConcreteLog(logConfig,output);
+		//System.out.println(eElement.getElementsByTagName("filters").getLength());
+		if(eElement.getElementsByTagName("filters").getLength()!=0){
+			//System.out.println("entra a load filters");
+			loadFilters(log,eElement.getElementsByTagName("filters").item(0));
+		}
+		
 		return log;
 	}
 	
