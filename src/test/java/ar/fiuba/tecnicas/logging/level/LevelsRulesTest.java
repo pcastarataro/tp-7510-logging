@@ -193,5 +193,32 @@ public class LevelsRulesTest extends TestCase {
 	public void testTraceLevelIsntLowerThanTraceLevel() {
 		assertTrue(traceLevel.isLowerOrEqualsThan(traceLevel));
 	}
+	
+	public void testNameOff() {
+		assertEquals("OFF", offLevel.getName());
+	}
 
+	public void testNameFatal() {
+		assertEquals("FATAL",fatalLevel.getName());
+	}
+	
+	public void testNameError() {
+		assertEquals("ERROR", errorLevel.getName());
+	}
+	
+	public void testNameWarn() {
+		assertEquals("WARN", warnLevel.getName());
+	}
+	
+	public void testNameInfo() {
+		assertEquals("INFO", infoLevel.getName());
+	}
+	
+	public void testNameDebug() {
+		assertEquals("DEBUG", debugLevel.getName());
+	}
+	
+	public void testNameTrace() {
+		assertEquals("TRACE", traceLevel.getName());
+	}
 }
