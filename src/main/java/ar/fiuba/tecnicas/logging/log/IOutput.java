@@ -4,7 +4,7 @@ package ar.fiuba.tecnicas.logging.log;
  * This interface abstract the functionality of writing the log.
  *
  */
-public interface Output {
+public interface IOutput {
 
 	/**
 	 * This method is used to configure the Output with the outputString passed as arg.

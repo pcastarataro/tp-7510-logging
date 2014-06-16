@@ -3,12 +3,12 @@ package ar.fiuba.tecnicas.logging.log;
 
 import java.util.Date;
 
-import ar.fiuba.tecnicas.logging.context.ExecutionContext;
+import ar.fiuba.tecnicas.logging.context.IExecutionContext;
 import ar.fiuba.tecnicas.logging.context.LoggingExecutionContext;
-import ar.fiuba.tecnicas.logging.format.ConcreteLogParameter;
+import ar.fiuba.tecnicas.logging.format.LogParameter;
 import ar.fiuba.tecnicas.logging.format.ParameterNotFoundException;
-import ar.fiuba.tecnicas.logging.level.ConcreteLevel;
 import ar.fiuba.tecnicas.logging.level.Level;
+import ar.fiuba.tecnicas.logging.level.ILevel;
 import ar.fiuba.tecnicas.logging.level.LevelPriority;
 import junit.framework.TestCase;
 
@@ -19,10 +19,10 @@ public class ConcreteLogParameterTest extends TestCase {
 	private String message = "message";
 	private String delimiter = "/";
 	private String loggerName = "/";
-	private ExecutionContext executionContext = new LoggingExecutionContext();
-	private Level level = new ConcreteLevel(LevelPriority.DEBUG);
+	private IExecutionContext executionContext = new LoggingExecutionContext();
+	private ILevel level = new Level(LevelPriority.DEBUG);
 	
-	private ConcreteLogParameter logParameters = new ConcreteLogParameter(level, 
+	private LogParameter logParameters = new LogParameter(level, 
 			message, 
 			executionContext, 
 			delimiter, 

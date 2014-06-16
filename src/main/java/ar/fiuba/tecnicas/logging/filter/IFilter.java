@@ -1,6 +1,6 @@
 package ar.fiuba.tecnicas.logging.filter;
 
-import ar.fiuba.tecnicas.logging.format.LogParameter;
+import ar.fiuba.tecnicas.logging.format.ILogParameter;
 
 /**
  * This interface makes an abstraction of Filters. 
@@ -9,7 +9,7 @@ import ar.fiuba.tecnicas.logging.format.LogParameter;
  * extend the functionality of the Logger with your custom filters.
  *
  */
-public interface Filter {
+public interface IFilter {
 	/**
 	 * This method is used to set the configuration of the filter from a configuration string.
 	 * In case of error it must throw an "InvalidConfigurationStringException". In other case, 
@@ -25,6 +25,6 @@ public interface Filter {
 	 * @param logParams
 	 * @throws FilterNotMatchException
 	 */
-	public void testShouldLog(LogParameter logParams) throws FilterNotMatchException;
+	public void testShouldLog(ILogParameter logParams) throws FilterNotMatchException;
 	
 }

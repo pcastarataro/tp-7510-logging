@@ -4,11 +4,11 @@ import junit.framework.TestCase;
 
 public class OutputFactoryTest extends TestCase {
 
-	OutputFactory factory = new ConcreteOutputFactory();
+	IOutputFactory factory = new OutputFactory();
 	
 	public void testFactoryFileOutputOk(){
 		String filePattern = FileOutput.class.getName() + ":Hola.txt";
-		Output output = factory.makeOutputForOutputString(filePattern);
+		IOutput output = factory.makeOutputForOutputString(filePattern);
 		
 		assertEquals(output.getClass().getName(), FileOutput.class.getName());
 	}
@@ -16,7 +16,7 @@ public class OutputFactoryTest extends TestCase {
 	public void testFactoryFileOutputError(){
 		try{
 			String filePattern = "file1:";
-			Output output = factory.makeOutputForOutputString(filePattern);
+			IOutput output = factory.makeOutputForOutputString(filePattern);
 			assertTrue(output != null);
 		}
 		catch (IllegalOutputPatternException ex) {
@@ -26,7 +26,7 @@ public class OutputFactoryTest extends TestCase {
 	
 	public void testFactoryConsoleOutputOk(){
 		String consolePattern = ConsoleOutput.class.getName() + ":";
-		Output output = factory.makeOutputForOutputString(consolePattern);
+		IOutput output = factory.makeOutputForOutputString(consolePattern);
 		
 		assertEquals(output.getClass().getName(), ConsoleOutput.class.getName());
 	}
@@ -35,7 +35,7 @@ public class OutputFactoryTest extends TestCase {
 
 		try{
 			String consolePattern = "console111:";
-			Output output = factory.makeOutputForOutputString(consolePattern);
+			IOutput output = factory.makeOutputForOutputString(consolePattern);
 			assertTrue(output != null);
 		}
 		catch (IllegalOutputPatternException ex) {

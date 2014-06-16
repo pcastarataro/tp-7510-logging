@@ -4,7 +4,7 @@ package ar.fiuba.tecnicas.logging.log;
  * This class implements an output that writes logs in the System Console.
  *
  */
-public class ConsoleOutput implements Output {
+public class ConsoleOutput implements IOutput {
 
 	/*
 	 * (non-Javadoc)

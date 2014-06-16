@@ -7,7 +7,7 @@ import ar.fiuba.tecnicas.logging.format.DateFormatter;
 import ar.fiuba.tecnicas.logging.format.DelimiterFormatter;
 import ar.fiuba.tecnicas.logging.format.EscapeFormatter;
 import ar.fiuba.tecnicas.logging.format.FileNameFormatter;
-import ar.fiuba.tecnicas.logging.format.Formatter;
+import ar.fiuba.tecnicas.logging.format.IFormatter;
 import ar.fiuba.tecnicas.logging.format.LevelFormatter;
 import ar.fiuba.tecnicas.logging.format.LineNumberFormatter;
 import ar.fiuba.tecnicas.logging.format.LoggerNameFormatter;
@@ -21,7 +21,7 @@ import ar.fiuba.tecnicas.logging.format.JsonFormatter;
  */
 public class FormatterRepository {
 
-	private List<Formatter> formattersList;
+	private List<IFormatter> formattersList;
 	
 	private static FormatterRepository instance = new FormatterRepository();
 	
@@ -30,18 +30,18 @@ public class FormatterRepository {
 	}
 	
 	private void loadFormatters() {
-		formattersList = new ArrayList<Formatter>();
-		Formatter escapeFormatter = new EscapeFormatter();
-		Formatter threadNameFormatter = new ThreadNameFormatter();
-		Formatter lineNumberFormatter = new LineNumberFormatter();
-		Formatter delimiterFormatter = new DelimiterFormatter();
-		Formatter fileNameFormatter = new FileNameFormatter();
-		Formatter methodNameFormatter = new MethodNameFormatter();
-		Formatter messageNameFormatter = new MessageFormatter();
-		Formatter levelFormatter = new LevelFormatter();
-		Formatter dateFormatter = new DateFormatter();
-		Formatter loggerNameFormatter= new LoggerNameFormatter();
-		Formatter jsonFormatter= new JsonFormatter();
+		formattersList = new ArrayList<IFormatter>();
+		IFormatter escapeFormatter = new EscapeFormatter();
+		IFormatter threadNameFormatter = new ThreadNameFormatter();
+		IFormatter lineNumberFormatter = new LineNumberFormatter();
+		IFormatter delimiterFormatter = new DelimiterFormatter();
+		IFormatter fileNameFormatter = new FileNameFormatter();
+		IFormatter methodNameFormatter = new MethodNameFormatter();
+		IFormatter messageNameFormatter = new MessageFormatter();
+		IFormatter levelFormatter = new LevelFormatter();
+		IFormatter dateFormatter = new DateFormatter();
+		IFormatter loggerNameFormatter= new LoggerNameFormatter();
+		IFormatter jsonFormatter= new JsonFormatter();
 		
 		formattersList.add(escapeFormatter);
 		formattersList.add(threadNameFormatter);
@@ -66,7 +66,7 @@ public class FormatterRepository {
 	/**
 	 * @return List with all the existing implemented formatters
 	 */
-	public List<Formatter> getFormatters() {
+	public List<IFormatter> getFormatters() {
 		return formattersList;
 	}
 }

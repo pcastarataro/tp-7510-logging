@@ -5,24 +5,24 @@ import junit.framework.TestCase;
 
 import org.mockito.Mockito;
 
-import ar.fiuba.tecnicas.logging.context.ExecutionContext;
+import ar.fiuba.tecnicas.logging.context.IExecutionContext;
 
 public class MethodNameFormatterTest extends TestCase {
 	
 	private String methodName;
 	
-	private ExecutionContext executionContext;
-	private LogParameter logParameters;
+	private IExecutionContext executionContext;
+	private ILogParameter logParameters;
 	private MethodNameFormatter formatter;
 	
 	@Override
 	protected void setUp() {
 		methodName = "file.java";
 		
-		executionContext = Mockito.mock(ExecutionContext.class);
+		executionContext = Mockito.mock(IExecutionContext.class);
 		when(executionContext.getMethodName()).thenReturn(methodName);
 		
-		logParameters = Mockito.mock(LogParameter.class);
+		logParameters = Mockito.mock(ILogParameter.class);
 		when(logParameters.getParameterNamed("executionContext")).thenReturn(executionContext);
 		
 		formatter = new MethodNameFormatter();

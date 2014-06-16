@@ -4,24 +4,24 @@ import static org.mockito.Mockito.when;
 
 import org.mockito.Mockito;
 
-import ar.fiuba.tecnicas.logging.context.ExecutionContext;
+import ar.fiuba.tecnicas.logging.context.IExecutionContext;
 import junit.framework.TestCase;
 
 public class FileNameFormatterTest extends TestCase {
 
 	private String fileName;
 	
-	private ExecutionContext executionContext;
-	private LogParameter logParameters;
+	private IExecutionContext executionContext;
+	private ILogParameter logParameters;
 	private FileNameFormatter formatter;
 	
 	@Override
 	protected void setUp() {
 		fileName = "file.java";
-		executionContext = Mockito.mock(ExecutionContext.class);
+		executionContext = Mockito.mock(IExecutionContext.class);
 		when(executionContext.getFileName()).thenReturn(fileName);
 		
-		logParameters = Mockito.mock(LogParameter.class);
+		logParameters = Mockito.mock(ILogParameter.class);
 		when(logParameters.getParameterNamed("executionContext")).thenReturn(executionContext);
 		
 		formatter = new FileNameFormatter();

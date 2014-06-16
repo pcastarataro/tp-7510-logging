@@ -9,7 +9,7 @@ public class LoggerNameFormatter extends AbstractFormatter{
 	/**
 	 * Replace all the occurrences of loggerName pattern with the Logger Name.
 	 */
-	public String preProcessFormat(String baseFormat, LogParameter parameters) {
+	public String preProcessFormat(String baseFormat, ILogParameter parameters) {
 		String loggerName = (String) parameters.getParameterNamed("loggerName");
 		return baseFormat.replace("%g", loggerName);
 	}

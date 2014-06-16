@@ -4,25 +4,25 @@ import static org.mockito.Mockito.when;
 
 import org.mockito.Mockito;
 
-import ar.fiuba.tecnicas.logging.level.Level;
+import ar.fiuba.tecnicas.logging.level.ILevel;
 import junit.framework.TestCase;
 
 public class LevelFormatterTest extends TestCase {
 	
 	private String levelName;
 	
-	private Level level;
-	private LogParameter logParameters;
+	private ILevel level;
+	private ILogParameter logParameters;
 	private LevelFormatter formatter;
 	
 	@Override
 	protected void setUp() {
 		levelName = "DEBUG";
 		
-		level = Mockito.mock(Level.class);
+		level = Mockito.mock(ILevel.class);
 		when(level.getName()).thenReturn(levelName);
 		
-		logParameters = Mockito.mock(LogParameter.class);
+		logParameters = Mockito.mock(ILogParameter.class);
 		when(logParameters.getParameterNamed("level")).thenReturn(level);
 		
 		formatter = new LevelFormatter();

@@ -10,14 +10,14 @@ public class LoggerNameFormatterTest extends TestCase {
 	
 private String loggerName;
 	
-	private LogParameter logParameters;
+	private ILogParameter logParameters;
 	private LoggerNameFormatter formatter;
 	
 	@Override
 	protected void setUp() {
 		loggerName = "loggerName1";
 		
-		logParameters = Mockito.mock(LogParameter.class);
+		logParameters = Mockito.mock(ILogParameter.class);
 		when(logParameters.getParameterNamed("loggerName")).thenReturn(loggerName);
 		
 		formatter = new LoggerNameFormatter();

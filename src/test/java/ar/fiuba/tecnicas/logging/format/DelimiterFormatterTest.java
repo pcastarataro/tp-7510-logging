@@ -21,7 +21,7 @@ public class DelimiterFormatterTest extends TestCase {
 
 	private void testSimpleDelimiterFormatterWithDelimiter(String delimiter) {
 		
-		LogParameter logParameters = Mockito.mock(LogParameter.class);
+		ILogParameter logParameters = Mockito.mock(ILogParameter.class);
 		when(logParameters.getParameterNamed("delimiter")).thenReturn(delimiter);
 
 		String baseFormat = "%n";
@@ -47,7 +47,7 @@ public class DelimiterFormatterTest extends TestCase {
 	public void testMultipleDelimiterFormat() {
 		String delimiter = "-";
 		
-		LogParameter logParameters = Mockito.mock(LogParameter.class);
+		ILogParameter logParameters = Mockito.mock(ILogParameter.class);
 		when(logParameters.getParameterNamed("delimiter")).thenReturn(delimiter);
 
 
@@ -61,7 +61,7 @@ public class DelimiterFormatterTest extends TestCase {
 	public void testNoChangeWhenNoFormat() {
 		String delimiter = "-";
 		
-		LogParameter logParameters = Mockito.mock(LogParameter.class);
+		ILogParameter logParameters = Mockito.mock(ILogParameter.class);
 		when(logParameters.getParameterNamed("delimiter")).thenReturn(delimiter);
 
 		String baseFormat = "Hello World";

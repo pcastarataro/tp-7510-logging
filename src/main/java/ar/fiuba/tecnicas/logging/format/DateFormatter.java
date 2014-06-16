@@ -23,7 +23,7 @@ public class DateFormatter extends AbstractFormatter {
 	/**
 	 * Replace all the occurrences of date pattern with the current date.
 	 */
-	public String preProcessFormat(String baseFormat, LogParameter parameters) {
+	public String preProcessFormat(String baseFormat, ILogParameter parameters) {
 		Date date = (Date)parameters.getParameterNamed("date");
 		
 		findNextPatternPositions(baseFormat);

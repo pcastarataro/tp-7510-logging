@@ -1,29 +1,85 @@
 package ar.fiuba.tecnicas.logging.config;
 
+
 /**
- * Interface that define Log Configuration behaviour asociate to the configuration file
- *
+ * Implements a specific LogConfiguration Class
  */
-public interface LogConfiguration {
-		
-	/**
-	 * @return log pattern defined in configuration file
-	 */
-	public String getBaseFormat();
+public class LogConfiguration implements ILogConfiguration {
 	
+	private String DEFAULT_DELIMITER = "-";
 	
-	/**
-	 * @return delimiter defined in configuration file. If not defined return default "-"
-	 */
-	public String getDelimiter();
+	private String baseFormat;
+	private String outputString;
 	
 	/**
-	 * @return log output defined in configuration file
+	 * @param baseFormat string pattern to log
+	 * @param minLoggingLevel minimum Level to log
 	 */
-	public String outputString();
+	public LogConfiguration(String baseFormat) {
+		this.setBaseFormat(baseFormat);
+	};
 	
 	/**
-	 * @return configuration properties as XML
+	 * @param baseFormat string pattern to log
+	 * @param minLoggingLevel minimum Level to log
+	 * @param outputString log output
 	 */
-	public String getAsXml();
+	public LogConfiguration(String baseFormat, String outputString) {
+		this.setBaseFormat(baseFormat);
+		this.setOutputString(outputString);
+	};
+	
+	/**
+	 * @param baseFormat string pattern to log
+	 * @param minLoggingLevel minimum Level to log
+	 * @param outputString log output
+	 * @param delimiter delimiter to be used to log. If not defined default "-"
+	 */
+	public LogConfiguration(String baseFormat, String outputString,String delimiter) {
+		this.setBaseFormat(baseFormat);
+		this.setOutputString(outputString);
+		this.DEFAULT_DELIMITER=delimiter;
+	};
+	
+	protected void setBaseFormat(String baseFormat) {
+		this.baseFormat = baseFormat;
+	}
+	
+	
+	protected void setOutputString(String outputString) {
+		this.outputString = outputString;
+	}
+	
+	/**
+	 * Retuns the base format
+	 */
+	public String getBaseFormat() {
+		return this.baseFormat;
+	}
+
+	/**
+	 * Returns the delimiter string
+	 */
+	public String getDelimiter() {
+		return DEFAULT_DELIMITER;
+	}
+
+	/**
+	 * Returns the output string
+	 */
+	public String outputString() {
+		return this.outputString;
+	}
+	
+	/**
+	 * Return the log as XML
+	 */
+	public String getAsXml(){
+		String xmlConfig="<log>";
+		xmlConfig+="<baseformat>" + this.baseFormat + "</baseformat>";
+		xmlConfig+="<outputstring>" + this.outputString + "</outputstring>";
+		xmlConfig+="<delimiter>" + this.DEFAULT_DELIMITER + "</delimiter>";
+		xmlConfig+="</log>";
+		return xmlConfig;
+	}
 }

@@ -30,7 +30,7 @@ public class JsonFormatter extends AbstractFormatter {
 	 * @see ar.fiuba.tecnicas.logging.format.Formatter#preProcessFormat(java.lang.String, ar.fiuba.tecnicas.logging.format.LogParameter)
 	 */
 	@Override
-	public String preProcessFormat(String baseFormat, LogParameter parameters) {
+	public String preProcessFormat(String baseFormat, ILogParameter parameters) {
 		String preformattedStr = baseFormat.replace("%J", "{'datetime':'%d{yyyy-MM-dd}T%d{HH:mm:ss.SSSZ}','level':'%p','logger':'%g','message':'%m'}");
 		preformattedStr = dateFormatter.preProcessFormat(preformattedStr, parameters);
 		preformattedStr = levelFormatter.preProcessFormat(preformattedStr, parameters);

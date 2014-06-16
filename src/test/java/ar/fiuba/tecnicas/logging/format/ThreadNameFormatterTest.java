@@ -6,23 +6,23 @@ import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
 
-import ar.fiuba.tecnicas.logging.context.ExecutionContext;
+import ar.fiuba.tecnicas.logging.context.IExecutionContext;
 
 public class ThreadNameFormatterTest extends TestCase {
 
 	private String threadName;
 	
-	private ExecutionContext executionContext;
-	private LogParameter logParameters;
+	private IExecutionContext executionContext;
+	private ILogParameter logParameters;
 	private ThreadNameFormatter formatter;
 	
 	@Override
 	protected void setUp() {
 		threadName = "main-thread";
-		executionContext = Mockito.mock(ExecutionContext.class);
+		executionContext = Mockito.mock(IExecutionContext.class);
 		when(executionContext.getThreadName()).thenReturn(threadName);
 		
-		logParameters = Mockito.mock(LogParameter.class);
+		logParameters = Mockito.mock(ILogParameter.class);
 		when(logParameters.getParameterNamed("executionContext")).thenReturn(executionContext);
 		
 		formatter = new ThreadNameFormatter();

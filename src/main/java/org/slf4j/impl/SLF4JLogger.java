@@ -2,10 +2,10 @@ package org.slf4j.impl;
 
 import org.slf4j.helpers.MarkerIgnoringBase;
 
-import ar.fiuba.tecnicas.logging.Logger;
-import ar.fiuba.tecnicas.logging.context.ExecutionContext;
+import ar.fiuba.tecnicas.logging.ILogger;
+import ar.fiuba.tecnicas.logging.context.IExecutionContext;
 import ar.fiuba.tecnicas.logging.context.LoggingExecutionContext;
-import ar.fiuba.tecnicas.logging.level.ConcreteLevel;
+import ar.fiuba.tecnicas.logging.level.Level;
 import ar.fiuba.tecnicas.logging.level.LevelPriority;
 
 /**
@@ -18,13 +18,13 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Logger logger;
+	private ILogger logger;
 	
 	/**
 	 * Constructor from ar.fiuba.tecnicas.logging.Logger
 	 * @param logger
 	 */
-	public SLF4JLogger(Logger logger) {
+	public SLF4JLogger(ILogger logger) {
 		this.logger = logger;
 	}
 
@@ -43,7 +43,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void debug(String msg) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		this.logger.log(LevelPriority.DEBUG, msg, executionContext);
 	}
 
@@ -53,7 +53,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void debug(String format, Object param) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		String formattedString = createStringFromFormatAndParam(format, param);
 		this.logger.log(LevelPriority.DEBUG, formattedString, executionContext);
 	}
@@ -64,7 +64,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void debug(String format, Object... params) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		String formattedString = createStringFromFormatAndParams(format, params);
 		this.logger.log(LevelPriority.DEBUG, formattedString, executionContext);
 	}
@@ -75,7 +75,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void debug(String msg, Throwable t) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		this.logger.log(LevelPriority.DEBUG, msg, t, executionContext);
 	}
 
@@ -85,7 +85,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void debug(String format, Object arg1, Object arg2) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		Object[] params = {arg1, arg2};
 		String formattedString = createStringFromFormatAndParams(format, params);
 		this.logger.log(LevelPriority.DEBUG, formattedString, executionContext);
@@ -97,7 +97,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void error(String msg) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		this.logger.log(LevelPriority.ERROR, msg, executionContext);
 	}
 
@@ -107,7 +107,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void error(String format, Object param) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		String formattedString = createStringFromFormatAndParam(format, param);
 		this.logger.log(LevelPriority.ERROR, formattedString, executionContext);
 	}
@@ -118,7 +118,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void error(String format, Object... params) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		String formattedString = createStringFromFormatAndParams(format, params);
 		this.logger.log(LevelPriority.ERROR, formattedString, executionContext);
 	}
@@ -129,7 +129,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void error(String msg, Throwable t) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		this.logger.log(LevelPriority.ERROR, msg, t, executionContext);
 	}
 
@@ -139,7 +139,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void error(String format, Object arg1, Object arg2) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		Object[] params = {arg1, arg2};
 		String formattedString = createStringFromFormatAndParams(format, params);
 		this.logger.log(LevelPriority.ERROR, formattedString, executionContext);
@@ -151,7 +151,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void info(String msg) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		this.logger.log(LevelPriority.INFO, msg, executionContext);
 	}
 
@@ -161,7 +161,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void info(String format, Object param) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		String formattedString = createStringFromFormatAndParam(format, param);
 		this.logger.log(LevelPriority.INFO, formattedString, executionContext);
 	}
@@ -172,7 +172,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void info(String format, Object... params) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		String formattedString = createStringFromFormatAndParams(format, params);
 		this.logger.log(LevelPriority.INFO, formattedString, executionContext);
 	}
@@ -183,7 +183,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void info(String msg, Throwable t) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		this.logger.log(LevelPriority.INFO, msg, t, executionContext);
 	}
 
@@ -193,7 +193,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void info(String format, Object arg1, Object arg2) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		Object[] params = {arg1, arg2};
 		String formattedString = createStringFromFormatAndParams(format, params);
 		this.logger.log(LevelPriority.INFO, formattedString, executionContext);
@@ -205,7 +205,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void trace(String msg) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		this.logger.log(LevelPriority.TRACE, msg, executionContext);
 	}
 
@@ -215,7 +215,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void trace(String format, Object param) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		String formattedString = createStringFromFormatAndParam(format, param);
 		this.logger.log(LevelPriority.TRACE, formattedString, executionContext);
 	}
@@ -226,7 +226,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void trace(String format, Object... param) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		String formattedString = createStringFromFormatAndParam(format, param);
 		this.logger.log(LevelPriority.TRACE, formattedString, executionContext);
 	}
@@ -237,7 +237,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void trace(String msg, Throwable t) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		this.logger.log(LevelPriority.TRACE, msg, t, executionContext);
 	}
 
@@ -247,7 +247,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void trace(String format, Object arg1, Object arg2) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		Object[] params = {arg1, arg2};
 		String formattedString = createStringFromFormatAndParams(format, params);
 		this.logger.log(LevelPriority.TRACE, formattedString, executionContext);
@@ -259,7 +259,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void warn(String msg) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		this.logger.log(LevelPriority.WARN, msg, executionContext);
 	}
 
@@ -269,7 +269,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void warn(String format, Object param) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		String formattedString = createStringFromFormatAndParam(format, param);
 		this.logger.log(LevelPriority.WARN, formattedString, executionContext);
 		
@@ -281,7 +281,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void warn(String format, Object... params) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		String formattedString = createStringFromFormatAndParams(format, params);
 		this.logger.log(LevelPriority.WARN, formattedString, executionContext);
 		
@@ -293,7 +293,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void warn(String msg, Throwable t) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		this.logger.log(LevelPriority.WARN, msg, t, executionContext);
 	}
 
@@ -303,7 +303,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public void warn(String format, Object arg1, Object arg2) {
-		ExecutionContext executionContext = new LoggingExecutionContext();
+		IExecutionContext executionContext = new LoggingExecutionContext();
 		Object[] params = {arg1, arg2};
 		String formattedString = createStringFromFormatAndParams(format, params);
 		this.logger.log(LevelPriority.WARN, formattedString, executionContext);
@@ -315,7 +315,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public boolean isDebugEnabled() {
-		return this.logger.getMinLoggingLevel().isLowerOrEqualsThan(new ConcreteLevel(LevelPriority.DEBUG));
+		return this.logger.getMinLoggingLevel().isLowerOrEqualsThan(new Level(LevelPriority.DEBUG));
 	}
 
 	/*
@@ -324,7 +324,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public boolean isErrorEnabled() {
-		return this.logger.getMinLoggingLevel().isLowerOrEqualsThan(new ConcreteLevel(LevelPriority.ERROR));
+		return this.logger.getMinLoggingLevel().isLowerOrEqualsThan(new Level(LevelPriority.ERROR));
 	}
 
 	/*
@@ -333,7 +333,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public boolean isInfoEnabled() {
-		return this.logger.getMinLoggingLevel().isLowerOrEqualsThan(new ConcreteLevel(LevelPriority.INFO));
+		return this.logger.getMinLoggingLevel().isLowerOrEqualsThan(new Level(LevelPriority.INFO));
 	}
 
 
@@ -343,7 +343,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public boolean isTraceEnabled() {
-		return this.logger.getMinLoggingLevel().isLowerOrEqualsThan(new ConcreteLevel(LevelPriority.TRACE));
+		return this.logger.getMinLoggingLevel().isLowerOrEqualsThan(new Level(LevelPriority.TRACE));
 	}
 
 	/*
@@ -352,7 +352,7 @@ public class SLF4JLogger extends MarkerIgnoringBase {
 	 */
 	@Override
 	public boolean isWarnEnabled() {
-		return this.logger.getMinLoggingLevel().isLowerOrEqualsThan(new ConcreteLevel(LevelPriority.WARN));
+		return this.logger.getMinLoggingLevel().isLowerOrEqualsThan(new Level(LevelPriority.WARN));
 	}
 	
 	// TODO Manejo de error por cantidad de parametros incorrectos?

@@ -9,7 +9,7 @@ import java.io.PrintWriter;
  * This class implements the Output for print the messages in a file.
  *
  */
-public class FileOutput implements Output {
+public class FileOutput implements IOutput {
 
 	String fileName;
 	

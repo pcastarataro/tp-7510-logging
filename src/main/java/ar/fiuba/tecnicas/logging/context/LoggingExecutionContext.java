@@ -1,13 +1,13 @@
 package ar.fiuba.tecnicas.logging.context;
 
-import ar.fiuba.tecnicas.logging.context.ExecutionContext;
+import ar.fiuba.tecnicas.logging.context.IExecutionContext;
 
 /**
  * This class is an implementation of ExecutionContext that allow to retrieve all the information of the context when the method of logging was called.
  * @author pcastarataro
  *
  */
-public class LoggingExecutionContext implements ExecutionContext {
+public class LoggingExecutionContext implements IExecutionContext {
 
 	private String fileName;
 	private String methodName;

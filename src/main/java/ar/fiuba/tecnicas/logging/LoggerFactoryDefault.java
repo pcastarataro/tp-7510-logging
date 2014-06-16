@@ -1,14 +1,14 @@
 package ar.fiuba.tecnicas.logging;
 
-import ar.fiuba.tecnicas.logging.config.ConcreteLogConfiguration;
 import ar.fiuba.tecnicas.logging.config.LogConfiguration;
-import ar.fiuba.tecnicas.logging.level.ConcreteLevel;
+import ar.fiuba.tecnicas.logging.config.ILogConfiguration;
 import ar.fiuba.tecnicas.logging.level.Level;
+import ar.fiuba.tecnicas.logging.level.ILevel;
 import ar.fiuba.tecnicas.logging.level.LevelPriority;
-import ar.fiuba.tecnicas.logging.log.ConcreteLog;
-import ar.fiuba.tecnicas.logging.log.ConcreteOutputFactory;
 import ar.fiuba.tecnicas.logging.log.Log;
-import ar.fiuba.tecnicas.logging.log.Output;
+import ar.fiuba.tecnicas.logging.log.OutputFactory;
+import ar.fiuba.tecnicas.logging.log.ILog;
+import ar.fiuba.tecnicas.logging.log.IOutput;
 
 public class LoggerFactoryDefault implements LoggerFactoryHandler{
 	private LoggerFactoryHandler next;
@@ -23,16 +23,16 @@ public class LoggerFactoryDefault implements LoggerFactoryHandler{
 	public void setNext(LoggerFactoryHandler handler){
 		this.next=handler;
 	}
-	public Logger createLogger(String loggerName){
+	public ILogger createLogger(String loggerName){
 		this.setNext(null);
-		ConcreteLogger logger = new ConcreteLogger(loggerName);
+		Logger logger = new Logger(loggerName);
 		
-		Level level = new ConcreteLevel(LevelPriority.values()[0]);
+		ILevel level = new Level(LevelPriority.values()[0]);
 		logger.setMinLoggingLevel(level);
-		LogConfiguration logConfig = new ConcreteLogConfiguration("%d{HH:mm:ss}-%p-%t-%m", 
+		ILogConfiguration logConfig = new LogConfiguration("%d{HH:mm:ss}-%p-%t-%m", 
 				"ar.fiuba.tecnicas.logging.log.ConsoleOutput:", ";");
-		Output output=ConcreteOutputFactory.getInstance().makeOutputForOutputString("ar.fiuba.tecnicas.logging.log.ConsoleOutput:");
-		Log log = new ConcreteLog(logConfig, output);
+		IOutput output=OutputFactory.getInstance().makeOutputForOutputString("ar.fiuba.tecnicas.logging.log.ConsoleOutput:");
+		ILog log = new Log(logConfig, output);
 		
 		logger.addLog(log);
 		return logger;

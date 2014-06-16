@@ -1,8 +1,8 @@
 package ar.fiuba.tecnicas.logging.filter;
 
-import ar.fiuba.tecnicas.logging.format.LogParameter;
+import ar.fiuba.tecnicas.logging.format.ILogParameter;
 
-public class FilterMock implements Filter{
+public class FilterMock implements IFilter{
 
 	public FilterMock(){}
 	
@@ -13,7 +13,7 @@ public class FilterMock implements Filter{
 	}
 
 	@Override
-	public void testShouldLog(LogParameter logParams)
+	public void testShouldLog(ILogParameter logParams)
 			throws FilterNotMatchException {
 		
 	}

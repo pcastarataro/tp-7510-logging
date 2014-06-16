@@ -1,6 +1,6 @@
 package ar.fiuba.tecnicas.logging.log;
 
-import ar.fiuba.tecnicas.logging.context.ExecutionContext;
+import ar.fiuba.tecnicas.logging.context.IExecutionContext;
 import ar.fiuba.tecnicas.logging.context.LoggingExecutionContext;
 import junit.framework.TestCase;
 
@@ -8,7 +8,7 @@ public class ExcecutionContextTest extends TestCase {
 
 	Thread thread = Thread.currentThread();
 	
-	private ExecutionContext getCurrentContext(){
+	private IExecutionContext getCurrentContext(){
 		return new LoggingExecutionContext();
 	}
 	

@@ -1,28 +1,39 @@
 package ar.fiuba.tecnicas.logging.level;
 
 /**
- * This interface is used to abstract all the level information.
- * @author pablo
- *
+ * Implementation of a specific Level Class
  */
-public interface Level {
-	/**
-	 * 
-	 * @return the Level Name
-	 */
-	public String getName();
+public class Level implements ILevel {
+
+	private LevelPriority levelPriority;
 	
 	/**
-	 * This method compare 2 levels
-	 * @param loggingLevel
-	 * @return true if this is lower or equals than loggingLevel.
+	 * Creates a new Instance of ConcreteLevel with the priority send as parameter.
+	 * @param levelPriority
 	 */
-	public boolean isLowerOrEqualsThan(Level loggingLevel);
+	public Level(LevelPriority levelPriority){
+		this.levelPriority = levelPriority;
+	}
 	
 	/**
-	 * 
-	 * @return the Priority assigned the Level
+	 * Returns the Priority name
 	 */
-	public LevelPriority getLevelPriority();
+	public String getName() {
+		return this.levelPriority.name();
+	}
+
+	/**
+	 * Returns true if the Level is lower or equals than the level send as parameter. 
+	 * False in other case 
+	 */
+	public boolean isLowerOrEqualsThan(ILevel loggingLevel) {
+		return levelPriority.compareTo(loggingLevel.getLevelPriority()) >= 0;
+	}
 	
+	/**
+	 * Returns the priority associated to the Level.
+	 */
+	public LevelPriority getLevelPriority() {
+		return this.levelPriority;
+	}
 }

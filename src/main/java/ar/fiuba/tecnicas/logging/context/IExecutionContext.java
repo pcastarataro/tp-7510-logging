@@ -5,7 +5,7 @@ package ar.fiuba.tecnicas.logging.context;
  * @author pablo
  *
  */
-public interface ExecutionContext {
+public interface IExecutionContext {
 
 	/**
 	 * 

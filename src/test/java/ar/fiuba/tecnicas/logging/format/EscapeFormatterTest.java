@@ -7,12 +7,12 @@ import junit.framework.TestCase;
 public class EscapeFormatterTest extends TestCase {
 
 	private EscapeFormatter escapeFormatter;
-	LogParameter logParameters;
+	ILogParameter logParameters;
 
 	@Override
 	protected void setUp() {
 		escapeFormatter = new EscapeFormatter();
-		logParameters = Mockito.mock(LogParameter.class);
+		logParameters = Mockito.mock(ILogParameter.class);
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class EscapeFormatterTest extends TestCase {
 	
 	
 	public void testNoChangeWhenNoFormat() {
-		LogParameter logParameters = Mockito.mock(LogParameter.class);
+		ILogParameter logParameters = Mockito.mock(ILogParameter.class);
 
 		String baseFormat = "Hello World";
 		baseFormat = escapeFormatter.preProcessFormat(baseFormat, logParameters);

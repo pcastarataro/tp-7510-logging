@@ -10,14 +10,14 @@ public class MessageFormatterTest extends TestCase {
 	
 	private String message;
 	
-	private LogParameter logParameters;
+	private ILogParameter logParameters;
 	private MessageFormatter formatter;
 	
 	@Override
 	protected void setUp() {
 		message = "Message 1234";
 		
-		logParameters = Mockito.mock(LogParameter.class);
+		logParameters = Mockito.mock(ILogParameter.class);
 		when(logParameters.getParameterNamed("message")).thenReturn(message);
 		
 		formatter = new MessageFormatter();

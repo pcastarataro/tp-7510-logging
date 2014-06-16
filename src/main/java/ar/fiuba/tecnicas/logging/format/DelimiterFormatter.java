@@ -11,7 +11,7 @@ public class DelimiterFormatter extends AbstractFormatter {
 	/**
 	 * Replace all the occurrences of delimiter pattern with the configured delimiter
 	 */
-	public String preProcessFormat(String baseFormat, LogParameter parameters) {
+	public String preProcessFormat(String baseFormat, ILogParameter parameters) {
 		String delimiter = (String)parameters.getParameterNamed("delimiter");
 		return baseFormat.replace("%n", delimiter);
 	}

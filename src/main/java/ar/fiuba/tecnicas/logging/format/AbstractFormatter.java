@@ -5,12 +5,12 @@ package ar.fiuba.tecnicas.logging.format;
  * @author pcastarataro
  *
  */
-public abstract class AbstractFormatter implements Formatter {
+public abstract class AbstractFormatter implements IFormatter {
 	
 	/**
 	 * Implements the default behavior of post formating a message.
 	 */
-	public String postProcessFormat(String baseFormat, LogParameter parameters) {
+	public String postProcessFormat(String baseFormat, ILogParameter parameters) {
 		return baseFormat;
 	}
 

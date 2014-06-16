@@ -14,16 +14,16 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import ar.fiuba.tecnicas.logging.config.ConcreteLogConfiguration;
 import ar.fiuba.tecnicas.logging.config.LogConfiguration;
-import ar.fiuba.tecnicas.logging.filter.Filter;
-import ar.fiuba.tecnicas.logging.level.ConcreteLevel;
+import ar.fiuba.tecnicas.logging.config.ILogConfiguration;
+import ar.fiuba.tecnicas.logging.filter.IFilter;
 import ar.fiuba.tecnicas.logging.level.Level;
+import ar.fiuba.tecnicas.logging.level.ILevel;
 import ar.fiuba.tecnicas.logging.level.LevelPriority;
-import ar.fiuba.tecnicas.logging.log.ConcreteLog;
-import ar.fiuba.tecnicas.logging.log.ConcreteOutputFactory;
 import ar.fiuba.tecnicas.logging.log.Log;
-import ar.fiuba.tecnicas.logging.log.Output;
+import ar.fiuba.tecnicas.logging.log.OutputFactory;
+import ar.fiuba.tecnicas.logging.log.ILog;
+import ar.fiuba.tecnicas.logging.log.IOutput;
 
 public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 	private static LoggerFactoryFromXML factory = new LoggerFactoryFromXML();
@@ -80,8 +80,8 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 		return true;
 	}	
 	
-	private Logger createLoggerFromXML(String loggerName){
-		ConcreteLogger logger = new ConcreteLogger(loggerName);
+	private ILogger createLoggerFromXML(String loggerName){
+		Logger logger = new Logger(loggerName);
 		Node loggerNode=this.getLogger(loggerName);
 		
 		NamedNodeMap attrs=loggerNode.getAttributes();
@@ -95,14 +95,14 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 			Node logNode = nList.item(temp);
 			if (logNode.getNodeType() == Node.ELEMENT_NODE) {
 				//System.out.println("crea log");
-				Log log=this.createLog(logNode);
+				ILog log=this.createLog(logNode);
 				logger.addLog(log);
 			}
 		}
 		return logger;
 	}
 	
-	public Logger createLogger(String loggerName) {
+	public ILogger createLogger(String loggerName) {
 		this.setNext(LoggerFactoryDefault.getInstance());
 		if (!this.loggerExist(loggerName)){
 			return this.next.createLogger(loggerName);
@@ -123,7 +123,7 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 	}
 	
 	// In case of invalid name returns Lower priority level as default
-	private Level getLevelFromName(String name) {
+	private ILevel getLevelFromName(String name) {
 		LevelPriority priority;
 		try {
 			priority = LevelPriority.valueOf(name.toUpperCase());
@@ -131,15 +131,15 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 		catch(RuntimeException e){
 			priority = LevelPriority.values()[0];
 		}
-		return new ConcreteLevel(priority);
+		return new Level(priority);
 	}
 	
-	private Filter createFilter(Node filterNode){
+	private IFilter createFilter(Node filterNode){
 		NamedNodeMap attrs=filterNode.getAttributes();
 		String filterClassName=attrs.getNamedItem("class").getTextContent();
-		Filter filter;
+		IFilter filter;
 		try {
-			filter=(Filter)Class.forName(filterClassName).getConstructor().newInstance();
+			filter=(IFilter)Class.forName(filterClassName).getConstructor().newInstance();
 			filter.setConfigurationString(filterNode.getTextContent());
 		} catch (Exception ex) {
 	    	return null;
@@ -147,7 +147,7 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 		return null;
 	}
 	
-	private void loadFilters(Log log,Node filtersNode){
+	private void loadFilters(ILog log,Node filtersNode){
 		NodeList filtros=filtersNode.getChildNodes();
 		for(int i=0;i<filtros.getLength();i++){
 			Node filterNode=filtros.item(i);
@@ -158,7 +158,7 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 					continue;
 				}
 				//System.out.println("no filter pattern");
-				Filter filter=createFilter(filterNode);
+				IFilter filter=createFilter(filterNode);
 				if(filter!=null){
 					System.out.println("encuentra clase");
 					log.addFilter(filter);
@@ -167,15 +167,15 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 		}
 	}
 	
-	private Log createLog(Node logNode) {
+	private ILog createLog(Node logNode) {
 		Element eElement = (Element) logNode;
 		String baseFormat = eElement.getElementsByTagName("baseformat").item(0).getTextContent();
 		String filename = eElement.getElementsByTagName("outputstring").item(0).getTextContent();
 		String delimiter = eElement.getElementsByTagName("delimiter").item(0).getTextContent();
 		
-		LogConfiguration logConfig = new ConcreteLogConfiguration(baseFormat, filename, delimiter);
-		Output output=ConcreteOutputFactory.getInstance().makeOutputForOutputString(filename);
-		Log log = new ConcreteLog(logConfig,output);
+		ILogConfiguration logConfig = new LogConfiguration(baseFormat, filename, delimiter);
+		IOutput output=OutputFactory.getInstance().makeOutputForOutputString(filename);
+		ILog log = new Log(logConfig,output);
 		//System.out.println(eElement.getElementsByTagName("filters").getLength());
 		if(eElement.getElementsByTagName("filters").getLength()!=0){
 			//System.out.println("entra a load filters");

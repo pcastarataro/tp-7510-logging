@@ -13,7 +13,7 @@ public class EscapeFormatter extends AbstractFormatter {
 	/**
 	 * Replace all the occurrences of %% with an preProccesed % string.
 	 */
-	public String preProcessFormat(String baseFormat, LogParameter parameters) {
+	public String preProcessFormat(String baseFormat, ILogParameter parameters) {
 		return baseFormat.replace("%%", preProcessorEscape);
 	}
 	
@@ -21,7 +21,7 @@ public class EscapeFormatter extends AbstractFormatter {
 	 * Replace all the preProccesed % strings with %
 	 */
 	@Override
-	public String postProcessFormat(String baseFormat, LogParameter parameters) {
+	public String postProcessFormat(String baseFormat, ILogParameter parameters) {
 		return baseFormat.replace(preProcessorEscape, "%");
 	}
 

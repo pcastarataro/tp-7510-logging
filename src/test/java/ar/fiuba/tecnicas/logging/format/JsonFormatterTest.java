@@ -5,7 +5,7 @@ import static org.mockito.Mockito.when;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import ar.fiuba.tecnicas.logging.level.Level;
+import ar.fiuba.tecnicas.logging.level.ILevel;
 
 import org.mockito.Mockito;
 
@@ -13,18 +13,18 @@ import junit.framework.TestCase;
 
 public class JsonFormatterTest extends TestCase {
 	
-	private LogParameter logParameters;
+	private ILogParameter logParameters;
 	
 	@Override
 	protected void setUp() {
 		try {
-			logParameters = Mockito.mock(LogParameter.class);
+			logParameters = Mockito.mock(ILogParameter.class);
 			
 			String message = "Hello World!";
 			String logger = "Logger";
 			Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSZ").parse("2000-03-30 21:00:00.000-0300");
 			
-			Level level = Mockito.mock(Level.class);
+			ILevel level = Mockito.mock(ILevel.class);
 			when(level.getName()).thenReturn("DEBUG");
 			
 			when(logParameters.getParameterNamed("date")).thenReturn(date);			

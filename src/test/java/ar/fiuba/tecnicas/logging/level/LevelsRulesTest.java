@@ -3,13 +3,13 @@ package ar.fiuba.tecnicas.logging.level;
 import junit.framework.TestCase;
 
 public class LevelsRulesTest extends TestCase {
-	private Level offLevel = new ConcreteLevel(LevelPriority.OFF);
-	private Level fatalLevel = new ConcreteLevel(LevelPriority.FATAL);
-	private Level errorLevel = new ConcreteLevel(LevelPriority.ERROR);
-	private Level warnLevel = new ConcreteLevel(LevelPriority.WARN);
-	private Level infoLevel = new ConcreteLevel(LevelPriority.INFO);
-	private Level debugLevel = new ConcreteLevel(LevelPriority.DEBUG);
-	private Level traceLevel = new ConcreteLevel(LevelPriority.TRACE);
+	private ILevel offLevel = new Level(LevelPriority.OFF);
+	private ILevel fatalLevel = new Level(LevelPriority.FATAL);
+	private ILevel errorLevel = new Level(LevelPriority.ERROR);
+	private ILevel warnLevel = new Level(LevelPriority.WARN);
+	private ILevel infoLevel = new Level(LevelPriority.INFO);
+	private ILevel debugLevel = new Level(LevelPriority.DEBUG);
+	private ILevel traceLevel = new Level(LevelPriority.TRACE);
 	
 	
 	public void testOffLevelIsLowerThanFatalLevel() {

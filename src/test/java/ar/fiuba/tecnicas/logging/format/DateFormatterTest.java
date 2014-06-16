@@ -14,7 +14,7 @@ import ar.fiuba.tecnicas.logging.format.DateFormatter;
 
 public class DateFormatterTest extends TestCase {
 
-	private LogParameter logParameters;
+	private ILogParameter logParameters;
 	private DateFormatter dateFormatter;
 	
 	@Override
@@ -24,7 +24,7 @@ public class DateFormatterTest extends TestCase {
 			
 			Date date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse("2000-03-30 21:00:00");
 			
-			logParameters = Mockito.mock(LogParameter.class);
+			logParameters = Mockito.mock(ILogParameter.class);
 			when(logParameters.getParameterNamed("date")).thenReturn(date);
 			
 		} catch (ParseException e) {}		

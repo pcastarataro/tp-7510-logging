@@ -1,6 +1,6 @@
 package ar.fiuba.tecnicas.logging.format;
 
-import ar.fiuba.tecnicas.logging.context.ExecutionContext;
+import ar.fiuba.tecnicas.logging.context.IExecutionContext;
 
 /**
  * This class is an implementation of Formatter that allows to format 
@@ -13,8 +13,8 @@ public class FileNameFormatter extends AbstractFormatter {
 	/**
 	 * Replace all the occurrences of file pattern with the name of the file.
 	 */
-	public String preProcessFormat(String baseFormat, LogParameter parameters) {
-		ExecutionContext executionContext = (ExecutionContext)parameters.getParameterNamed("executionContext");
+	public String preProcessFormat(String baseFormat, ILogParameter parameters) {
+		IExecutionContext executionContext = (IExecutionContext)parameters.getParameterNamed("executionContext");
 		return baseFormat.replace("%F", executionContext.getFileName());
 	}
 

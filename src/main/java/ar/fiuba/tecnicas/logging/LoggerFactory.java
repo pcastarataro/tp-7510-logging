@@ -21,7 +21,7 @@ public class LoggerFactory {
 	 * @param path config file route
 	 * @return Logger with its log created ready to log
 	 */
-	public Logger createLogger(String loggerName) {
+	public ILogger createLogger(String loggerName) {
 		return LoggerFactoryFromPropertie.getInstance().createLogger(loggerName);
 	}
 	

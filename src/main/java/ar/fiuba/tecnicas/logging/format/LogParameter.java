@@ -1,18 +1,50 @@
 package ar.fiuba.tecnicas.logging.format;
 
+import java.util.Date;
+import java.util.HashMap;
+
+import ar.fiuba.tecnicas.logging.context.IExecutionContext;
+import ar.fiuba.tecnicas.logging.level.ILevel;
+
 /**
- * This interface abstract the functionality of pass parameters between the log and all the kinds of formats.
+ * This class is an implementation of the interface LogParameter. It allows to share parameters between any log and any format.
  * @author pcastarataro
  *
  */
-public interface LogParameter {
-
+public class LogParameter implements ILogParameter{
+	
+	private HashMap<String, Object> parameters;
+	
 	/**
-	 * This method returns the parameters named as the parameter received.
-	 * @param parameterName: the name of the parameter that you want to obtain
-	 * @return the value of the parameter searched.
-	 * @throws ParameterNotFoundException if the parameter doesn't exists.
+	 * Contructor: create an instance of ConcreteLogParameter that allows to share level, message, executionContext, delimiter, date
+	 * @param level
+	 * @param message
+	 * @param executionContext
+	 * @param delimiter
+	 * @param date
 	 */
-	public Object getParameterNamed(String parameterName) throws ParameterNotFoundException;
+	public LogParameter(ILevel level, String message, 
+			IExecutionContext executionContext, 
+			String delimiter , Date date, String loggerName) {
+		parameters = new HashMap<String, Object>();
+		parameters.put("level", level);
+		parameters.put("message", message);
+		parameters.put("executionContext", executionContext);
+		parameters.put("delimiter", delimiter);
+		parameters.put("date", date);
+		parameters.put("loggerName", loggerName);
+		
+	}
+	
+	/**
+	 * Return the value of the parameter named 'parameterName'. In case of invalid name
+	 * throws ParameterNotFoundException.
+	 */
+	public Object getParameterNamed(String parameterName) throws ParameterNotFoundException {
+			Object parameter = parameters.get(parameterName);
+			if(parameter == null)
+				throw new ParameterNotFoundException();
+			return parameter;
+	}
 	
 }

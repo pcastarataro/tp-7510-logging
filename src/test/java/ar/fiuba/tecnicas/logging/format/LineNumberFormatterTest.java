@@ -5,23 +5,23 @@ import junit.framework.TestCase;
 
 import org.mockito.Mockito;
 
-import ar.fiuba.tecnicas.logging.context.ExecutionContext;
+import ar.fiuba.tecnicas.logging.context.IExecutionContext;
 
 public class LineNumberFormatterTest extends TestCase {
 	
 	private int lineNumber;
 	
-	private ExecutionContext executionContext;
-	private LogParameter logParameters;
+	private IExecutionContext executionContext;
+	private ILogParameter logParameters;
 	private LineNumberFormatter formatter;
 	
 	@Override
 	protected void setUp() {
 		lineNumber = 14;
-		executionContext = Mockito.mock(ExecutionContext.class);
+		executionContext = Mockito.mock(IExecutionContext.class);
 		when(executionContext.getLineNumber()).thenReturn(lineNumber);
 		
-		logParameters = Mockito.mock(LogParameter.class);
+		logParameters = Mockito.mock(ILogParameter.class);
 		when(logParameters.getParameterNamed("executionContext")).thenReturn(executionContext);
 		
 		formatter = new LineNumberFormatter();
