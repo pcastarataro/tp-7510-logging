@@ -1,24 +1,33 @@
 <?xml version="1.0"?>
-<logger name="Main" level="Warn">
-	<log>
-		<baseformat>%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}</baseformat>
-		<outputstring>ar.fiuba.tecnicas.logging.log.ConsoleOutput:</outputstring>
-		<delimiter>:</delimiter>
-	</log>
-	<log>
-		<baseformat>%d{HH:mm:ss}-%p-%t-%m</baseformat>
-		<outputstring>ar.fiuba.tecnicas.logging.log.FileOutput:log1.txt</outputstring>
-		<delimiter>-</delimiter>
-	</log>
-	<log>
-		<baseformat>%d{HH:mm:ss}-%F-%L-%m</baseformat>
-		<outputstring>ar.fiuba.tecnicas.logging.log.FileOutput:log2.txt</outputstring>
-		<filters>
-			<filterpattern>.*Mundo.*</filterpattern>
-			<customFilter class="ar.fiuba.tecnicas.logging.filter.FilterMock">
-				configuraciondefilter1
-			</customFilter>
-		</filters>
-		<delimiter>;</delimiter>
-	</log>
-</logger>
+<loggers>
+	<logger name="Main" level="Warn">
+		<log>
+			<baseformat>%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}</baseformat>
+			<outputstring>ar.fiuba.tecnicas.logging.log.ConsoleOutput:</outputstring>
+			<delimiter>:</delimiter>
+		</log>
+		<log>
+			<baseformat>%d{HH:mm:ss}-%p-%t-%m</baseformat>
+			<outputstring>ar.fiuba.tecnicas.logging.log.FileOutput:log1.txt</outputstring>
+			<delimiter>-</delimiter>
+		</log>
+		<log>
+			<baseformat>%d{HH:mm:ss}-%F-%L-%m</baseformat>
+			<outputstring>ar.fiuba.tecnicas.logging.log.FileOutput:log2.txt</outputstring>
+			<filters>
+				<filterpattern>.*Mundo.*</filterpattern>
+				<customFilter class="ar.fiuba.tecnicas.logging.filter.FilterMock">
+					configuraciondefilter1
+				</customFilter>
+			</filters>
+			<delimiter>;</delimiter>
+		</log>
+	</logger>
+	<logger name="logger2" level="Warn">
+		<log>
+			<baseformat>%d{HH:mm:ss}-%p-%t-%m</baseformat>
+			<outputstring>ar.fiuba.tecnicas.logging.log.FileOutput:logger2.txt</outputstring>
+			<delimiter>-</delimiter>
+		</log>
+	</logger>
+</loggers>
