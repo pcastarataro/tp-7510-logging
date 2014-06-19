@@ -16,5 +16,11 @@ public class ConsoleLogOutputTest extends TestCase{
 		consoleLogOutput.doPrint(mensaje);
 		assertEquals(baos.toString().replaceAll("\r", "").replaceAll("\n", ""),mensaje);
 		System.setOut(origOut);
-	}  
+	} 
+	public void testConsoleLogOutputGetAsXml(){
+		String xmlWanted="<outputstring>ar.fiuba.tecnicas.logging.log.ConsoleOutput:</outputstring>";
+		IOutput output=OutputFactory.getInstance().makeOutputForOutputString(ConsoleOutput.class.getName() + ":");
+		String xmlCreatedOutput=output.getAsXml();
+        assertEquals(xmlWanted,xmlCreatedOutput);
+	}
 }

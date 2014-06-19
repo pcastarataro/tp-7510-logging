@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 import ar.fiuba.tecnicas.logging.FormatterRepository;
 import ar.fiuba.tecnicas.logging.config.ILogConfiguration;
 import ar.fiuba.tecnicas.logging.context.IExecutionContext;
@@ -139,5 +141,33 @@ public class Log implements ILog {
 	
 	public void setRegexpPattern(String newRegex){
 		this.regexPattern=newRegex;
+	}
+	
+	public String getAsXml(){
+		String xml="<log>";
+		//return this.logConfiguration.getAsXml();
+		xml+="<baseformat>"+this.logConfiguration.getBaseFormat()+"</baseformat>";
+		xml+=this.logOutput.getAsXml();
+		xml+="<delimiter>"+this.logConfiguration.getDelimiter()+"</delimiter>";
+		xml+=this.getFiltersAsXml();
+		xml+="</log>";
+		return xml;
+	}
+	
+	private String getFiltersAsXml(){
+		String xml="";
+		if(this.regexPattern==null && this.filtersList.size()==0)return xml;
+		xml+="<filters>";
+		if(this.regexPattern!=null){
+			xml+="<filterpattern>"+this.regexPattern+"</filterpattern>";
+		}
+		java.util.Iterator<IFilter> iterador=this.filtersList.iterator();
+		while(iterador.hasNext()){
+			IFilter filter=iterador.next();
+			xml+=filter.getAsXml();
+			//System.out.println(xml);
+		}
+		xml+="</filters>";
+		return xml;
 	}
 }

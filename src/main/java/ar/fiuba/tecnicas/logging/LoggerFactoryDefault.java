@@ -37,4 +37,8 @@ public class LoggerFactoryDefault implements LoggerFactoryHandler{
 		logger.addLog(log);
 		return logger;
 	}
+	
+	public void setPropertiesPath(String path){
+		
+	}
 }

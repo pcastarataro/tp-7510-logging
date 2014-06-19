@@ -34,4 +34,6 @@ public interface ILog {
 	public void addFilter(IFilter newFilter);
 	
 	public void setRegexpPattern(String newRegex);
+	
+	public String getAsXml();
 }

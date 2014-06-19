@@ -6,6 +6,7 @@ package ar.fiuba.tecnicas.logging;
  */
 public class LoggerFactory {
 	private static LoggerFactory factory = new LoggerFactory();
+	private String path="logger-config";
 	
 	private LoggerFactory() {};
 	
@@ -22,7 +23,13 @@ public class LoggerFactory {
 	 * @return Logger with its log created ready to log
 	 */
 	public ILogger createLogger(String loggerName) {
-		return LoggerFactoryFromPropertie.getInstance().createLogger(loggerName);
+		LoggerFactoryHandler loggerFactoryHandler=LoggerFactoryFromPropertie.getInstance();
+		loggerFactoryHandler.setPropertiesPath(this.path);
+		return loggerFactoryHandler.createLogger(loggerName);
+	}
+	
+	public void setPropertiesPath(String path){
+		this.path=path;
 	}
 	
 }

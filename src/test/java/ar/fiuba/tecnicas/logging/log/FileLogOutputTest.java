@@ -51,4 +51,11 @@ public class FileLogOutputTest extends TestCase{
 		}
 		assertEquals(leido,mensaje);
 	}
+	
+	public void testFileLogOutputGetAsXml(){
+		String xmlWanted="<outputstring>ar.fiuba.tecnicas.logging.log.FileOutput:log1.txt</outputstring>";
+		IOutput output=OutputFactory.getInstance().makeOutputForOutputString(FileOutput.class.getName() + ":log1.txt");
+		String xmlCreatedOutput=output.getAsXml();
+        assertEquals(xmlWanted,xmlCreatedOutput);
+	}
 }

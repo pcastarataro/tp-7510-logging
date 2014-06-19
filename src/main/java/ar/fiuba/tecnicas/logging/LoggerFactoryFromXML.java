@@ -27,13 +27,14 @@ import ar.fiuba.tecnicas.logging.log.IOutput;
 
 public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 	private static LoggerFactoryFromXML factory = new LoggerFactoryFromXML();
-	private String path="logger-config.xml";
+	private String path="logger-config";
 	private Document loggerConfig;
 	private LoggerFactoryHandler next;
+	private String extension="xml";
 	
 	public LoggerFactoryFromXML(){
 		try{
-			this.loggerConfig=this.getConfigXml(this.path);
+			this.loggerConfig=this.getConfigXml(this.path+"."+this.extension);
 		}
 		catch (ParserConfigurationException e) {this.loggerConfig=null;} 
 		catch (SAXException e) {this.loggerConfig=null;} 
@@ -105,6 +106,7 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 	public ILogger createLogger(String loggerName) {
 		this.setNext(LoggerFactoryDefault.getInstance());
 		if (!this.loggerExist(loggerName)){
+			this.next.setPropertiesPath(this.path);
 			return this.next.createLogger(loggerName);
 		}
 		//System.out.println("crear logger");
@@ -136,18 +138,21 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 	
 	private IFilter createFilter(Node filterNode){
 		NamedNodeMap attrs=filterNode.getAttributes();
+		//System.out.println("conf" + nList.getLength());
 		String filterClassName=attrs.getNamedItem("class").getTextContent();
 		IFilter filter;
 		try {
 			filter=(IFilter)Class.forName(filterClassName).getConstructor().newInstance();
-			filter.setConfigurationString(filterNode.getTextContent());
+			//System.out.println("probando valor " + filterNode.getFirstChild().getNodeValue());
+			filter.setConfigurationString(filterNode.getFirstChild().getNodeValue());
 		} catch (Exception ex) {
 	    	return null;
 	    }
-		return null;
+		return filter;
 	}
 	
 	private void loadFilters(ILog log,Node filtersNode){
+		
 		NodeList filtros=filtersNode.getChildNodes();
 		for(int i=0;i<filtros.getLength();i++){
 			Node filterNode=filtros.item(i);
@@ -158,9 +163,10 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 					continue;
 				}
 				//System.out.println("no filter pattern");
+				
 				IFilter filter=createFilter(filterNode);
 				if(filter!=null){
-					System.out.println("encuentra clase");
+					//System.out.println("encuentra clase");
 					log.addFilter(filter);
 				}
 			}
@@ -183,6 +189,18 @@ public class LoggerFactoryFromXML implements LoggerFactoryHandler {
 		}
 		
 		return log;
+	}
+	
+	public void setPropertiesPath(String path){
+		if(!this.path.equals(path)){
+			this.path=path;
+			try{
+				this.loggerConfig=this.getConfigXml(this.path+"."+this.extension);
+			}
+			catch (ParserConfigurationException e) {this.loggerConfig=null;} 
+			catch (SAXException e) {this.loggerConfig=null;} 
+			catch (IOException e) {this.loggerConfig=null;}
+		}
 	}
 	
 }

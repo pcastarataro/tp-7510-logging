@@ -90,10 +90,10 @@ public class Logger implements ILogger {
 	 * Returns the configuration as XML
 	 */
 	public String getXmlConfig(){
-		String xmlConfig="<logger>";
+		String xmlConfig="<logger name=\""+this.name+"\" level=\""+this.getMinLoggingLevel().getName()+"\">";
 		int cantLogs=this.logs.size();
 		for(int i=0;i<cantLogs;i++){
-			xmlConfig+=this.logs.get(i).getLogConfiguration().getAsXml();
+			xmlConfig+=this.logs.get(i).getAsXml();
 		}
 		xmlConfig+="</logger>";
 		return xmlConfig;

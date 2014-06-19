@@ -19,4 +19,6 @@ public interface IOutput {
 	 */
 	public void doPrint(String message);
 	
+	public String getAsXml();
+	
 }

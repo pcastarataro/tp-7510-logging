@@ -21,11 +21,12 @@ public class LoggerFactoryFromPropertie implements LoggerFactoryHandler{
 	private static LoggerFactoryFromPropertie factory=new LoggerFactoryFromPropertie();
 	private Properties configProperties;
 	private LoggerFactoryHandler next;
-	private String path="logger-config.properties";
+	private String path="logger-config";
+	private String extension="properties";
 	
 	public LoggerFactoryFromPropertie(){
 		try {
-			InputStream input = new FileInputStream(this.path);
+			InputStream input = new FileInputStream(this.path+"."+this.extension);
 			//System.out.println(input);
 			this.configProperties=new Properties();
 			this.configProperties.load(input);
@@ -85,7 +86,7 @@ public class LoggerFactoryFromPropertie implements LoggerFactoryHandler{
 		} catch (Exception ex) {
 	    	return null;
 	    }
-		return null;
+		return filter;
 	}
 	
 	private void loadFilters(ILog log,String logNameFull){
@@ -132,8 +133,33 @@ public class LoggerFactoryFromPropertie implements LoggerFactoryHandler{
 	
 	public ILogger createLogger(String loggerName){
 		this.setNext(LoggerFactoryFromXML.getInstance());
-		if(!this.loggerExist(loggerName))return this.next.createLogger(loggerName);
+		if(!this.loggerExist(loggerName)){
+			this.next.setPropertiesPath(this.path);
+			return this.next.createLogger(loggerName);
+		}
 		return this.createLoggerFromPropertie(loggerName);
+	}
+	
+	public void setPropertiesPath(String path){
+		if(!this.path.equals(path)){
+			this.path=path;
+			try {
+				InputStream input = new FileInputStream(this.path+"."+this.extension);
+				//System.out.println(input);
+				this.configProperties=new Properties();
+				this.configProperties.load(input);
+				if (input != null) {
+					try {
+						input.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			} catch (IOException ex) {
+				ex.printStackTrace();
+				this.configProperties=null;
+			}
+		}
 	}
 	
 }

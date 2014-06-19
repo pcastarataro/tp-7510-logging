@@ -26,5 +26,6 @@ public interface IFilter {
 	 * @throws FilterNotMatchException
 	 */
 	public void testShouldLog(ILogParameter logParams) throws FilterNotMatchException;
-	
+
+	public String getAsXml();
 }

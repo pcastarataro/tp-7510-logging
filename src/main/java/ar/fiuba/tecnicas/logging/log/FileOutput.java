@@ -48,4 +48,8 @@ public class FileOutput implements IOutput {
 		this.fileName = fileName;
 
 	}
+	
+	public String getAsXml(){
+		return "<outputstring>"+this.getClass().getName()+":"+this.fileName+"</outputstring>";
+	}
 }

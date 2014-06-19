@@ -23,5 +23,9 @@ public class ConsoleOutput implements IOutput {
 		String fileOutputPattern = ConsoleOutput.class.getName() + ":";
 		OutputProtocolValidator.validate(fileOutputPattern, outputString);
 	}
+	
+	public String getAsXml(){
+		return "<outputstring>"+this.getClass().getName()+":</outputstring>";
+	}
 
 }
