@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.swing.text.html.HTMLDocument.Iterator;
-
 import ar.fiuba.tecnicas.logging.FormatterRepository;
 import ar.fiuba.tecnicas.logging.config.ILogConfiguration;
 import ar.fiuba.tecnicas.logging.context.IExecutionContext;
