@@ -51,5 +51,6 @@ public class OutputFactory implements IOutputFactory {
 		outputsClassNames = new ArrayList<String>();
 		outputsClassNames.add(ConsoleOutput.class.getName());
 		outputsClassNames.add(FileOutput.class.getName());
+		outputsClassNames.add(StaticListOutput.class.getName());
 	}
 }

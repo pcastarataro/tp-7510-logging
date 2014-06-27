@@ -1,32 +1,34 @@
 <?xml version="1.0"?>
 <loggers>
-	<logger name="Main" level="Warn">
+	<logger name="logger1" level="Debug">
 		<log>
-			<baseformat>%%%%%F %t %n %L %n %M HOLAAA %F %n %m %n %%  %p %d{yyyy} %d{M} %d{yyyy-MM}</baseformat>
+			<baseformat>%d{dd-MM-YYYY hh:mm:ss.SSS} - [%p] [%g] %t %F %L %%- %m %n</baseformat>
 			<outputstring>ar.fiuba.tecnicas.logging.log.ConsoleOutput:</outputstring>
-			<delimiter>:</delimiter>
-		</log>
-		<log>
-			<baseformat>%d{HH:mm:ss}-%p-%t-%m</baseformat>
-			<outputstring>ar.fiuba.tecnicas.logging.log.FileOutput:log1.txt</outputstring>
-			<delimiter>-</delimiter>
-		</log>
-		<log>
-			<baseformat>%d{HH:mm:ss}-%F-%L-%m</baseformat>
-			<outputstring>ar.fiuba.tecnicas.logging.log.FileOutput:log2.txt</outputstring>
 			<filters>
-				<filterpattern>.*Mundo.*</filterpattern>
-				<customFilter class="ar.fiuba.tecnicas.logging.filter.FilterMock">
-					configuraciondefilter1
+				<customFilter class="ar.fiuba.tecnicas.logging.filter.OddLineNumberFilter">
 				</customFilter>
 			</filters>
-			<delimiter>;</delimiter>
+			<delimiter>-</delimiter>
 		</log>
 	</logger>
-	<logger name="logger2" level="Warn">
+	<logger name="logger2" level="Debug">
 		<log>
-			<baseformat>%d{HH:mm:ss}-%p-%t-%m</baseformat>
-			<outputstring>ar.fiuba.tecnicas.logging.log.FileOutput:logger2.txt</outputstring>
+			<baseformat>%d{dd-MM-YYYY hh:mm:ss.SSS} - [%p] [%g] %t %F %L %%- %m %n</baseformat>
+			<outputstring>ar.fiuba.tecnicas.logging.log.StaticListOutput:</outputstring>
+			<filters>
+				<filterpattern>.*tp.*</filterpattern>
+				<customFilter class="ar.fiuba.tecnicas.logging.filter.LevelFilter">DEBUG</customFilter>
+			</filters>
+			<delimiter>-</delimiter>
+		</log>
+	</logger>
+	<logger name="logger3" level="Trace">
+		<log>
+			<baseformat>%J</baseformat>
+			<outputstring>ar.fiuba.tecnicas.logging.log.FileOutput:logger3.json</outputstring>
+			<filters>
+				<customFilter class="ar.fiuba.tecnicas.logging.filter.LevelFilter">ERROR</customFilter>
+			</filters>
 			<delimiter>-</delimiter>
 		</log>
 	</logger>
